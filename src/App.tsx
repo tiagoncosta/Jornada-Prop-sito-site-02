@@ -67,15 +67,8 @@ export default function App() {
 
       {/* About Section */}
       <section id="sobre" className="py-32 border-y border-border bg-beige-light">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="grid md:grid-cols-2 gap-24 items-start">
-            <Reveal>
-              <div className="aspect-[4/5] bg-muted rounded-3xl flex items-center justify-center p-12 overflow-hidden relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent"></div>
-                <Sparkles size={120} className="text-accent/10" />
-              </div>
-            </Reveal>
-            <div className="pt-8">
+        <div className="container mx-auto px-6 max-w-3xl text-center">
+          <div className="pt-8">
               <Reveal delay={0.2}>
                 <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 tracking-tight">
                   Alinhamento e <br />Propósito Pleno
@@ -83,7 +76,7 @@ export default function App() {
                 <p className="text-lg text-text/60 leading-relaxed mb-12">
                   Através de princípios bíblicos e ferramentas práticas, você aprenderá a edificar um lar de paz, fortalecer relacionamentos e construir um legado de fé e saúde duradouro.
                 </p>
-                <div className="space-y-6">
+                <div className="space-y-6 flex flex-col items-center">
                   {[
                     "Princípios Bíblicos Aplicados",
                     "Ferramentas de Gestão do Lar",
@@ -100,8 +93,7 @@ export default function App() {
               </Reveal>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
       {/* Pillars Section */}
       <section id="pilares" className="py-32">
