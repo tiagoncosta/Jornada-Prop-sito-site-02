@@ -174,11 +174,11 @@ export default function App() {
               <span className="text-[10px] font-bold uppercase tracking-[0.3em] mb-8 inline-block opacity-60">Oferta de Lançamento</span>
               
               <div className="mb-8">
-                <p className="opacity-40 line-through text-base mb-2">De R$ 4.000,00 por R$ 1.775,60</p>
+                <p className="opacity-40 line-through text-base mb-2">De R$ 1.000,00 por</p>
                 <h2 className="text-xl md:text-2xl font-display font-medium mb-3 opacity-80">Invista hoje apenas</h2>
                 <div className="flex items-baseline justify-center gap-2">
                   <span className="text-lg opacity-40">12x de</span>
-                  <span className="text-6xl md:text-7xl font-display font-bold tracking-tighter">65,74</span>
+                  <span className="text-6xl md:text-7xl font-display font-bold tracking-tighter">50,50</span>
                 </div>
               </div>
 
