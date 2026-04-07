@@ -25,21 +25,31 @@ export default function App() {
     <div className="min-h-screen bg-bg text-text selection:bg-accent selection:text-white">
       {/* Header */}
       <header className="fixed top-0 w-full z-50 bg-bg/80 backdrop-blur-xl border-b border-border">
-        <div className="container mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-3 md:h-16 flex flex-col md:flex-row items-center justify-between gap-3 md:gap-0">
           <div className="flex items-center gap-2">
             <span className="text-lg font-display font-bold tracking-tighter">JORNADA</span>
           </div>
-          <nav className="hidden md:flex items-center gap-8 text-xs font-semibold uppercase tracking-widest">
-            <a href="#sobre" className="hover:opacity-50 transition-opacity">O Programa</a>
-            <a href="#pilares" className="hover:opacity-50 transition-opacity">Os Pilares</a>
-            <a href="#entrega" className="hover:opacity-50 transition-opacity">O que você recebe</a>
-            <a href="#oferta" className="bg-accent text-white px-5 py-2 rounded-full hover:opacity-90 transition-all">Garantir Jornada</a>
+          
+          <nav className="flex items-center justify-between w-full md:w-auto gap-1 md:gap-8 text-[8px] md:text-xs font-bold uppercase tracking-tighter md:tracking-widest">
+            <a href="#sobre" className="hover:opacity-50 transition-opacity px-1">
+              <span className="hidden md:inline">O </span>Programa
+            </a>
+            <a href="#pilares" className="hover:opacity-50 transition-opacity px-1">
+              <span className="hidden md:inline">Os </span>Pilares
+            </a>
+            <a href="#entrega" className="hover:opacity-50 transition-opacity px-1">
+              <span className="hidden md:inline">O que você recebe</span>
+              <span className="md:hidden">Entrega</span>
+            </a>
+            <a href="#oferta" className="bg-accent text-white px-3 md:px-5 py-2 rounded-full hover:opacity-90 transition-all whitespace-nowrap">
+              Garantir<span className="hidden md:inline"> Jornada</span>
+            </a>
           </nav>
         </div>
       </header>
 
       {/* Hero Section */}
-      <section className="relative min-h-[90vh] flex items-center justify-center pt-20 overflow-hidden">
+      <section className="relative min-h-[90vh] flex items-center justify-center pt-32 md:pt-20 overflow-hidden">
         <div className="container mx-auto px-6 text-center max-w-5xl">
           <Reveal>
             <span className="inline-block py-1 px-3 rounded-full bg-muted text-[10px] font-bold uppercase tracking-[0.2em] mb-4">
