@@ -31,9 +31,6 @@ export default function App() {
           </div>
           
           <nav className="flex items-center justify-between w-full md:w-auto gap-1 md:gap-8 text-[8px] md:text-xs font-bold uppercase tracking-tighter md:tracking-widest">
-            <a href="#sobre" className="hover:opacity-50 transition-opacity px-1">
-              <span className="hidden md:inline">O </span>Programa
-            </a>
             <a href="#pilares" className="hover:opacity-50 transition-opacity px-1">
               <span className="hidden md:inline">Os </span>Pilares
             </a>
@@ -53,7 +50,7 @@ export default function App() {
         <div className="container mx-auto px-6 text-center max-w-5xl">
           <Reveal>
             <span className="inline-block py-1 px-3 rounded-full bg-muted text-[10px] font-bold uppercase tracking-[0.2em] mb-4">
-              Programa de Devocionais • 14 Semanas
+              Guia de 14 semanas de transformação
             </span>
             
             {/* Scroll Notice */}
@@ -73,13 +70,10 @@ export default function App() {
               />
             </div>
 
-            <h1 className="text-5xl md:text-8xl font-display font-bold mb-8 leading-[0.95] tracking-tighter">
-              Transforme seu lar em um <span className="opacity-40 italic">refúgio sagrado</span>
-            </h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="text-lg md:text-xl max-w-2xl mx-auto mb-12 text-text/60 font-medium leading-relaxed">
-              Um programa desenhado para alinhar cada aspecto da sua vida ao chamado divino. Deixe o "fazer" ser reflexo do "ser" em Cristo.
+              Um guia desenhado para alinhar cada aspecto da sua vida ao chamado divino. Deixe o "fazer" ser reflexo do "ser" em Cristo.
             </p>
           </Reveal>
           <Reveal delay={0.4}>
@@ -92,36 +86,6 @@ export default function App() {
           </Reveal>
         </div>
       </section>
-
-      {/* About Section */}
-      <section id="sobre" className="py-32 border-y border-border bg-beige-light">
-        <div className="container mx-auto px-6 max-w-3xl text-center">
-          <div className="pt-8">
-              <Reveal delay={0.2}>
-                <h2 className="text-4xl md:text-5xl font-display font-bold mb-8 tracking-tight">
-                  Alinhamento e <br />Propósito Pleno
-                </h2>
-                <p className="text-lg text-text/60 leading-relaxed mb-12">
-                  Através de princípios bíblicos e ferramentas práticas, você aprenderá a edificar um lar de paz, fortalecer relacionamentos e construir um legado de fé e saúde duradouro.
-                </p>
-                <div className="space-y-6 flex flex-col items-center">
-                  {[
-                    "Princípios Bíblicos Aplicados",
-                    "Ferramentas de Gestão do Lar",
-                    "Legado de Fé e Saúde"
-                  ].map((item, i) => (
-                    <div key={i} className="flex items-center gap-4 text-sm font-semibold">
-                      <div className="w-6 h-6 rounded-full bg-accent/5 flex items-center justify-center">
-                        <CheckCircle2 size={14} className="text-accent" />
-                      </div>
-                      {item}
-                    </div>
-                  ))}
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </section>
 
       {/* Pillars Section */}
       <section id="pilares" className="py-32">
