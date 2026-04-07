@@ -42,9 +42,27 @@ export default function App() {
       <section className="relative min-h-[90vh] flex items-center justify-center pt-20 overflow-hidden">
         <div className="container mx-auto px-6 text-center max-w-5xl">
           <Reveal>
-            <span className="inline-block py-1 px-3 rounded-full bg-muted text-[10px] font-bold uppercase tracking-[0.2em] mb-8">
+            <span className="inline-block py-1 px-3 rounded-full bg-muted text-[10px] font-bold uppercase tracking-[0.2em] mb-4">
               Programa de Devocionais • 14 Semanas
             </span>
+            
+            {/* Scroll Notice */}
+            <div className="flex justify-center items-center gap-3 mb-8">
+              <motion.div 
+                animate={{ y: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="w-0.5 h-3 bg-accent rounded-full"
+              />
+              <span className="text-[8px] font-bold uppercase tracking-[0.3em] text-accent">
+                role a página para explorar
+              </span>
+              <motion.div 
+                animate={{ y: [0, 4, 0] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
+                className="w-0.5 h-3 bg-accent rounded-full"
+              />
+            </div>
+
             <h1 className="text-5xl md:text-8xl font-display font-bold mb-8 leading-[0.95] tracking-tighter">
               Transforme seu lar em um <span className="opacity-40 italic">refúgio sagrado</span>
             </h1>
