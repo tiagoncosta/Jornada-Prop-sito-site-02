@@ -340,9 +340,9 @@ export default function App() {
                 <h2 className="text-xl md:text-3xl font-display font-medium mb-4 opacity-90">Invista hoje apenas</h2>
                 <div className="flex items-baseline justify-center gap-2">
                   <span className="text-lg md:text-xl opacity-40">12x de</span>
-                  <span className="text-6xl md:text-9xl font-display font-bold tracking-tighter text-white">50,50</span>
+                  <span className="text-6xl md:text-9xl font-display font-bold tracking-tighter text-white">37,40</span>
                 </div>
-                <p className="mt-4 text-gold font-bold uppercase tracking-widest text-[10px] md:text-xs">ou R$ 497,00 à vista</p>
+                <p className="mt-4 text-gold font-bold uppercase tracking-widest text-[10px] md:text-xs">ou R$ 368,00 à vista</p>
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-10 md:mb-12">
