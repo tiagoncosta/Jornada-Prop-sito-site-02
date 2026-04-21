@@ -89,12 +89,9 @@ export default function App() {
               Guia de 14 semanas de transformação
             </div>
             
-            <h1 className="text-4xl md:text-7xl lg:text-8xl font-display font-bold mb-6 leading-[1.1] md:leading-[0.95] tracking-tighter">
-              Você tem fé. Mas sua vida ainda não reflete <span className="text-accent italic">quem você é em Cristo.</span>
+            <h1 className="text-5xl md:text-8xl lg:text-9xl font-display font-bold mb-10 leading-[0.95] tracking-tighter">
+              A jornada para um <span className="text-accent italic">propósito pleno</span>
             </h1>
-            <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.3em] text-accent/40 mb-10">
-              A jornada para um propósito pleno
-            </p>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="text-base md:text-xl max-w-2xl mx-auto mb-12 text-text/60 font-medium leading-relaxed">
