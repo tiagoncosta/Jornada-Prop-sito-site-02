@@ -89,7 +89,7 @@ export default function App() {
               Guia de 14 semanas de transformação
             </div>
             
-            <h1 className="text-5xl md:text-8xl lg:text-9xl font-display font-bold mb-10 leading-[0.95] tracking-tighter">
+            <h1 className="text-5xl md:text-8xl font-display font-bold mb-8 leading-[0.95] tracking-tighter">
               A jornada para um <span className="text-accent italic">propósito pleno</span>
             </h1>
           </Reveal>
