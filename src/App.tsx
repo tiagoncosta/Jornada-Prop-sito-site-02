@@ -76,6 +76,83 @@ export default function App() {
         </div>
       </header>
 
+      {/* Offer Section */}
+      <section id="oferta" className="py-20 md:py-32 relative overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-glow -z-10" />
+        
+        <div className="container mx-auto px-6 max-w-4xl">
+          <Reveal>
+            <div className="bg-[#121212] border border-accent/30 text-text rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-20 text-center relative overflow-hidden shadow-2xl">
+              {/* Decorative Glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-accent/5 blur-[120px] rounded-full -z-10 pointer-events-none" />
+              
+              <div className="absolute top-0 right-0 p-8 opacity-5 hidden md:block">
+                <ShieldCheck size={120} />
+              </div>
+              
+              <div className="mb-12 max-w-lg mx-auto text-left space-y-4">
+                <div className="text-center mb-8">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent">O que você recebe</span>
+                </div>
+                {[
+                  { title: "14 Módulos", desc: "14 semanas de conteúdo que vão reorganizar sua vida de dentro pra fora" },
+                  { title: "70 Devocionais", desc: "70 devocionais para você não perder o fio com Deus em nenhum dia da jornada" },
+                  { title: "Comunidade", desc: "Uma comunidade de pessoas que estão na mesma caminhada que você" }
+                ].map((item, i) => (
+                  <div key={i} className="flex gap-4 items-start bg-white/5 p-5 rounded-2xl border border-white/5 group hover:border-accent/20 hover:bg-white/[0.08] transition-all">
+                    <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-1">
+                      <CheckCircle2 size={16} className="text-accent" />
+                    </div>
+                    <div>
+                      <h4 className="text-sm md:text-base font-bold text-white mb-1">{item.title}</h4>
+                      <p className="text-xs md:text-sm text-text/60 leading-relaxed font-medium">{item.desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mb-12 cursor-default">
+                <h2 className="text-xl md:text-2xl font-display font-medium mb-6 text-text/80">Invista hoje apenas</h2>
+                <div className="flex items-baseline justify-center gap-2">
+                  <span className="text-xl md:text-2xl text-text/40 mr-1">R$</span>
+                  <p className="text-5xl md:text-7xl font-display font-bold tracking-tighter text-white drop-shadow-sm">147,00</p>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-10 md:mb-12">
+                {[
+                  { icon: <Zap size={14} />, text: "Acesso Vitalício" },
+                  { icon: <Star size={14} />, text: "Bônus Exclusivos" },
+                  { icon: <ShieldCheck size={14} />, text: "Garantia 7 Dias" }
+                ].map((item, i) => (
+                  <div key={i} className="bg-white/5 py-3 md:py-4 rounded-xl md:rounded-2xl flex items-center justify-center gap-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest border border-white/10">
+                    <span className="text-gold">{item.icon}</span>
+                    {item.text}
+                  </div>
+                ))}
+              </div>
+
+              <div className="space-y-6">
+                <a 
+                  href="https://pay.hub.la/RBS2l0kJ8JIuPjA14Nr5" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="group relative bg-white text-accent px-10 md:px-16 py-5 md:py-6 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest hover:scale-[1.05] active:scale-[0.98] transition-all w-full md:w-auto inline-flex items-center justify-center gap-3 shadow-2xl"
+                >
+                  Garantir Minha Vaga Agora
+                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                </a>
+                
+                <div className="flex items-center justify-center gap-2 text-[9px] md:text-[10px] font-bold uppercase tracking-widest opacity-40">
+                  <ShieldCheck size={14} />
+                  Pagamento 100% Seguro
+                </div>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
+
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         {/* Background Decorative Elements */}
@@ -141,7 +218,7 @@ export default function App() {
               "Quer viver com intenção, mas o dia a dia te engole"
             ].map((point, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className="group p-6 md:p-8 rounded-2xl border border-border bg-white/50 hover:border-accent/30 transition-all flex items-center gap-4 md:gap-6">
+                <div className="group p-6 md:p-8 rounded-2xl border border-border bg-muted/30 hover:border-accent/30 transition-all flex items-center gap-4 md:gap-6">
                   <div className="w-10 h-10 rounded-full bg-accent/5 flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-white transition-colors">
                     <CheckCircle2 size={18} className="opacity-40 group-hover:opacity-100" />
                   </div>
@@ -154,7 +231,7 @@ export default function App() {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 border-y border-border bg-white/50">
+      <section className="py-20 border-y border-border bg-muted/20">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 text-center">
             {[
@@ -205,7 +282,7 @@ export default function App() {
       </section>
 
       {/* What you receive Section */}
-      <section id="entrega" className="py-20 md:py-32 bg-olive/5">
+      <section id="entrega" className="py-20 md:py-32 bg-olive/10">
         <div className="container mx-auto px-6 max-w-6xl">
           <div className="text-center mb-16 md:mb-24">
             <Reveal>
@@ -311,66 +388,6 @@ export default function App() {
               <Accordion title="E se eu não gostar?">
                 Oferecemos uma garantia incondicional de 7 dias. Se você sentir que o guia não é para você, devolvemos 100% do seu investimento.
               </Accordion>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Offer Section */}
-      <section id="oferta" className="py-20 md:py-32 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-glow -z-10" />
-        
-        <div className="container mx-auto px-6 max-w-4xl">
-          <Reveal>
-            <div className="bg-accent text-white rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-20 text-center shadow-[0_40px_100px_-20px_rgba(139,69,19,0.3)] relative overflow-hidden">
-              <div className="absolute top-0 right-0 p-8 opacity-10 hidden md:block">
-                <ShieldCheck size={120} />
-              </div>
-              
-              <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white/10 border border-white/20 text-[10px] font-bold uppercase tracking-[0.3em] mb-10 md:mb-12">
-                <Zap size={12} className="text-gold" />
-                Oferta Exclusiva de Lançamento
-              </span>
-              
-              <div className="mb-10 md:mb-12">
-                <p className="opacity-40 line-through text-base md:text-lg mb-2">De R$ 1.000,00 por</p>
-                <h2 className="text-xl md:text-3xl font-display font-medium mb-4 opacity-90">Invista hoje apenas</h2>
-                <div className="flex items-baseline justify-center gap-2">
-                  <span className="text-lg md:text-xl opacity-40">12x de</span>
-                  <span className="text-6xl md:text-9xl font-display font-bold tracking-tighter text-white">37,40</span>
-                </div>
-                <p className="mt-4 text-gold font-bold uppercase tracking-widest text-[10px] md:text-xs">ou R$ 368,00 à vista</p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-10 md:mb-12">
-                {[
-                  { icon: <Zap size={14} />, text: "Acesso Vitalício" },
-                  { icon: <Star size={14} />, text: "Bônus Exclusivos" },
-                  { icon: <ShieldCheck size={14} />, text: "Garantia 7 Dias" }
-                ].map((item, i) => (
-                  <div key={i} className="bg-white/5 py-3 md:py-4 rounded-xl md:rounded-2xl flex items-center justify-center gap-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest border border-white/10">
-                    <span className="text-gold">{item.icon}</span>
-                    {item.text}
-                  </div>
-                ))}
-              </div>
-
-              <div className="space-y-6">
-                <a 
-                  href="https://pay.hub.la/RBS2l0kJ8JIuPjA14Nr5" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="group relative bg-white text-accent px-10 md:px-16 py-5 md:py-6 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest hover:scale-[1.05] active:scale-[0.98] transition-all w-full md:w-auto inline-flex items-center justify-center gap-3 shadow-2xl"
-                >
-                  Garantir Minha Vaga Agora
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </a>
-                
-                <div className="flex items-center justify-center gap-2 text-[9px] md:text-[10px] font-bold uppercase tracking-widest opacity-40">
-                  <ShieldCheck size={14} />
-                  Pagamento 100% Seguro
-                </div>
-              </div>
             </div>
           </Reveal>
         </div>
