@@ -5,15 +5,26 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { CheckCircle2, Sparkles, ArrowRight, BookOpen, Users, Video, ChevronDown, Star, ShieldCheck, Zap } from 'lucide-react';
+import { 
+  CheckCircle2, 
+  Sparkles, 
+  ArrowRight, 
+  BookOpen, 
+  Users, 
+  Video, 
+  ChevronDown, 
+  Star, 
+  ShieldCheck, 
+  Zap 
+} from 'lucide-react';
 
 const Reveal = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string; key?: React.Key }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 15 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
@@ -24,28 +35,30 @@ const Reveal = ({ children, delay = 0, className = "" }: { children: React.React
 const Accordion = ({ title, children }: { title: string; children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="border-b border-border">
+    <div className="border-b border-border/60 last:border-none transition-all duration-300">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-6 flex items-center justify-between text-left hover:text-accent transition-colors"
+        className="w-full py-5 md:py-6 flex items-center justify-between text-left hover:text-accent transition-colors group cursor-pointer"
       >
-        <span className="text-lg font-display font-bold">{title}</span>
+        <span className="text-base md:text-lg font-display font-semibold text-white/95 group-hover:text-accent-light transition-colors">{title}</span>
         <motion.div
           animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="text-accent/60 group-hover:text-accent shrink-0 ml-4"
         >
-          <ChevronDown size={20} />
+          <ChevronDown size={18} />
         </motion.div>
       </button>
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {isOpen && (
           <motion.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             className="overflow-hidden"
           >
-            <div className="pb-6 text-text/60 leading-relaxed">
+            <div className="pb-6 text-sm md:text-base text-text/70 leading-relaxed font-light">
               {children}
             </div>
           </motion.div>
@@ -57,19 +70,34 @@ const Accordion = ({ title, children }: { title: string; children: React.ReactNo
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-bg text-text selection:bg-accent selection:text-white">
+    <div className="min-h-screen bg-bg text-text selection:bg-accent/30 selection:text-white relative overflow-x-hidden">
+      
+      {/* Decorative subtle ambient lights */}
+      <div className="absolute top-0 left-1/4 w-[35rem] h-[35rem] bg-olive/10 rounded-full blur-[150px] -z-20 pointer-events-none" />
+      <div className="absolute top-[30%] right-10 w-[40rem] h-[40rem] bg-accent/3 rounded-full blur-[180px] -z-20 pointer-events-none" />
+      <div className="absolute bottom-[15%] left-10 w-[35rem] h-[35rem] bg-olive/5 rounded-full blur-[140px] -z-20 pointer-events-none" />
+
       {/* Header */}
-      <header className="fixed top-0 w-full z-50 bg-bg/80 backdrop-blur-xl border-b border-border">
-        <div className="container mx-auto px-4 h-16 md:h-20 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <span className="text-xl font-display font-bold tracking-tighter">JORNADA</span>
+      <header className="fixed top-0 w-full z-50 bg-bg/85 backdrop-blur-md border-b border-border/40 transition-all duration-300">
+        <div className="container mx-auto px-6 h-16 md:h-20 flex items-center justify-between max-w-6xl">
+          <div className="flex items-center gap-2.5 group">
+            <div className="w-2.5 h-2.5 rounded-full bg-accent animate-pulse" />
+            <span className="text-lg md:text-xl font-display font-extrabold tracking-[0.2em] text-white">
+              JORNADA
+            </span>
           </div>
           
           <nav className="flex items-center gap-4 md:gap-8">
-            <a href="#pilares" className="hidden sm:inline text-[10px] md:text-xs font-bold uppercase tracking-widest hover:text-accent transition-colors">
+            <a 
+              href="#pilares" 
+              className="hidden sm:inline text-[10px] md:text-xs font-semibold uppercase tracking-[0.2em] text-text/80 hover:text-accent transition-colors"
+            >
               Pilares
             </a>
-            <a href="#oferta" className="bg-accent text-white px-4 md:px-6 py-2.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest hover:scale-105 transition-all whitespace-nowrap">
+            <a 
+              href="#oferta" 
+              className="bg-accent/10 hover:bg-accent text-accent hover:text-bg border border-accent/30 hover:border-accent px-5 md:px-7 py-2.5 rounded-full text-[10px] md:text-xs font-bold uppercase tracking-widest transition-all duration-300 whitespace-nowrap"
+            >
               Garantir Vaga
             </a>
           </nav>
@@ -77,39 +105,45 @@ export default function App() {
       </header>
 
       {/* 1. Headline de Dor / Hero */}
-      <section className="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden bg-bg">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_center,_rgba(193,154,107,0.08)_0%,transparent_70%)] -z-10" />
-        
-        <div className="container mx-auto px-6 text-center max-w-5xl">
+      <section className="relative pt-36 pb-16 md:pt-48 md:pb-28 overflow-hidden">
+        <div className="container mx-auto px-6 text-center max-w-4xl relative">
           <Reveal>
-            <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-accent/5 border border-accent/10 text-[10px] font-bold uppercase tracking-[0.2em] mb-8">
-              <Sparkles size={12} className="text-accent" />
+            <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-accent/5 border border-accent/20 text-[10px] font-bold uppercase tracking-[0.2em] mb-8 text-accent-light shadow-sm">
+              <Sparkles size={11} className="text-accent animate-spin-slow" />
               Para quem busca sair do automático
             </div>
             
-            <h1 className="text-4xl md:text-7xl font-display font-bold mb-8 leading-[1.1] md:leading-[0.95] tracking-tighter">
-              Cansado de sentir que sua vida está <span className="text-accent italic">desconectada</span> do céu?
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-display font-extrabold mb-8 leading-[1.1] tracking-tight text-white">
+              Cansado de sentir que sua vida está <br/>
+              <span className="text-accent font-serif italic font-normal tracking-wide">desconectada</span> do céu?
             </h1>
           </Reveal>
-          <Reveal delay={0.2}>
-            <p className="text-base md:text-xl max-w-2xl mx-auto mb-12 text-text/60 font-medium leading-relaxed">
-              Você acorda, corre, resolve problemas, mas no fim do dia sente um vazio. Parece que falta algo essencial. Você sabe que tem um propósito, mas ele parece cada vez mais distante.
+          
+          <Reveal delay={0.25}>
+            <p className="text-base md:text-lg max-w-2xl mx-auto text-text/70 font-light leading-relaxed">
+              Você acorda, corre, resolve problemas, mas no fim do dia sente um vazio. Parece que falta algo essencial. Você sabe que tem um propósito, mas na pressa do dia a dia ele parece cada vez mais distante e inalcançável.
             </p>
+          </Reveal>
+          
+          <Reveal delay={0.4} className="mt-10">
+            <div className="w-16 h-1 bg-gradient-to-r from-transparent via-accent/30 to-transparent mx-auto rounded-full" />
           </Reveal>
         </div>
       </section>
 
       {/* 2. Agitação (Pain Points) */}
-      <section className="pb-20 md:pb-32 bg-bg relative overflow-hidden">
-        <div className="container mx-auto px-6 max-w-4xl">
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="container mx-auto px-6 max-w-3xl">
           <div className="text-center mb-12 md:mb-16">
             <Reveal>
-              <h2 className="text-2xl md:text-4xl font-display font-bold tracking-tighter mb-6">Honestamente, você se identifica com isso?</h2>
-              <div className="w-12 h-1 bg-accent/20 mx-auto rounded-full" />
+              <h2 className="text-2xl md:text-3.5xl font-display font-bold text-white tracking-tight leading-tight">
+                Honestamente, você se identifica com isso?
+              </h2>
+              <p className="text-text/50 text-xs md:text-sm mt-3 uppercase tracking-[0.15em]">Reflita sobre os seus últimos dias</p>
             </Reveal>
           </div>
 
-          <div className="grid gap-4">
+          <div className="grid gap-4 md:gap-5">
             {[
               "Sente que tem um chamado, mas não sabe como dar o primeiro passo",
               "A ansiedade costuma falar mais alto que a sua confiança em Deus",
@@ -117,11 +151,13 @@ export default function App() {
               "Sente que a vida está passando e você ainda não viveu o que nasceu para viver"
             ].map((point, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className="group p-6 md:p-8 rounded-2xl border border-border bg-muted/30 hover:border-accent/30 transition-all flex items-center gap-4 md:gap-6">
-                  <div className="w-10 h-10 rounded-full bg-accent/5 flex items-center justify-center shrink-0 group-hover:bg-accent group-hover:text-white transition-colors">
-                    <CheckCircle2 size={18} className="opacity-40 group-hover:opacity-100" />
+                <div className="group p-5 md:p-6 rounded-2xl border border-border/40 bg-muted/20 hover:border-accent/40 hover:bg-muted/40 transition-all duration-300 flex items-center gap-4 md:gap-5 shadow-sm">
+                  <div className="w-10 h-10 rounded-full bg-accent/5 flex items-center justify-center shrink-0 border border-accent/15 group-hover:bg-accent group-hover:border-accent transition-all duration-300">
+                    <CheckCircle2 size={16} className="text-accent group-hover:text-bg transition-colors" />
                   </div>
-                  <p className="text-base md:text-xl font-medium text-text/80 leading-tight">{point}</p>
+                  <p className="text-sm md:text-base font-medium text-text/80 group-hover:text-word-high transition-colors leading-relaxed">
+                    {point}
+                  </p>
                 </div>
               </Reveal>
             ))}
@@ -130,26 +166,39 @@ export default function App() {
       </section>
 
       {/* 3. Apresentação da Solução */}
-      <section className="py-20 md:py-32 bg-accent/5 border-y border-border">
-        <div className="container mx-auto px-6 max-w-5xl text-center">
+      <section className="py-20 md:py-32 bg-olive/15 border-y border-border/50 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-bg/20 to-transparent pointer-events-none" />
+        <div className="container mx-auto px-6 max-w-5xl text-center relative">
           <Reveal>
-            <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent mb-6 block">Apresentamos a Solução</span>
-            <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tighter mb-8">
-              A Jornada para um <span className="text-accent">Propósito Pleno</span>
+            <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-accent mb-4 block">
+              Apresentamos a Solução que Organiza a Alma
+            </span>
+            <h2 className="text-4xl md:text-5.5xl font-display font-extrabold text-white tracking-tight mb-8">
+              A Jornada para um <span className="text-accent font-serif italic font-normal">Propósito Pleno</span>
             </h2>
-            <p className="text-lg md:text-xl text-text/60 max-w-3xl mx-auto mb-12 leading-relaxed font-medium">
-              Não é apenas um curso. É um método desenhado para alinhar cada aspecto da sua vida ao chamado divino. Deixe o "fazer" ser reflexo direto do "ser" em Cristo.
+            <p className="text-base md:text-lg text-text/75 max-w-3xl mx-auto mb-16 leading-relaxed font-light">
+              Não é sobre acrescentar mais tarefas à sua rotina cansativa. É um método estruturado para alinhar seu cotidiano ao plano eterno. Deixe o seu <span className="text-accent-light font-medium">fazer</span> diário ser apenas o transbordar de quem você <span className="text-accent-light font-medium">é</span> em Deus.
             </p>
           </Reveal>
+          
           <Reveal delay={0.2}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-              <div className="bg-bg p-8 rounded-3xl border border-border shadow-sm">
-                <h3 className="text-xl font-display font-bold mb-4">A Clareza que falta</h3>
-                <p className="text-sm text-text/60 leading-relaxed">Entenda seus dons e como aplicá-los de forma estratégica na sua realidade atual, sem precisar abandonar tudo o que construiu.</p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 text-left max-w-4xl mx-auto">
+              <div className="bg-bg/60 p-8 rounded-3xl border border-border/80 shadow-lg hover:border-accent/30 transition-all duration-300 relative group overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-accent/40" />
+                <span className="text-xs font-mono text-accent/50 group-hover:text-accent transition-colors block mb-2 font-bold tracking-widest">PROCESSO I</span>
+                <h3 className="text-xl font-display font-bold text-white mb-3">A Clareza que falta</h3>
+                <p className="text-sm text-text/65 leading-relaxed font-light">
+                  Mapeie seus talentos e aprenda a aplicá-los de forma equilibrada no seu trabalho, na família e no ministério, sem sobrecarga ou frustração.
+                </p>
               </div>
-              <div className="bg-bg p-8 rounded-3xl border border-border shadow-sm">
-                <h3 className="text-xl font-display font-bold mb-4">O Alinhamento Espiritual</h3>
-                <p className="text-sm text-text/60 leading-relaxed">Aprenda a ouvir a voz de Deus no meio do ruído do dia a dia e tome decisões com paz, não com pressa.</p>
+              
+              <div className="bg-bg/60 p-8 rounded-3xl border border-border/80 shadow-lg hover:border-accent/30 transition-all duration-300 relative group overflow-hidden">
+                <div className="absolute top-0 left-0 w-1 h-full bg-accent/40" />
+                <span className="text-xs font-mono text-accent/50 group-hover:text-accent transition-colors block mb-2 font-bold tracking-widest">PROCESSO II</span>
+                <h3 className="text-xl font-display font-bold text-white mb-3">O Alinhamento Espiritual</h3>
+                <p className="text-sm text-text/65 leading-relaxed font-light">
+                  Desenvolva intimidade real. Aprenda a discernir a voz divina em meio ao barulho moderno e tome decisões cruciais com paz e convicção inabaláveis.
+                </p>
               </div>
             </div>
           </Reveal>
@@ -157,39 +206,110 @@ export default function App() {
       </section>
 
       {/* 4. O que você vai encontrar */}
-      <section id="entrega" className="py-20 md:py-32 bg-bg">
+      <section id="entrega" className="py-20 md:py-32 bg-bg relative">
         <div className="container mx-auto px-6 max-w-6xl">
-          <div className="text-center mb-16 md:mb-24">
+          <div className="text-center mb-16 md:mb-20">
             <Reveal>
-              <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tighter">O que você vai encontrar</h2>
+              <span className="text-[10px] md:text-sm text-accent tracking-[0.2em] font-semibold uppercase block mb-3">Os Detalhes do Guia</span>
+              <h2 className="text-3.5xl md:text-5xl font-display font-extrabold text-white tracking-tight">
+                Estrutura Completa do Método
+              </h2>
             </Reveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
-                icon: <Video size={24} />,
+                icon: <Video size={22} />,
                 title: "14 Módulos Estratégicos",
-                desc: "14 semanas de conteúdo prático que vão reorganizar sua mente e suas ações de dentro pra fora."
+                desc: "Aulas cirúrgicas com fundamentação sólida e aplicação prática instantânea para mudar hábitos enraizados."
               },
               {
-                icon: <BookOpen size={24} />,
-                title: "70 Devocionais Guiadas",
-                desc: "Um roteiro diário para você manter a conexão e o foco durante toda a sua transformação."
+                icon: <BookOpen size={22} />,
+                title: "70 Devocionais de Apoio",
+                desc: "Um cronograma diário detalhado para alimentar sua alma cotidianamente e manter o alinhamento espiritual ativo."
               },
               {
-                icon: <Users size={24} />,
-                title: "Comunidade de Propósito",
-                desc: "Não caminhe sozinho. Conecte-se com pessoas que buscam o mesmo alinhamento de vida que você."
+                icon: <Users size={22} />,
+                title: "Comunidade Amparada",
+                desc: "Espaço exclusivo para trocar experiências, pedir orações e caminhar cercado de pessoas que falam a mesma língua."
               }
             ].map((item, i) => (
-              <Reveal key={i} delay={i * 0.2}>
-                <div className="bg-muted/10 p-8 md:p-12 rounded-[2rem] h-full border border-border group hover:border-accent/40 transition-all">
-                  <div className="mb-6 md:mb-8 text-accent opacity-40 group-hover:opacity-100 transition-opacity">
-                    {item.icon}
+              <Reveal key={i} delay={i * 0.15}>
+                <div className="bg-muted/10 p-8 md:p-10 rounded-3xl h-full border border-border/40 hover:border-accent/30 hover:bg-muted/20 transition-all duration-300 group shadow-md flex flex-col justify-between">
+                  <div>
+                    <div className="w-12 h-12 rounded-2xl bg-accent/5 flex items-center justify-center text-accent border border-accent/10 mb-6 group-hover:bg-accent group-hover:text-bg transition-all duration-300">
+                      {item.icon}
+                    </div>
+                    <h4 className="text-xl font-display font-bold text-white mb-3 group-hover:text-accent-light transition-colors">{item.title}</h4>
+                    <p className="text-text/60 text-sm leading-relaxed font-light">
+                      {item.desc}
+                    </p>
                   </div>
-                  <h4 className="text-xl md:text-2xl font-display font-bold mb-4">{item.title}</h4>
-                  <p className="text-text/50 text-sm leading-relaxed">
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Por que funciona (Stats & Pilares) */}
+      <section className="py-20 md:py-32 bg-olive/10 border-y border-border/30">
+        <div className="container mx-auto px-6 max-w-6xl">
+          <div className="text-center mb-16 max-w-2xl mx-auto">
+            <Reveal>
+              <h2 className="text-3xl md:text-5xl font-display font-extrabold text-white tracking-tight mb-6">
+                Por que este método realmente funciona?
+              </h2>
+              <p className="text-text/70 text-sm md:text-base font-light leading-relaxed">
+                Nossa abordagem não se limita à teoria. É fundamentada em anos de caminhada prática e na mentoria espiritual de centenas de corações restaurados.
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12 text-center mb-24 max-w-4xl mx-auto">
+            {[
+              { label: "Vidas Restauradas", value: "1.2k+" },
+              { label: "Módulos Práticos", value: "14" },
+              { label: "Guias Devocionais", value: "70" }
+            ].map((stat, i) => (
+              <Reveal key={i} delay={i * 0.1}>
+                <div className="bg-bg/40 border border-border/40 p-6 rounded-2xl md:bg-transparent md:border-none md:p-0">
+                  <div className="text-4xl md:text-5xl font-display font-extrabold text-accent leading-none mb-2">
+                    {stat.value}
+                  </div>
+                  <div className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-text/50">
+                    {stat.label}
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mb-10 text-center sm:text-left">
+            <Reveal>
+              <span className="text-xs font-mono font-bold uppercase text-accent tracking-widest gap-2 inline-flex items-center">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" /> Roteiro de Transformação
+              </span>
+              <h3 className="text-2xl md:text-3xl font-display font-bold text-white mt-1">Os 5 Pilares Fundamentais</h3>
+            </Reveal>
+          </div>
+
+          <div id="pilares" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {[
+              { weeks: "Semanas 1 - 2", title: "Fundamentos", desc: "Varra as mentiras sobre sua identidade. Edifique suas bases espirituais e emocionais na Verdade." },
+              { weeks: "Semanas 3 - 4", title: "Mente & Espírito", desc: "Desenvolva o autocontrole contra distrações digitais e organize suas prioridades matinais." },
+              { weeks: "Semanas 5 - 6", title: "Corpo & Templo", desc: "Aprenda a descansar de verdade e cuide da energia do corpo de maneira honrosa a Deus." },
+              { weeks: "Semanas 7 - 12", title: "Relacionamentos", desc: "Edifique conversas maduras no casamento, mentore seus filhos e estabeleça limites saudáveis." },
+              { weeks: "Semanas 13 - 14", title: "Vocação & Legado", desc: "Direcione sua carreira e dons rumo a um propósito integral que reverbera para a eternidade." }
+            ].map((item, i) => (
+              <Reveal key={i} delay={i * 0.08} className="h-full">
+                <div className="group p-6 md:p-7 rounded-3xl border border-border/50 bg-bg/40 hover:bg-bg/85 hover:border-accent/40 transition-all duration-300 h-full flex flex-col justify-between shadow-sm">
+                  <div>
+                    <span className="text-[10px] font-semibold text-accent uppercase tracking-widest block mb-4">{item.weeks}</span>
+                    <h3 className="text-base md:text-lg font-display font-bold leading-tight text-white mb-3 group-hover:text-accent-light transition-colors">{item.title}</h3>
+                  </div>
+                  <p className="text-xs text-text/55 leading-relaxed font-light mt-4 pt-4 border-t border-border/10">
                     {item.desc}
                   </p>
                 </div>
@@ -199,85 +319,53 @@ export default function App() {
         </div>
       </section>
 
-      {/* 5. Por que funciona (Stats & Pilares) */}
-      <section className="py-20 md:py-32 bg-olive/10">
-        <div className="container mx-auto px-6 max-w-6xl">
-          <div className="text-center mb-20">
-            <Reveal>
-              <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tighter mb-8">Por que este método funciona?</h2>
-              <p className="text-text/60 max-w-2xl mx-auto">Nossa metodologia é baseada em 3 anos de aplicação prática e resultados comprovados por centenas de pessoas.</p>
-            </Reveal>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-12 text-center mb-24">
-            {[
-              { label: "Vidas Impactadas", value: "1.2k+" },
-              { label: "Módulos Práticos", value: "14" },
-              { label: "Devocionais", value: "70" }
-            ].map((stat, i) => (
-              <Reveal key={i} delay={i * 0.1}>
-                <div className="space-y-2">
-                  <div className="text-4xl md:text-5xl font-display font-bold text-accent">{stat.value}</div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest opacity-40">{stat.label}</div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <div id="pilares" className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
-            {[
-              { weeks: "1 - 2", title: "Fundamentos", desc: "Construa sua vida sobre a rocha inabalável." },
-              { weeks: "3 - 4", title: "Mente & Espírito", desc: "Renove seu entendimento e fortaleça sua fé." },
-              { weeks: "5 - 6", title: "Corpo & Alma", desc: "Cuide do templo do Espírito com sabedoria." },
-              { weeks: "7 - 12", title: "Relacionamentos", desc: "Edifique lares de paz e conexões profundas." },
-              { weeks: "13 - 14", title: "Vocação & Legado", desc: "Descubra seu chamado e deixe sua marca no mundo." }
-            ].map((item, i) => (
-              <Reveal key={i} delay={i * 0.1} className="h-full">
-                <div className="group p-6 md:p-8 rounded-3xl border border-border bg-bg/50 hover:bg-bg transition-all h-full flex flex-col justify-between hover:border-accent">
-                  <div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest opacity-40 block mb-4">{item.weeks}</span>
-                    <h3 className="text-lg md:text-xl font-display font-bold leading-tight mb-4">{item.title}</h3>
-                  </div>
-                  <p className="text-[10px] md:text-xs text-text/50 leading-relaxed font-medium mt-auto">{item.desc}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* 6. Depoimentos */}
-      <section className="py-20 md:py-32 bg-bg">
+      <section className="py-20 md:py-32 bg-bg relative">
         <div className="container mx-auto px-6 max-w-6xl">
-          <div className="text-center mb-16 md:mb-24">
+          <div className="text-center mb-16 md:mb-20">
             <Reveal>
-              <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tighter mb-6">Relatos Reais</h2>
-              <p className="text-text/50 max-w-xl mx-auto text-sm md:text-base">Vejas o que dizem aqueles que já iniciaram sua jornada de transformação.</p>
+              <span className="text-[10px] md:text-sm text-accent tracking-[0.2em] font-semibold uppercase block mb-3">Vozes Da Jornada</span>
+              <h2 className="text-3.5xl md:text-5xl font-display font-extrabold text-white tracking-tight mb-4">
+                Relatos Reais de Transformação
+              </h2>
+              <p className="text-text/50 max-w-lg mx-auto text-sm md:text-base font-light">
+                Compreenda a mudança de perspectiva na prática através do depoimento sincero de nossos alunos.
+              </p>
             </Reveal>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             {[
               {
-                name: "Ana Paula",
-                text: "O guia mudou completamente a atmosfera da minha casa. Hoje temos paz e um propósito claro em cada pequena ação do dia."
+                name: "Ana Paula S.",
+                role: "Mãe e Empreendedora",
+                text: "O método trouxe um alinhamento maravilhoso para a rotina da minha casa. Hoje, em vez de viver exausta ou culpada, sinto que cada detalhe do dia tem uma direção espiritual e prática clara."
               },
               {
-                name: "Marcos Silva",
-                text: "Os pilares de relacionamentos e vocação me ajudaram a entender meu papel como provedor espiritual do meu lar."
+                name: "Marcos V. Silva",
+                role: "Líder e Engenheiro",
+                text: "Os pilares de relacionamento e vocação redefiniram a forma como encaro o meu trabalho. Descobri que meu ganho e minhas habilidades são extensões do meu chamado divino."
               },
               {
                 name: "Juliana Costa",
-                text: "As devocionais são profundas e práticas. É impossível passar por essas 14 semanas e continuar a mesma pessoa."
+                role: "Professora de Artes",
+                text: "O guia devocional é extremamente profundo. Não é apenas leitura rápida, são diretrizes reais de oração e ação. Vale cada centavo investido na minha saúde espiritual."
               }
             ].map((t, i) => (
               <Reveal key={i} delay={i * 0.1}>
-                <div className="bg-muted/10 p-8 md:p-10 rounded-[2rem] md:rounded-[2.5rem] border border-border relative">
-                  <div className="flex gap-1 mb-6 text-gold">
-                    {[1, 2, 3, 4, 5].map(s => <Star key={s} size={14} fill="currentColor" />)}
+                <div className="bg-muted/15 p-8 md:p-10 rounded-[2rem] border border-border/40 relative hover:border-accent/25 hover:bg-muted/20 transition-all duration-300 h-full flex flex-col justify-between shadow-sm">
+                  <div>
+                    <div className="flex gap-1 mb-5 text-gold">
+                      {[1, 2, 3, 4, 5].map(s => <Star key={s} size={12} fill="currentColor" className="stroke-none" />)}
+                    </div>
+                    <p className="text-text/75 italic mb-8 leading-relaxed text-sm md:text-base font-light">
+                      "{t.text}"
+                    </p>
                   </div>
-                  <p className="text-text/70 italic mb-8 leading-relaxed text-sm md:text-base">"{t.text}"</p>
-                  <div className="font-display font-bold">{t.name}</div>
+                  <div className="border-t border-border/10 pt-4 mt-auto">
+                    <div className="font-display font-bold text-white text-sm md:text-base">{t.name}</div>
+                    <div className="text-[10px] md:text-xs text-text/45 font-semibold uppercase mt-0.5 tracking-wider">{t.role}</div>
+                  </div>
                 </div>
               </Reveal>
             ))}
@@ -286,27 +374,30 @@ export default function App() {
       </section>
 
       {/* 7. Dúvidas Frequentes */}
-      <section className="py-20 md:py-32 bg-olive/5">
+      <section className="py-20 md:py-32 bg-olive/5 border-t border-border/20">
         <div className="container mx-auto px-6 max-w-3xl">
           <div className="text-center mb-16">
             <Reveal>
-              <h2 className="text-4xl md:text-6xl font-display font-bold tracking-tighter">Perguntas Frequentes</h2>
+              <span className="text-[10px] md:text-xs text-accent tracking-[0.2em] font-semibold uppercase block mb-3">Suporte e Respostas</span>
+              <h2 className="text-3xl md:text-5xl font-display font-extrabold text-white tracking-tight">
+                Perguntas Frequentes
+              </h2>
             </Reveal>
           </div>
           
           <Reveal>
-            <div className="space-y-2">
-              <Accordion title="Como recebo o acesso?">
-                O acesso é imediato após a confirmação do pagamento. Você receberá um e-mail com todas as instruções para acessar a plataforma.
+            <div className="bg-muted/5 border border-border/40 rounded-3xl p-6 md:p-8 space-y-2 backdrop-blur-sm shadow-inner">
+              <Accordion title="Como recebo o acesso ao Guia?">
+                O acesso é completamente imediato. Assim que o pagamento de R$ 97,00 for aprovado, seu e-mail cadastrado receberá um link individual com as instruções e as chaves de acesso para a nossa plataforma.
               </Accordion>
-              <Accordion title="Por quanto tempo terei acesso?">
-                Você terá acesso vitalício a todo o conteúdo do guia, incluindo todas as atualizações futuras.
+              <Accordion title="Por quanto tempo terei acesso a todo o material?">
+                O acesso é vitalício. Você pode assistir às aulas dos 14 módulos, ler as 70 devocionais e desfrutar do material complementar no seu ritmo e retornar a eles quantas vezes precisar.
               </Accordion>
-              <Accordion title="Preciso de algum conhecimento prévio?">
-                Não. O guia foi desenhado para acompanhar você desde os fundamentos até os níveis mais profundos de aplicação prática.
+              <Accordion title="Preciso dominar teologia ou oratória para usufruir?">
+                Não. A Jornada Propósito Pleno foi estruturada para acolher desde quem está iniciando sua devoção diária até líderes experientes, oferecendo uma linguagem sincera e aplicável à vida real.
               </Accordion>
-              <Accordion title="E se eu não gostar?">
-                Oferecemos uma garantia incondicional de 7 dias. Se você sentir que o guia não é para você, devolvemos 100% do seu investimento.
+              <Accordion title="E se o método não funcionar para mim?">
+                Não se preocupe: oferecemos uma garantia incondicional de reembolso total por 7 dias. O risco é inteiramente nosso, como detalhado no bloco de garantia abaixo.
               </Accordion>
             </div>
           </Reveal>
@@ -314,31 +405,40 @@ export default function App() {
       </section>
 
       {/* 8. Garantia - Bloco Dedicado */}
-      <section className="py-20 md:py-32 bg-bg">
-        <div className="container mx-auto px-6 max-w-4xl">
+      <section className="py-20 md:py-32 bg-bg relative">
+        <div className="container mx-auto px-6 max-w-4xl relative">
           <Reveal>
-            <div className="relative p-1 px-1 rounded-[3rem] bg-gradient-to-br from-accent/40 via-accent/5 to-accent/40">
-              <div className="bg-bg p-8 md:p-16 rounded-[2.9rem] flex flex-col md:flex-row items-center gap-10 md:gap-16">
+            <div className="relative p-0.5 rounded-[2.5rem] md:rounded-[3rem] bg-gradient-to-br from-accent/30 via-border/50 to-accent/10">
+              <div className="bg-[#101215] p-8 md:p-16 rounded-[2.4rem] md:rounded-[2.9rem] flex flex-col md:flex-row items-center gap-8 md:gap-14 shadow-2xl relative overflow-hidden">
+                
+                {/* Background ambient shade inside guarantee block */}
+                <div className="absolute top-0 right-0 w-80 h-80 bg-accent/2 rounded-full blur-[80px] -z-10" />
+
                 <div className="relative shrink-0">
-                  <div className="w-32 h-32 md:w-48 md:h-48 rounded-full bg-accent/5 flex items-center justify-center border-4 border-accent shadow-[0_0_50px_-12px_rgba(193,154,107,0.5)]">
-                    <ShieldCheck size={60} className="text-accent" />
+                  <div className="w-28 h-28 md:w-40 md:h-40 rounded-full bg-accent/5 flex items-center justify-center border-2 border-accent/40 shadow-[0_0_40px_rgba(212,175,55,0.05)]">
+                    <ShieldCheck size={50} className="text-accent" />
                   </div>
-                  <div className="absolute -bottom-2 -right-2 bg-accent text-white px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest shadow-xl">
-                    7 DIAS
+                  <div className="absolute -bottom-1 -right-1 bg-accent text-bg px-4 py-1 rounded-full text-[9px] font-extrabold uppercase tracking-widest shadow-lg">
+                    7 dias
                   </div>
                 </div>
+                
                 <div className="text-center md:text-left">
-                  <h2 className="text-3xl md:text-4xl font-display font-bold mb-4 tracking-tight">Risco Zero para você.</h2>
-                  <p className="text-text/60 leading-relaxed mb-6 font-medium">
-                    Eu acredito tanto na transformação que essa jornada pode causar na sua vida que eu tiro todo o risco das suas costas. Assista às aulas, faça as devocionais. Se em 7 dias você sentir que não foi impactado, basta um e-mail para receber 100% do seu dinheiro de volta. Sem perguntas, sem burocracia.
+                  <span className="text-[10px] font-bold tracking-[0.2em] text-accent uppercase block mb-2">Segurança Absoluta</span>
+                  <h2 className="text-2xl md:text-3xl font-display font-extrabold text-white mb-4 tracking-tight">
+                    Risco Zero para a sua decisão.
+                  </h2>
+                  <p className="text-text/70 text-sm leading-relaxed mb-6 font-light">
+                    Confiamos tanto no poder transformador dessa caminhada bíblica que removemos todo o risco de suas costas. Participe da comunidade, acesse os materiais. Se em até 7 dias você entender que a jornada não atende às suas expectativas, basta nos enviar um único e-mail e estornaremos 100% do seu valor. Sem perguntas ou burocracia.
                   </p>
                   <div className="flex items-center justify-center md:justify-start gap-4">
-                    <div className="flex gap-1 text-gold">
-                      {[1, 2, 3, 4, 5].map(s => <Star key={s} size={14} fill="currentColor" />)}
+                    <div className="flex gap-1 text-accent">
+                      {[1, 2, 3, 4, 5].map(s => <Star key={s} size={11} fill="currentColor" className="stroke-none" />)}
                     </div>
-                    <span className="text-[10px] font-bold uppercase tracking-widest opacity-40">Satisfação Garantida</span>
+                    <span className="text-[9px] font-bold uppercase tracking-widest text-text/40">Satisfação 100% Assegurada</span>
                   </div>
                 </div>
+
               </div>
             </div>
           </Reveal>
@@ -346,56 +446,58 @@ export default function App() {
       </section>
 
       {/* 9. Oferta + CTA */}
-      <section id="oferta" className="py-20 md:py-32 relative overflow-hidden">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-glow -z-10" />
+      <section id="oferta" className="py-20 md:py-32 relative overflow-hidden bg-bg">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-glow -z-10 pointer-events-none" />
         
-        <div className="container mx-auto px-6 max-w-4xl">
+        <div className="container mx-auto px-6 max-w-3xl">
           <Reveal>
-            <div className="bg-[#121212] border border-accent/30 text-text rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-20 text-center relative overflow-hidden shadow-2xl">
-              {/* Decorative Glow */}
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-accent/5 blur-[120px] rounded-full -z-10 pointer-events-none" />
+            <div className="bg-[#121417]/95 border-2 border-accent/20 text-text rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-16 text-center relative overflow-hidden shadow-2xl backdrop-blur-md">
+              
+              {/* Decorative intense inner glow */}
+              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[130%] h-[130%] bg-accent/3 blur-[120px] rounded-full -z-10 pointer-events-none" />
               
               <div className="absolute top-0 right-0 p-8 opacity-5 hidden md:block">
-                <ShieldCheck size={120} />
+                <ShieldCheck size={100} className="text-accent" />
               </div>
               
-              <div className="mb-12 max-w-lg mx-auto text-left space-y-4">
-                <div className="text-center mb-8">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent">O que você recebe</span>
+              <div className="mb-10 max-w-md mx-auto text-left space-y-4">
+                <div className="text-center mb-6">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent font-sans bg-accent/5 px-4 py-1.5 rounded-full border border-accent/10">O que você recebe</span>
                 </div>
                 {[
-                  { title: "14 Módulos", desc: "14 semanas de conteúdo que vão reorganizar sua vida de dentro pra fora" },
-                  { title: "70 Devocionais", desc: "70 devocionais para você não perder o fio com Deus em nenhum dia da jornada" },
-                  { title: "Comunidade", desc: "Uma comunidade de pessoas que estão na mesma caminhada que você" }
+                  { title: "14 Módulos Estruturados", desc: "Aulas focadas em destravar seu chamado integral" },
+                  { title: "70 Devocionais Diárias", desc: "Instruções diárias para consolidação da jornada" },
+                  { title: "Comunidade Exclusiva", desc: "Espaço de partilha mútua e crescimento coletivo" }
                 ].map((item, i) => (
-                  <div key={i} className="flex gap-4 items-start bg-white/5 p-5 rounded-2xl border border-white/5 group hover:border-accent/20 hover:bg-white/[0.08] transition-all">
-                    <div className="w-8 h-8 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-1">
-                      <CheckCircle2 size={16} className="text-accent" />
+                  <div key={i} className="flex gap-4 items-start bg-white/[0.02] p-4 rounded-xl border border-white/5 group hover:border-accent/20 hover:bg-white/[0.04] transition-all duration-300">
+                    <div className="w-7 h-7 rounded-full bg-accent/15 flex items-center justify-center shrink-0 mt-0.5 border border-accent/20">
+                      <CheckCircle2 size={13} className="text-accent" />
                     </div>
                     <div>
-                      <h4 className="text-sm md:text-base font-bold text-white mb-1">{item.title}</h4>
-                      <p className="text-xs md:text-sm text-text/60 leading-relaxed font-medium">{item.desc}</p>
+                      <h4 className="text-sm md:text-base font-bold text-white mb-0.5">{item.title}</h4>
+                      <p className="text-xs text-text/55 leading-relaxed font-light">{item.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="mb-12 cursor-default">
-                <h2 className="text-xl md:text-2xl font-display font-medium mb-6 text-text/80">Invista hoje apenas</h2>
-                <div className="flex items-baseline justify-center gap-2">
-                  <span className="text-xl md:text-2xl text-text/40 mr-1">R$</span>
-                  <p className="text-5xl md:text-7xl font-display font-bold tracking-tighter text-white drop-shadow-sm">147,00</p>
+              <div className="mb-10 cursor-default border-t border-b border-white/5 py-8 max-w-sm mx-auto">
+                <h2 className="text-lg md:text-xl font-display font-medium mb-4 text-text/70 uppercase tracking-widest">Invista hoje apenas</h2>
+                <div className="flex items-baseline justify-center gap-1">
+                  <span className="text-xl md:text-3xl text-text/45 font-medium mr-1.5 font-display">R$</span>
+                  <p className="text-5xl md:text-7xl font-display font-extrabold tracking-tight text-white drop-shadow-sm select-all">97,00</p>
                 </div>
+                <p className="text-xs text-text/50 mt-3">Para acesso vitalício sem mensalidades</p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-10 md:mb-12">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10 max-w-lg mx-auto">
                 {[
-                  { icon: <Zap size={14} />, text: "Acesso Vitalício" },
-                  { icon: <Star size={14} />, text: "Bônus Exclusivos" },
-                  { icon: <ShieldCheck size={14} />, text: "Garantia 7 Dias" }
+                  { icon: <Zap size={12} />, text: "Acesso Vitalício" },
+                  { icon: <Star size={12} />, text: "Bônus Exclusivos" },
+                  { icon: <ShieldCheck size={12} />, text: "Garantia 7 Dias" }
                 ].map((item, i) => (
-                  <div key={i} className="bg-white/5 py-3 md:py-4 rounded-xl md:rounded-2xl flex items-center justify-center gap-3 text-[9px] md:text-[10px] font-bold uppercase tracking-widest border border-white/10">
-                    <span className="text-gold">{item.icon}</span>
+                  <div key={i} className="bg-white/[0.02] py-3 rounded-xl flex items-center justify-center gap-2.5 text-[9px] md:text-[10px] font-bold uppercase tracking-widest border border-white/5 text-text/70">
+                    <span className="text-accent">{item.icon}</span>
                     {item.text}
                   </div>
                 ))}
@@ -406,15 +508,16 @@ export default function App() {
                   href="https://pay.hub.la/RBS2l0kJ8JIuPjA14Nr5" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="group relative bg-accent text-white px-10 md:px-16 py-5 md:py-6 rounded-full text-xs md:text-sm font-bold uppercase tracking-widest hover:scale-[1.05] active:scale-[0.98] transition-all w-full md:w-auto inline-flex items-center justify-center gap-3 shadow-2xl"
+                  className="group relative bg-[#D4AF37] hover:bg-[#E2C255] text-bg px-10 md:px-16 py-5 md:py-5.5 rounded-full text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] hover:scale-[1.03] active:scale-[0.98] transition-all w-full md:w-auto inline-flex items-center justify-center gap-3 shadow-2xl shadow-accent/20 overflow-hidden cursor-pointer"
                 >
+                  <span className="absolute inset-x-0 top-0 h-1/2 bg-white/10" />
                   Sim, Eu Quero Me Transformar
-                  <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform stroke-[2.5]" />
                 </a>
                 
-                <div className="flex items-center justify-center gap-2 text-[9px] md:text-[10px] font-bold uppercase tracking-widest opacity-40">
-                  <ShieldCheck size={14} />
-                  Pagamento 100% Seguro
+                <div className="flex items-center justify-center gap-2 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] opacity-40">
+                  <ShieldCheck size={12} strokeWidth={2.5} />
+                  Pagamento 100% Criptografado & Seguro
                 </div>
               </div>
             </div>
@@ -423,17 +526,17 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="py-24 border-t border-border">
+      <footer className="py-20 border-t border-border/30 bg-[#0A0B0D]">
         <div className="container mx-auto px-6 max-w-6xl">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-12">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-10">
             <div className="text-center md:text-left">
-              <span className="text-lg font-display font-bold tracking-tighter mb-4 block">JORNADA</span>
-              <p className="text-sm text-text/40 max-w-xs leading-relaxed">
-                Edificando lares de paz e legados de fé através de princípios bíblicos.
+              <span className="text-lg font-display font-extrabold tracking-[0.25em] text-white block mb-3">JORNADA</span>
+              <p className="text-sm text-text/45 max-w-xs leading-relaxed font-light">
+                Edificando lares de paz, mentes disciplinadas e legados de fé inabalável através de práticos princípios bíblicos.
               </p>
             </div>
-            <div className="text-xs font-bold uppercase tracking-widest opacity-40">
-              &copy; {new Date().getFullYear()} Jornada Propósito Pleno
+            <div className="text-[10px] font-bold uppercase tracking-widest opacity-40 text-center md:text-right">
+              &copy; {new Date().getFullYear()} Jornada Propósito Pleno. Todos os direitos reservados.
             </div>
           </div>
         </div>
