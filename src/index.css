@@ -1,28 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@1,400;1,500;1,600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  --font-display: "Lora", ui-serif, Georgia, serif;
+  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
   
-  --color-bg: #0C0E10;               /* Extremely rich deep charcoal midnight-blue */
-  --color-text: #E5E9EC;             /* Very bright but eye-friendly warm slate white */
-  --color-accent: #D4AF37;           /* True champagne burnished gold */
-  --color-accent-light: #EAD09D;     /* Delicate golden-shimmer highlight */
-  --color-muted: #15181C;            /* Perfect dark card background */
-  --color-gold: #F2C94C;             /* Radiant cozy gold */
-  --color-border: rgba(212, 175, 55, 0.12); /* Subtle luxurious gold-wire borders */
-  --color-beige-light: #111417;      /* Warm intermediate slate bg */
-  --color-olive: #242D22;            /* Deep comforting liturgical forest sage */
+  --color-bg: #FAF6F0;               /* Peaceful luxury morning cream/sand */
+  --color-text: #2D2A26;             /* Cozy natural wood charcoal - beautiful readability */
+  --color-accent: #B35D43;           /* Earthy terracotta clay - represents humanity, heart, pottery */
+  --color-accent-light: #C87D65;     /* Soft warm terracotta halo */
+  --color-muted: #F3ECE2;            /* Clean organic linen paper card bg */
+  --color-gold: #D29A46;             /* Quiet sunlight gold */
+  --color-border: rgba(45, 42, 38, 0.09); /* Pure linen threads borders */
+  --color-beige-light: #F7F1E7;      /* Serene soft intermediate light sand */
+  --color-olive: #4A5343;            /* Morning sanctuary forest sage green - peace and grounding */
 }
 
 @layer utilities {
-  .bg-glow {
-    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.08) 0%, transparent 75%);
+  .bg-glow-warm {
+    background: radial-gradient(circle at 50% 50%, rgba(210, 154, 70, 0.15) 0%, transparent 70%);
   }
-  .bg-glow-intense {
-    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.14) 0%, transparent 60%);
+  .bg-glow-clay {
+    background: radial-gradient(circle at 50% 50%, rgba(179, 93, 67, 0.08) 0%, transparent 70%);
   }
 }
 
@@ -30,12 +30,12 @@
   body {
     @apply font-sans bg-bg text-text scroll-smooth antialiased;
     background-image: 
-      radial-gradient(at 0% 0%, rgba(36, 45, 34, 0.15) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(212, 175, 55, 0.05) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(74, 83, 67, 0.07) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(210, 154, 70, 0.08) 0px, transparent 50%);
     background-attachment: fixed;
   }
   
   h1, h2, h3, .display {
-    @apply font-display tracking-tight text-white;
+    @apply font-display tracking-tight text-text;
   }
 }
