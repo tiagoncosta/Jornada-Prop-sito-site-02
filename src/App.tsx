@@ -109,20 +109,14 @@ export default function App() {
       <section className="relative pt-36 pb-20 md:pt-48 md:pb-32 overflow-hidden">
         <div className="container mx-auto px-6 text-center max-w-4xl relative">
           <Reveal>
-            <div className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-olive/10 border border-olive/15 text-[10px] font-bold uppercase tracking-[0.2em] mb-8 text-olive shadow-sm">
-              <Compass size={11} className="text-olive animate-spin-slow" />
-              Sua vida no propósito de Deus
-            </div>
-            
             <h1 className="text-4xl md:text-6.5xl lg:text-7.5xl font-serif font-medium mb-8 leading-[1.12] tracking-tight text-text">
-              Cansado de sentir que sua rotina está <br/>
-              <span className="text-accent italic font-normal tracking-wide">desconectada</span> do céu?
+              Você tá cansado de viver correndo e não saber pra onde.
             </h1>
           </Reveal>
           
           <Reveal delay={0.25}>
             <p className="text-base md:text-xl max-w-2.5xl mx-auto text-text/80 font-serif leading-relaxed italic">
-              "Você acorda, corre, resolve preocupações... mas ao deitar a cabeça no travesseiro, resta um anseio. Você sabe que nasceu para algo maior, mas a pressa do dia a dia continua sufocando o seu chamado."
+              "Acorda, trabalha, resolve os problemas dos outros, apaga incêndio. Chega a noite e sobra só um vazio: 'isso é tudo que minha vida vai ser?' Você sabe que nasceu pra mais - só não sabe mais por onde começar."
             </p>
           </Reveal>
           
@@ -150,10 +144,10 @@ export default function App() {
 
           <div className="grid gap-4 md:gap-5">
             {[
-              "Sente que tem um lindo chamado estruturado, mas não sabe como dar o primeiro passo real",
-              "A ansiedade constante costuma gritar mais alto que a sua quietude e confiança em Deus",
-              "Sua rotina e o seu trabalho parecem vazios de significado humano e divino",
-              "Sente que a vida está passando velozmente sem você desfrutar do verdadeiro plano eterno"
+              "Você sente que tem um propósito, mas não sabe qual é o primeiro passo real",
+              "A ansiedade fala mais alto que sua fé, quase todo dia",
+              "Trabalho e rotina viraram só obrigação, sem sentido nenhum",
+              "A vida tá passando rápido demais e você não tá vivendo, só sobrevivendo"
             ].map((point, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div className="group p-6 rounded-2xl border border-border bg-[#FCFAF7] hover:border-accent/30 hover:bg-white transition-all duration-300 flex items-center gap-5 shadow-sm">
@@ -175,13 +169,13 @@ export default function App() {
         <div className="container mx-auto px-6 max-w-5xl text-center relative">
           <Reveal>
             <span className="text-[10px] md:text-xs font-bold uppercase tracking-[0.25em] text-accent mb-4 block">
-              Um abraço acolhedor para a sua alma
+              O caminho prático para organizar a sua mente
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-medium text-text tracking-tight mb-8">
               A Jornada para um <span className="text-olive italic font-normal">Propósito Pleno</span>
             </h2>
             <p className="text-base md:text-lg text-text/80 max-w-3xl mx-auto mb-16 leading-relaxed font-light">
-              Não se trata de encher a sua rotina com mais obrigações cansativas. É um convite para <span className="text-accent font-medium">desacelerar</span>, organizar o coração e alinhar as suas tarefas diárias com o propósito eterno. Permita que a sua vida transborde da sua essência com o Criador.
+              Não se trata de colocar mais peso nas suas costas ou encher a sua rotina com tarefas chatas. É um método direto para organizar o seu dia a dia e alinhar suas obrigações com o que realmente importa.
             </p>
           </Reveal>
           
@@ -226,17 +220,17 @@ export default function App() {
               {
                 icon: <Video size={20} />,
                 title: "14 Módulos Estratégicos",
-                desc: "Aulas cirúrgicas focadas no coração, com fundamentação sólida e aplicação amorosa para suavizar hábitos exautivos."
+                desc: "Aulas curtas e diretas ao ponto, com fundamentação sólida e aplicação prática para mudar seus hábitos."
               },
               {
                 icon: <BookOpen size={20} />,
                 title: "70 Devocionais de Apoio",
-                desc: "Um roteiro sereno escrito com delicadeza para acompanhar as suas manhãs com profunda conexão divina e quietude."
+                desc: "Um roteiro prático para acompanhar o seu dia com direção clara e sem enrolação."
               },
               {
-                icon: <Users size={20} />,
-                title: "Comunidade Amparada",
-                desc: "Um espaço seguro e carinhoso para compartilhar sentimentos, interceder e caminhar junto com corações que pulsam na mesma fé."
+                icon: <Sparkles size={20} />,
+                title: "Plataforma completa",
+                desc: "Acesso aos 70 devocionais em vídeo, cada um com ebook complementar, no seu tempo - sem precisar de mais nada."
               }
             ].map((item, i) => (
               <Reveal key={i} delay={i * 0.15}>
@@ -263,19 +257,18 @@ export default function App() {
           <div className="text-center mb-16 max-w-2xl mx-auto">
             <Reveal>
               <h2 className="text-3xl md:text-5xl font-serif font-medium text-text tracking-tight mb-6">
-                Um método feito para restaurar corações
+                Um método prático para o seu dia a dia
               </h2>
               <p className="text-text/80 text-sm md:text-base font-light leading-relaxed">
-                Nossa abordagem respeita o seu tempo e a sua história. É fruto de longas caminhadas, escuta cuidadosa e a entrega diária de vidas restauradas que redescobriram o valor de viver na presença.
+                Essa jornada foi criada pensando em quem tem uma rotina corrida e precisa de direcionamento real. É um passo a passo objetivo para você aplicar de forma simples, no seu próprio tempo.
               </p>
             </Reveal>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 text-center mb-24 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-center mb-24 max-w-2xl mx-auto">
             {[
-              { label: "Vidas Acolhidas e Restauradas", value: "1.200+" },
               { label: "Módulos de Mentoria Prática", value: "14" },
-              { label: "Encontros de Devocional Escrita", value: "70" }
+              { label: "Devocionais em Vídeo", value: "70" }
             ].map((stat, i) => (
               <Reveal key={i} delay={i * 0.1}>
                 <div className="border border-border p-6 rounded-2xl bg-bg/50">
@@ -292,9 +285,6 @@ export default function App() {
 
           <div className="mb-8 text-center md:text-left">
             <Reveal>
-              <span className="text-xs font-sans font-bold uppercase text-accent tracking-widest gap-2 inline-flex items-center">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent" /> Um roteiro de paz
-              </span>
               <h3 className="text-2.5xl md:text-3.5xl font-serif font-medium text-text mt-1">Os 5 Pilares da Reorganização Espiritual</h3>
             </Reveal>
           </div>
@@ -323,66 +313,13 @@ export default function App() {
         </div>
       </section>
 
-      {/* 6. Depoimentos */}
-      <section className="py-20 md:py-32 bg-bg relative">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="text-center mb-16 md:mb-20">
-            <Reveal>
-              <span className="text-[10px] md:text-sm text-accent tracking-[0.2em] font-semibold uppercase block mb-3">HISTÓRIAS DE ACOLHIMENTO</span>
-              <h2 className="text-3.5xl md:text-5xl font-serif font-medium text-text tracking-tight mb-4">
-                Histórias reais de quem redescobriu a paz
-              </h2>
-              <p className="text-olive/80 max-w-lg mx-auto text-sm md:text-base font-light">
-                Compreenda a mudança de perspectiva cotidiana descrita de forma sincera por nossos alunos.
-              </p>
-            </Reveal>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            {[
-              {
-                name: "Ana Paula S.",
-                role: "Mãe e Empreendedora",
-                text: "O método trouxe uma harmonia e um acolhimento maravilhoso para a rotina da minha casa. Hoje, em vez de viver exausta ou culpada, sinto que cada detalhe do dia tem uma direção e paz espiritual."
-              },
-              {
-                name: "Marcos V. Silva",
-                role: "Líder e Engenheiro",
-                text: "Os pilares de relacionamento e vocação me acolheram no momento de maior dúvida. Descobri que meu ganho e minhas habilidades profissionais são instrumentos de fé viva."
-              },
-              {
-                name: "Juliana Costa",
-                role: "Professora de Artes",
-                text: "O guia devocional é extremamente profundo. Não é apenas leitura rápida, são diretrizes reais de oração, escuta e ação prática. Valeu cada segundo investido no meu bem-estar com o Pai."
-              }
-            ].map((t, i) => (
-              <Reveal key={i} delay={i * 0.1}>
-                <div className="bg-[#FAF6F0] p-8 md:p-10 rounded-[2.2rem] border border-border relative hover:border-accent/20 transition-all duration-300 h-full flex flex-col justify-between shadow-sm">
-                  <div>
-                    <div className="flex gap-1 mb-5 text-gold">
-                      {[1, 2, 3, 4, 5].map(s => <Star key={s} size={11} fill="currentColor" className="stroke-none" />)}
-                    </div>
-                    <p className="text-text/80 italic mb-8 leading-relaxed text-sm md:text-base font-light font-serif">
-                      "{t.text}"
-                    </p>
-                  </div>
-                  <div className="border-t border-border/80 pt-4 mt-auto">
-                    <div className="font-serif font-bold text-text text-sm md:text-base">{t.name}</div>
-                    <div className="text-[10px] text-olive/60 font-semibold uppercase mt-0.5 tracking-wider">{t.role}</div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* 7. Dúvidas Frequentes */}
       <section className="py-20 md:py-32 bg-beige-light border-t border-border">
         <div className="container mx-auto px-6 max-w-3xl">
           <div className="text-center mb-16">
             <Reveal>
-              <span className="text-[10px] md:text-xs text-accent tracking-[0.2em] font-semibold uppercase block mb-3">CONFORTO E ENCONTROS</span>
               <h2 className="text-3.5xl md:text-5xl font-serif font-medium text-text tracking-tight">
                 Dúvidas comuns esclarecidas
               </h2>
@@ -392,13 +329,13 @@ export default function App() {
           <Reveal>
             <div className="bg-bg border border-border rounded-3xl p-6 md:p-8 space-y-2 shadow-sm">
               <Accordion title="Como recebo o acesso ao Guia?">
-                O acesso é completamente imediato. Assim que o pagamento de R$ 97,00 for aprovado, seu e-mail cadastrado receberá um link individual contendo as instruções didáticas e as chaves de acesso para a nossa aconchegante plataforma.
+                O acesso é completamente imediato. Assim que o pagamento de R$ 97,00 for aprovado, seu e-mail cadastrado receberá um link individual contendo as instruções didáticas e as chaves de acesso para a nossa plataforma.
               </Accordion>
               <Accordion title="Por quanto tempo terei acesso a todo o material?">
                 O seu acesso é vitalício. Você pode ler as 70 devocionais, assistir às aulas dos 14 módulos e rever as meditações no seu ritmo, sempre que a sua rotina pedir por um momento de paz profunda.
               </Accordion>
               <Accordion title="Preciso dominar teologia ou oratória para usufruir?">
-                Não. A Jornada Propósito Pleno foi inteiramente estruturada com clareza e acolhimento clínico para receber quem está iniciando o hábito de devotionais diários, estimulando conversas francas e aplicáveis.
+                Não. A Jornada Propósito Pleno foi inteiramente estruturada com clareza para receber quem está iniciando o hábito de devotionais diários, estimulando conversas francas e aplicáveis.
               </Accordion>
               <Accordion title="E se o método não funcionar para o meu cotidiano?">
                 Fique em total tranquilidade: oferecemos uma garantia integral e incondicional de reembolso de 7 dias. Seu conforto e convicção são o nosso maior compromisso ético.
@@ -428,18 +365,18 @@ export default function App() {
                 </div>
                 
                 <div className="text-center md:text-left">
-                  <span className="text-[10px] font-bold tracking-[0.2em] text-accent uppercase block mb-2">SEGURANÇA E AMOR</span>
+                  <span className="text-[10px] font-bold tracking-[0.2em] text-accent uppercase block mb-2">RISCO ZERO</span>
                   <h2 className="text-2xl md:text-3xl font-serif font-medium text-text mb-4 tracking-tight">
-                    Risco Zero para a sua decisão.
+                    Testa por 7 dias.
                   </h2>
                   <p className="text-text/80 text-sm leading-relaxed mb-6 font-light">
-                    Acreditamos verdadeiramente no alinhamento espiritual e no conforto cotidiano que este guia oferece, por isso removemos todo o risco de sua decisão. Faça parte da comunidade e use os materiais. Se em até 7 dias você entender que a jornada não é adequada, basta nos contatar por e-mail e estornamos 100% do seu valor. Sem complicação ou embaraço.
+                    Se não for pra você, devolvemos seu dinheiro. Sem enrolação, sem pergunta.
                   </p>
                   <div className="flex items-center justify-center md:justify-start gap-4">
                     <div className="flex gap-1 text-gold">
                       {[1, 2, 3, 4, 5].map(s => <Star key={s} size={11} fill="currentColor" className="stroke-none" />)}
                     </div>
-                    <span className="text-[9px] font-bold uppercase tracking-widest text-text/50 font-sans">Garantia incondicional de satisfação</span>
+                    <span className="text-[9px] font-bold uppercase tracking-widest text-text/50 font-sans">Garantia incondicional de reembolso</span>
                   </div>
                 </div>
 
@@ -458,13 +395,18 @@ export default function App() {
             <div className="bg-bg border border-accent/25 text-text rounded-[2.5rem] md:rounded-[3rem] p-8 md:p-14 text-center relative overflow-hidden shadow-lg backdrop-blur-md">
               
               <div className="mb-10 max-w-md mx-auto text-left space-y-4">
-                <div className="text-center mb-6">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-accent font-sans bg-accent/5 px-4 py-1.5 rounded-full border border-accent/15">Sua Proposta Integral</span>
-                </div>
+                <h3 className="text-2xl md:text-3.5xl font-serif font-medium text-text text-center mb-4 tracking-tight">
+                  Você já tentou resolver isso sozinho. Não funcionou.
+                </h3>
+
+                <p className="text-sm md:text-base text-text/80 text-center max-w-lg mx-auto mb-10 leading-relaxed font-light">
+                  R$97. Acesso vitalício. 14 módulos estratégicos e 70 devocionais em vídeo com e-books complementares.
+                </p>
+
                 {[
-                  { title: "14 Módulos Estruturados", desc: "Aulas acolhedoras e diretas para harmonizar sua rotina" },
-                  { title: "70 Devocionais Diárias", desc: "Acompanhamento diário para edificação íntima da sua fé" },
-                  { title: "Comunidade Amparada", desc: "Um reduto quente de carinho e troca de experiências de fé" }
+                  { title: "14 Módulos Práticos", desc: "Aulas curtas e diretas ao ponto pra você mudar seus hábitos" },
+                  { title: "70 Devocionais em Vídeo", desc: "Acompanhamento diário sem enrolação pra guiar suas manhãs" },
+                  { title: "Plataforma Completa", desc: "Acesso no seu próprio tempo com ebooks complementares inclusos" }
                 ].map((item, i) => (
                   <div key={i} className="flex gap-4 items-start bg-white/40 p-4 rounded-xl border border-border group hover:border-accent/20 hover:bg-white/90 transition-all duration-300">
                     <div className="w-7 h-7 rounded-full bg-accent/10 flex items-center justify-center shrink-0 mt-0.5 border border-accent/15">
@@ -487,17 +429,11 @@ export default function App() {
                 <p className="text-xs text-text/60 mt-3 font-sans">Acesso vitalício completo, sem novas taxas ou mensalidades</p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10 max-w-lg mx-auto">
-                {[
-                  { icon: <Zap size={11} />, text: "Acesso Vitalício" },
-                  { icon: <Star size={11} />, text: "Roteiro de Apoio" },
-                  { icon: <ShieldCheck size={11} />, text: "Garantia 7 Dias" }
-                ].map((item, i) => (
-                  <div key={i} className="bg-white/40 border border-border py-3 rounded-xl flex items-center justify-center gap-2 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-text/80">
-                    <span className="text-accent">{item.icon}</span>
-                    {item.text}
-                  </div>
-                ))}
+              <div className="grid grid-cols-1 gap-3 mb-10 max-w-xs mx-auto">
+                <div className="bg-white/40 border border-border py-3 rounded-xl flex items-center justify-center gap-2 text-[9px] md:text-[10px] font-bold uppercase tracking-widest text-text/80">
+                  <span className="text-accent"><ShieldCheck size={11} /></span>
+                  Garantia 7 Dias
+                </div>
               </div>
 
               <div className="space-y-6">
@@ -508,7 +444,7 @@ export default function App() {
                   className="group relative bg-[#B35D43] hover:bg-[#C26B50] text-white px-10 md:px-14 py-4.5 md:py-5 rounded-full text-xs md:text-sm font-extrabold uppercase tracking-[0.15em] hover:scale-[1.02] active:scale-[0.98] transition-all w-full md:w-auto inline-flex items-center justify-center gap-3 shadow-md shadow-accent/15 overflow-hidden cursor-pointer"
                 >
                   <span className="absolute inset-x-0 top-0 h-1/2 bg-white/5" />
-                  Sim, Desejo Me Transformar
+                  COMEÇAR AGORA
                   <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform stroke-[2.5]" />
                 </a>
                 
@@ -528,9 +464,6 @@ export default function App() {
           <div className="flex flex-col md:flex-row justify-between items-center gap-10">
             <div className="text-center md:text-left">
               <span className="text-base font-serif font-semibold tracking-[0.25em] text-text block mb-3">JORNADA Propósito Pleno</span>
-              <p className="text-sm text-text/70 max-w-xs leading-relaxed font-light">
-                Cuidando de mentes disciplinadas, lares acolhedores e trajetórias preenchidas pelo bem através de princípios bíblicos duradouros.
-              </p>
             </div>
             <div className="text-[10px] font-bold uppercase tracking-widest opacity-50 text-center md:text-right">
               &copy; {new Date().getFullYear()} Jornada Propósito Pleno. Todos os direitos reservados.
