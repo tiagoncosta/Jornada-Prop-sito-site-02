@@ -1,5 +1,6 @@
 {
   "name": "Jornada Propósito Pleno",
-  "description": "Uma jornada transformadora para encontrar seu propósito de vida e viver com plenitude.",
-  "requestFramePermissions": []
+  "description": "Página oficial de pré-lançamento e aviso VIP para o relançamento da Jornada Propósito Pleno em 20 de Agosto.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }
