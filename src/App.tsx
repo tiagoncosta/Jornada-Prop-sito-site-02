@@ -49,10 +49,10 @@ export default function App() {
     const calculateTimeLeft = () => {
       const now = new Date();
       let year = now.getFullYear();
-      let target = new Date(year, 7, 20, 0, 0, 0); // August 20th
+      let target = new Date(year, 8, 5, 0, 0, 0); // September 5th (Month 8 = September)
       
       if (now.getTime() > target.getTime()) {
-        target = new Date(year + 1, 7, 20, 0, 0, 0);
+        target = new Date(year + 1, 8, 5, 0, 0, 0);
       }
 
       const diff = target.getTime() - now.getTime();
@@ -120,7 +120,7 @@ export default function App() {
           
           <Reveal>
             <p className="text-xs md:text-sm font-semibold uppercase tracking-[0.2em] text-accent mb-6">
-              Relançamento Oficial • 20 de Agosto
+              Relançamento Oficial • 05 de Setembro
             </p>
             
             <h1 className="text-4xl md:text-6xl font-serif font-medium mb-6 leading-[1.12] text-text">
@@ -190,7 +190,7 @@ export default function App() {
 
           <Reveal delay={0.25}>
             <p className="text-base md:text-lg font-serif text-text">
-              A partir de <span className="text-accent font-semibold">20 de agosto</span>, tudo muda.
+              A partir de <span className="text-accent font-semibold">05 de setembro</span>, tudo muda.
             </p>
           </Reveal>
         </div>
@@ -423,7 +423,7 @@ export default function App() {
                     </h3>
 
                     <p className="text-xs md:text-sm text-text/80 leading-relaxed font-light">
-                      Você receberá o acesso exclusivo em <span className="font-semibold text-accent">{email}</span> 24h antes do lançamento em 20 de Agosto.
+                      Você receberá o acesso exclusivo em <span className="font-semibold text-accent">{email}</span> 24h antes do lançamento em 05 de Setembro.
                     </p>
 
                     <button 
