@@ -39,10 +39,10 @@ export default function App() {
     const calculateTimeLeft = () => {
       const now = new Date();
       let year = now.getFullYear();
-      let target = new Date(year, 8, 5, 0, 0, 0); // September 5th (Month index 8 = September)
+      let target = new Date(year, 8, 3, 0, 0, 0); // September 3rd (Month index 8 = September)
       
       if (now.getTime() > target.getTime()) {
-        target = new Date(year + 1, 8, 5, 0, 0, 0);
+        target = new Date(year + 1, 8, 3, 0, 0, 0);
       }
 
       const diff = target.getTime() - now.getTime();
@@ -150,7 +150,7 @@ export default function App() {
 
           <Reveal delay={0.25}>
             <p className="text-base md:text-lg font-serif text-text">
-              A partir de <span className="text-accent font-semibold">05 de setembro</span>, tudo muda.
+              A partir de <span className="text-accent font-semibold">03 de setembro</span>, tudo muda.
             </p>
           </Reveal>
         </div>
@@ -262,7 +262,7 @@ export default function App() {
               </p>
 
               <h2 className="text-3xl md:text-4xl font-serif font-medium text-text">
-                Volte em 05 de setembro
+                Volte em 03 de setembro
               </h2>
 
               <p className="text-text/75 text-sm md:text-base font-light leading-relaxed max-w-md mx-auto">
