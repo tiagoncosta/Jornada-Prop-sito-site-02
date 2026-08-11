@@ -5,21 +5,24 @@
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { 
-  Clock, 
-  Sun, 
-  Lock, 
-  Compass,
-  Calendar
-} from 'lucide-react';
+import { Lock } from 'lucide-react';
 
-const Reveal = ({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string; key?: React.Key }) => {
+const Reveal = ({ 
+  children, 
+  delay = 0, 
+  className = "" 
+}: { 
+  children: React.ReactNode; 
+  delay?: number; 
+  className?: string; 
+  key?: React.Key 
+}) => {
   return (
     <motion.div
       initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.7, delay, ease: [0.16, 1, 0.3, 1] }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.6, delay, ease: [0.16, 1, 0.3, 1] }}
       className={className}
     >
       {children}
@@ -37,14 +40,9 @@ export default function App() {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
+      // Target: 03 de setembro de 2026, 00:00 (Brasília UTC-3)
+      const target = new Date('2026-09-03T00:00:00-03:00');
       const now = new Date();
-      let year = now.getFullYear();
-      let target = new Date(year, 8, 3, 0, 0, 0); // September 3rd (Month index 8 = September)
-      
-      if (now.getTime() > target.getTime()) {
-        target = new Date(year + 1, 8, 3, 0, 0, 0);
-      }
-
       const diff = target.getTime() - now.getTime();
 
       if (diff > 0) {
@@ -64,256 +62,239 @@ export default function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-bg text-text selection:bg-accent/15 selection:text-text relative font-sans">
+    <div className="min-h-screen bg-bg text-text selection:bg-accent/15 selection:text-text font-sans flex flex-col justify-between">
       
-      {/* Header */}
-      <header className="fixed top-0 w-full z-50 bg-bg/90 backdrop-blur-sm border-b border-border">
+      {/* Navigation Header */}
+      <header className="fixed top-0 w-full z-50 bg-bg/95 border-b border-border">
         <div className="container mx-auto px-6 h-16 md:h-20 flex items-center justify-between max-w-5xl">
           <div className="flex items-center gap-3">
-            <div className="w-7 h-7 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center text-accent">
-              <Sun size={13} />
+            <div>
+              <span className="text-xs md:text-sm font-serif font-semibold tracking-[0.2em] text-text block leading-none uppercase">
+                Jornada Propósito Pleno
+              </span>
+              <span className="text-[10px] font-sans text-olive tracking-wider block mt-1">
+                03 de Setembro
+              </span>
             </div>
           </div>
         </div>
       </header>
 
-      {/* 1. Hero / Mistério */}
-      <section className="relative pt-36 pb-16 md:pt-48 md:pb-24">
-        <div className="container mx-auto px-6 text-center max-w-3xl">
-          
-
-          <Reveal>
-            <h1 className="text-4xl md:text-6xl font-serif font-medium mb-6 leading-[1.12] text-text">
-              Algo grande está vindo.
-            </h1>
-
-            <p className="text-xl md:text-2.5xl font-serif italic text-accent/90 mb-10">
-              Uma reformulação que muda tudo.
-            </p>
-          </Reveal>
-
-          <Reveal delay={0.15}>
-            <div className="bg-[#FCFAF7] border border-border p-8 md:p-10 rounded-2xl max-w-2xl mx-auto text-left md:text-center space-y-4">
-              <p className="text-base md:text-lg text-text/85 font-light leading-relaxed font-sans">
-                Depois de ouvir milhares de pessoas perguntando <span className="font-serif italic text-text font-medium">"por onde eu começo?"</span>, a Jornada volta com uma estrutura que finalmente responde essa pergunta de verdade.
-              </p>
-              
-              <div className="pt-4 border-t border-border/70 text-sm font-serif italic text-accent font-medium">
-                Com 3 pilares novos que só estarão disponíveis neste momento.
-              </div>
-            </div>
-          </Reveal>
-
-        </div>
-      </section>
-
-      {/* 2. Countdown Section (Visual Principal) */}
-      <section id="countdown" className="py-16 md:py-24 bg-beige-light border-y border-border">
-        <div className="container mx-auto px-6 max-w-4xl text-center">
-          <Reveal>
-            <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.2em] text-olive mb-3">
-              <Clock size={14} className="text-accent" />
-              <span>Contagem Regressiva</span>
-            </div>
-
-            <h2 className="text-2.5xl md:text-4xl font-serif font-medium text-text mb-3">
-              O relógio já está correndo
-            </h2>
-            <p className="text-text/70 text-sm md:text-base font-light max-w-lg mx-auto mb-10">
-              Acompanhe o tempo exato para a abertura do novo portal da Jornada Propósito Pleno.
-            </p>
-          </Reveal>
-
-          {/* Countdown Grid */}
-          <Reveal delay={0.15}>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-2.5xl mx-auto mb-10">
-              {[
-                { label: 'Dias', value: timeLeft.days },
-                { label: 'Horas', value: timeLeft.hours },
-                { label: 'Minutos', value: timeLeft.minutes },
-                { label: 'Segundos', value: timeLeft.seconds },
-              ].map((item, idx) => (
-                <div 
-                  key={idx}
-                  className="bg-bg border border-border rounded-2xl p-6 flex flex-col items-center justify-center"
-                >
-                  <div className="text-4xl md:text-5xl font-serif font-semibold text-accent mb-1 tracking-tight">
-                    {String(item.value).padStart(2, '0')}
-                  </div>
-                  <div className="text-[11px] font-semibold uppercase tracking-[0.18em] text-text/60">
-                    {item.label}
-                  </div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
-
-          <Reveal delay={0.25}>
-            <p className="text-base md:text-lg font-serif text-text">
-              A partir de <span className="text-accent font-semibold">03 de setembro</span>, tudo muda.
-            </p>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 3. Tease dos Pilares */}
-      <section className="py-20 md:py-32 bg-bg">
-        <div className="container mx-auto px-6 max-w-5xl">
-          
-          <div className="text-center max-w-2xl mx-auto mb-16">
+      <main className="flex-1">
+        {/* 1. Hero Section */}
+        <section className="pt-32 pb-20 md:pt-44 md:pb-28">
+          <div className="container mx-auto px-6 max-w-3xl text-center">
             <Reveal>
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent mb-3">
-                O Que Você Vai Encontrar
+              <h1 className="text-4xl md:text-6xl font-display font-normal text-text tracking-tight mb-6 leading-[1.15]">
+                Algo grande está vindo.
+              </h1>
+              
+              <p className="text-xl md:text-2.5xl font-serif italic text-accent mb-12">
+                Uma reformulação que muda tudo.
               </p>
-              <h2 className="text-3xl md:text-4.5xl font-serif font-medium text-text mb-4">
-                8 pilares estruturados
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="space-y-6 text-base md:text-lg text-text/85 font-light leading-relaxed max-w-2xl mx-auto border-t border-b border-border py-8">
+                <p>
+                  Depois de ouvir milhares de pessoas perguntando <span className="font-serif italic font-normal text-text">"por onde eu começo?"</span>, a Jornada volta com uma estrutura que finalmente responde essa pergunta de verdade.
+                </p>
+                <p className="font-serif italic text-accent font-medium text-lg md:text-xl">
+                  Com pilares novos que só estarão disponíveis neste momento.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
+        {/* 2. Seção Contagem Regressiva */}
+        <section className="py-20 bg-beige-light border-y border-border">
+          <div className="container mx-auto px-6 max-w-3xl text-center">
+            <Reveal>
+              <h2 className="text-2.5xl md:text-4xl font-display font-normal text-text mb-3">
+                O relógio já está correndo
               </h2>
-              <p className="text-text/75 text-base font-light leading-relaxed">
-                Desenvolvidos para resolver os problemas reais que você enfrenta no dia a dia:
+              
+              <p className="text-text/75 text-sm md:text-base font-light max-w-lg mx-auto mb-12">
+                Acompanhe o tempo exato para a abertura do novo portal da Jornada Propósito Pleno.
+              </p>
+            </Reveal>
+
+            {/* Countdown Grid */}
+            <Reveal delay={0.1}>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 md:gap-4 max-w-2xl mx-auto mb-12">
+                {[
+                  { label: 'Dias', value: timeLeft.days },
+                  { label: 'Horas', value: timeLeft.hours },
+                  { label: 'Minutos', value: timeLeft.minutes },
+                  { label: 'Segundos', value: timeLeft.seconds },
+                ].map((item, idx) => (
+                  <div 
+                    key={idx}
+                    className="bg-bg border border-border p-6 rounded-lg text-center"
+                  >
+                    <span className="block text-3xl md:text-4xl font-serif font-medium text-accent mb-1">
+                      {String(item.value).padStart(2, '0')}
+                    </span>
+                    <span className="text-[11px] font-sans font-medium tracking-widest text-text/60 uppercase">
+                      {item.label}
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.2}>
+              <p className="text-lg md:text-xl font-serif italic text-text">
+                A partir de <span className="text-accent font-semibold not-italic">03 de setembro</span>, tudo muda.
               </p>
             </Reveal>
           </div>
+        </section>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              {
-                num: "01",
-                text: "Como sair da prisão mental que foi instalada desde pequeno",
-                tag: "Renovação"
-              },
-              {
-                num: "02",
-                text: "Como transformar ansiedade em clareza",
-                tag: "Paz Interna"
-              },
-              {
-                num: "03",
-                text: "Como alinhar trabalho e rotina com propósito real",
-                tag: "Vocação & Trabalho"
-              },
-              {
-                num: "04",
-                text: "Como ter relacionamentos verdadeiros (não superficiais)",
-                tag: "Conexão Profunda"
-              },
-              {
-                num: "05",
-                text: "Como deixar um legado que importa",
-                tag: "Visão Eterna"
-              },
-              {
-                num: "06, 07 e 08",
-                text: "E 3 pilares novos que ainda não estão no ar e serão revelados exclusivamente no lançamento",
-                tag: "Inédito & Secreto",
-                highlight: true
-              }
-            ].map((card, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <div 
-                  className={`p-7 rounded-2xl border h-full flex flex-col justify-between ${
-                    card.highlight 
-                      ? 'bg-[#F3ECE2] border-accent/40' 
-                      : 'bg-[#FCFAF7] border-border'
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-5">
-                      <span className={`text-[11px] font-semibold tracking-wider px-3 py-1 rounded-full border ${
-                        card.highlight 
-                          ? 'bg-accent/10 border-accent/20 text-accent' 
-                          : 'bg-olive/10 border-olive/15 text-olive'
-                      }`}>
-                        PILAR {card.num}
-                      </span>
-                      {card.highlight && (
-                        <Lock size={14} className="text-accent" />
-                      )}
+        {/* 3. Seção O Que Você Vai Encontrar */}
+        <section className="py-24 md:py-32">
+          <div className="container mx-auto px-6 max-w-5xl">
+            <div className="max-w-2xl mx-auto text-center mb-16">
+              <Reveal>
+                <h2 className="text-3xl md:text-4.5xl font-display font-normal text-text mb-4">
+                  Uma estrutura ainda mais completa
+                </h2>
+                <p className="text-text/75 text-base md:text-lg font-light">
+                  Desenvolvida para resolver os problemas reais que você enfrenta no dia a dia:
+                </p>
+              </Reveal>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[
+                {
+                  num: 'PILAR 01',
+                  quote: 'Como sair da prisão mental que foi instalada desde pequeno',
+                  tag: 'Renovação'
+                },
+                {
+                  num: 'PILAR 02',
+                  quote: 'Como transformar ansiedade em clareza',
+                  tag: 'Paz Interna'
+                },
+                {
+                  num: 'PILAR 03',
+                  quote: 'Como alinhar trabalho e rotina com propósito real',
+                  tag: 'Vocação & Trabalho'
+                },
+                {
+                  num: 'PILAR 04',
+                  quote: 'Como ter relacionamentos verdadeiros (não superficiais)',
+                  tag: 'Conexão Profunda'
+                },
+                {
+                  num: 'PILAR 05',
+                  quote: 'Como deixar um legado que importa',
+                  tag: 'Visão Eterna'
+                },
+                {
+                  num: 'E mais pilares inéditos',
+                  quote: 'que ainda não estão no ar e serão revelados exclusivamente no lançamento',
+                  locked: true
+                }
+              ].map((item, idx) => (
+                <Reveal key={idx} delay={idx * 0.05}>
+                  <div 
+                    className={`h-full p-8 rounded-xl border flex flex-col justify-between transition-colors ${
+                      item.locked 
+                        ? 'bg-[#F2EAE0] border-accent/30 text-text' 
+                        : 'bg-card border-border hover:border-text/20'
+                    }`}
+                  >
+                    <div>
+                      <div className="flex items-center justify-between mb-6">
+                        <span className={`text-[11px] font-sans font-semibold tracking-wider uppercase ${
+                          item.locked ? 'text-accent' : 'text-olive'
+                        }`}>
+                          {item.num}
+                        </span>
+
+                        {item.locked && (
+                          <span className="inline-flex items-center gap-1 text-[11px] font-sans text-accent">
+                            <Lock size={12} />
+                            <span>Bloqueado</span>
+                          </span>
+                        )}
+                      </div>
+
+                      <p className="text-base md:text-lg font-serif italic text-text leading-relaxed mb-8">
+                        {item.locked ? item.quote : `"${item.quote}"`}
+                      </p>
                     </div>
 
-                    <p className={`text-base font-serif font-medium leading-relaxed mb-6 ${
-                      card.highlight ? 'text-accent' : 'text-text'
-                    }`}>
-                      "{card.text}"
-                    </p>
+                    {item.tag && (
+                      <div className="pt-4 border-t border-border/60 text-[11px] font-sans font-medium tracking-widest text-text/60 uppercase">
+                        {item.tag}
+                      </div>
+                    )}
                   </div>
-
-                  <div className="pt-4 border-t border-border/60 text-[10px] font-semibold uppercase tracking-widest text-text/60">
-                    {card.tag}
-                  </div>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              ))}
+            </div>
           </div>
+        </section>
 
-        </div>
-      </section>
-
-      {/* 5. Volte em 05 de Setembro (Lembrete do Lançamento) */}
-      <section className="py-20 md:py-28 bg-bg">
-        <div className="container mx-auto px-6 max-w-2xl">
-          <Reveal>
-            <div className="bg-[#FCFAF7] border border-border rounded-3xl p-8 md:p-12 text-center space-y-4">
-              <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto text-accent">
-                <Calendar size={18} />
-              </div>
-
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent">
+        {/* 4. Seção CTA de Agenda */}
+        <section id="cta" className="py-20 md:py-28 bg-beige-light border-y border-border">
+          <div className="container mx-auto px-6 max-w-xl text-center space-y-8">
+            <Reveal>
+              <span className="text-xs font-sans font-semibold tracking-[0.2em] text-accent uppercase block mb-3">
                 Anote em sua agenda
-              </p>
+              </span>
 
-              <h2 className="text-3xl md:text-4xl font-serif font-medium text-text">
+              <h2 className="text-3xl md:text-4xl font-display font-normal text-text mb-4">
                 Volte em 03 de setembro
               </h2>
 
-              <p className="text-text/75 text-sm md:text-base font-light leading-relaxed max-w-md mx-auto">
+              <p className="text-text/80 text-base md:text-lg font-light leading-relaxed">
                 As portas para o novo portal oficial serão abertas para todos nesta data.
               </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* 6. Frase de Fechamento */}
-      <section className="py-20 md:py-28 bg-beige-light border-t border-border text-center">
-        <div className="container mx-auto px-6 max-w-2.5xl">
-          <Reveal>
-            <div className="w-10 h-10 rounded-full bg-accent/10 border border-accent/20 flex items-center justify-center mx-auto mb-6 text-accent">
-              <Compass size={20} />
-            </div>
-
-            <p className="text-xl md:text-3xl font-serif font-medium text-text leading-relaxed italic mb-8">
-              "A Jornada não é pra todo mundo. Mas se você sente que nasceu pra algo maior... essa é a hora."
-            </p>
-
-            <div className="space-y-0.5">
-              <span className="text-sm font-serif font-semibold text-text block">
-                Guilherme Koichi
-              </span>
-              <span className="text-[10px] uppercase font-semibold tracking-widest text-olive font-sans block">
-                Jornada Propósito Pleno
-              </span>
-            </div>
-          </Reveal>
-        </div>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-10 border-t border-border bg-[#F5EFE6]">
-        <div className="container mx-auto px-6 max-w-5xl">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <div className="text-center md:text-left">
-              <span className="text-sm font-serif font-semibold tracking-wider text-text block">
-                JORNADA PROPÓSITO PLENO
-              </span>
-              <span className="text-[10px] text-text/60 font-sans">
-                Acompanhamento e clareza para a sua caminhada.
-              </span>
-            </div>
-
-            <div className="text-[10px] font-semibold uppercase tracking-widest text-text/50 text-center md:text-right">
-              &copy; {new Date().getFullYear()} Jornada Propósito Pleno • Todos os direitos reservados
-            </div>
+            </Reveal>
           </div>
+        </section>
+
+        {/* 5. Seção de Fechamento */}
+        <section className="py-24 md:py-32 text-center">
+          <div className="container mx-auto px-6 max-w-2xl">
+            <Reveal>
+              <blockquote className="text-2xl md:text-3.5xl font-display font-normal text-text leading-snug italic mb-8">
+                "A Jornada não é pra todo mundo. Mas se você sente que nasceu pra algo maior... essa é a hora."
+              </blockquote>
+
+              <div className="space-y-1">
+                <span className="text-base font-serif font-semibold text-text block">
+                  Guilherme Koichi
+                </span>
+                <span className="text-xs font-sans text-olive tracking-wider block">
+                  Jornada Propósito Pleno
+                </span>
+              </div>
+            </Reveal>
+          </div>
+        </section>
+      </main>
+
+      {/* Rodapé */}
+      <footer className="py-10 border-t border-border bg-beige-light">
+        <div className="container mx-auto px-6 max-w-5xl flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+          <div>
+            <span className="text-xs font-serif font-semibold tracking-widest text-text uppercase block">
+              Jornada Propósito Pleno
+            </span>
+            <span className="text-[11px] font-sans text-text/60 block mt-0.5">
+              Acompanhamento e clareza para a sua caminhada.
+            </span>
+          </div>
+
+          <p className="text-[11px] font-sans text-text/50">
+            &copy; 2026 Jornada Propósito Pleno • Todos os direitos reservados
+          </p>
         </div>
       </footer>
 

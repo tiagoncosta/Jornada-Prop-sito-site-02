@@ -6,33 +6,24 @@
   --font-display: "Lora", ui-serif, Georgia, serif;
   --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
   
-  --color-bg: #FAF6F0;               /* Peaceful luxury morning cream/sand */
-  --color-text: #2D2A26;             /* Cozy natural wood charcoal - beautiful readability */
-  --color-accent: #B35D43;           /* Earthy terracotta clay - represents humanity, heart, pottery */
-  --color-accent-light: #C87D65;     /* Soft warm terracotta halo */
-  --color-muted: #F3ECE2;            /* Clean organic linen paper card bg */
-  --color-gold: #D29A46;             /* Quiet sunlight gold */
-  --color-border: rgba(45, 42, 38, 0.09); /* Pure linen threads borders */
-  --color-beige-light: #F7F1E7;      /* Serene soft intermediate light sand */
-  --color-olive: #4A5343;            /* Morning sanctuary forest sage green - peace and grounding */
-}
-
-@layer utilities {
-  .bg-glow-warm {
-    background: radial-gradient(circle at 50% 50%, rgba(210, 154, 70, 0.15) 0%, transparent 70%);
-  }
-  .bg-glow-clay {
-    background: radial-gradient(circle at 50% 50%, rgba(179, 93, 67, 0.08) 0%, transparent 70%);
-  }
+  --color-bg: #FAF7F2;               /* Peaceful luxury warm linen cream */
+  --color-text: #2B2825;             /* Deep warm charcoal wood */
+  --color-accent: #B35D43;           /* Earthy terracotta clay */
+  --color-accent-hover: #9E4F37;     /* Deeper terracotta */
+  --color-card: #F4EFE6;             /* Clean organic linen paper card bg */
+  --color-border: rgba(43, 40, 37, 0.12); /* Crisp hairline border */
+  --color-border-subtle: rgba(43, 40, 37, 0.06);
+  --color-beige-light: #F3ECE2;      /* Warm soft intermediate tone */
+  --color-olive: #4A5343;            /* Sanctuary forest sage green */
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
   body {
-    @apply font-sans bg-bg text-text scroll-smooth antialiased;
-    background-image: 
-      radial-gradient(at 0% 0%, rgba(74, 83, 67, 0.07) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(210, 154, 70, 0.08) 0px, transparent 50%);
-    background-attachment: fixed;
+    @apply font-sans bg-bg text-text antialiased;
   }
   
   h1, h2, h3, .display {
