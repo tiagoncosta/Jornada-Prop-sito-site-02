@@ -40,8 +40,8 @@ export default function App() {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      // Target: 03 de setembro de 2026, 00:00 (Brasília UTC-3)
-      const target = new Date('2026-09-03T00:00:00-03:00');
+      // Target: 05 de outubro de 2026, 00:00 (Brasília UTC-3)
+      const target = new Date('2026-10-05T00:00:00-03:00');
       const now = new Date();
       const diff = target.getTime() - now.getTime();
 
@@ -73,7 +73,7 @@ export default function App() {
                 Jornada Propósito Pleno
               </span>
               <span className="text-[10px] font-sans text-olive tracking-wider block mt-1">
-                03 de Setembro
+                05 de Outubro
               </span>
             </div>
           </div>
@@ -146,7 +146,7 @@ export default function App() {
 
             <Reveal delay={0.2}>
               <p className="text-lg md:text-xl font-serif italic text-text">
-                A partir de <span className="text-accent font-semibold not-italic">03 de setembro</span>, tudo muda.
+                A partir de <span className="text-accent font-semibold not-italic">05 de outubro</span>, tudo muda.
               </p>
             </Reveal>
           </div>
@@ -249,7 +249,7 @@ export default function App() {
               </span>
 
               <h2 className="text-3xl md:text-4xl font-display font-normal text-text mb-4">
-                Volte em 03 de setembro
+                Volte em 05 de outubro
               </h2>
 
               <p className="text-text/80 text-base md:text-lg font-light leading-relaxed">
