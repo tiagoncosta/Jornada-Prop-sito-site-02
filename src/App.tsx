@@ -135,6 +135,25 @@ export default function App() {
     'O Pilar 6 completo, incluso sem custo extra, quando lançar em outubro'
   ];
 
+  const provaSocial = [
+    {
+      img: '/prova-social-capa-membros.png',
+      caption: 'Conteúdo em vídeo, direto ao ponto'
+    },
+    {
+      img: '/prova-social-galeria-modulos.png',
+      caption: '6 pilares, 17 semanas de jornada'
+    },
+    {
+      img: '/prova-social-lista-progresso.png',
+      caption: 'Acompanhe seu progresso semana a semana'
+    },
+    {
+      img: '/prova-social-whatsapp.png',
+      caption: 'Uma comunidade real de quem está vivendo a jornada'
+    }
+  ];
+
   const scrollToOffer = () => {
     const el = document.getElementById('oferta');
     if (el) {
@@ -327,6 +346,41 @@ export default function App() {
                 </p>
               </div>
             </Reveal>
+          </div>
+        </section>
+
+        {/* 4B. PROVA SOCIAL - POR DENTRO DA JORNADA */}
+        <section className="py-14 sm:py-20 md:py-28 bg-bg border-b border-border">
+          <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
+            <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-16">
+              <Reveal>
+                <span className="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.18em] sm:tracking-[0.2em] text-accent uppercase block mb-2 sm:mb-3">
+                  POR DENTRO DA JORNADA
+                </span>
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-normal text-text mb-4 sm:mb-6">
+                  O que você encontra lá dentro
+                </h2>
+              </Reveal>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+              {provaSocial.map((item, idx) => (
+                <Reveal key={idx} delay={idx * 0.05}>
+                  <div className="rounded-xl border border-border bg-card overflow-hidden shadow-sm">
+                    <img
+                      src={item.img}
+                      alt={item.caption}
+                      className="w-full h-auto object-cover"
+                    />
+                    <div className="p-3 sm:p-4">
+                      <span className="text-xs sm:text-sm text-text/80 font-light leading-snug">
+                        {item.caption}
+                      </span>
+                    </div>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
         </section>
 
