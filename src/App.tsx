@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Check, ChevronDown, Clock } from 'lucide-react';
+import { ChevronDown, Clock } from 'lucide-react';
 
 const Reveal = ({ 
   children, 
@@ -67,6 +67,44 @@ export default function App() {
   const toggleFaq = (index: number) => {
     setOpenFaq(openFaq === index ? null : index);
   };
+
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = carouselRef.current;
+    if (!container) return;
+
+    let isInteracting = false;
+    const onTouchStart = () => { isInteracting = true; };
+    const onTouchEnd = () => { isInteracting = false; };
+    const onMouseEnter = () => { isInteracting = true; };
+    const onMouseLeave = () => { isInteracting = false; };
+
+    container.addEventListener('mouseenter', onMouseEnter);
+    container.addEventListener('mouseleave', onMouseLeave);
+    container.addEventListener('touchstart', onTouchStart, { passive: true });
+    container.addEventListener('touchend', onTouchEnd, { passive: true });
+
+    const interval = setInterval(() => {
+      if (isInteracting || !container) return;
+      const maxScroll = container.scrollWidth - container.clientWidth;
+      if (container.scrollLeft >= maxScroll - 12) {
+        container.scrollTo({ left: 0, behavior: 'smooth' });
+      } else {
+        const firstCard = container.firstElementChild as HTMLElement | null;
+        const step = firstCard ? firstCard.offsetWidth + 16 : 300;
+        container.scrollBy({ left: step, behavior: 'smooth' });
+      }
+    }, 3500);
+
+    return () => {
+      clearInterval(interval);
+      container.removeEventListener('mouseenter', onMouseEnter);
+      container.removeEventListener('mouseleave', onMouseLeave);
+      container.removeEventListener('touchstart', onTouchStart);
+      container.removeEventListener('touchend', onTouchEnd);
+    };
+  }, []);
 
   const pilares = [
     {
@@ -212,136 +250,56 @@ export default function App() {
         {/* 2. COUNTDOWN BANNER */}
         <section className="pb-12 sm:pb-16 md:pb-24">
           <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
-            <Reveal delay={0.08}>
-              <div className="bg-card border border-border p-4 sm:p-6 md:p-8 rounded-2xl shadow-sm text-center">
-                <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] font-sans font-semibold tracking-[0.16em] sm:tracking-[0.2em] text-accent uppercase bg-accent/10 px-3 py-1 rounded-full mb-3">
-                  <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
-                  <span>PRÓXIMA ATUALIZAÇÃO</span>
-                </div>
-
-                <h2 className="text-base sm:text-lg md:text-xl font-display font-normal text-text mb-4 sm:mb-6 px-1">
-                  O Pilar 6 - Multiplique seus Talentos - chega em:
-                </h2>
-
-                {/* Relógio regressivo responsivo */}
-                <div className="grid grid-cols-4 gap-1.5 sm:gap-3 md:gap-4 max-w-md mx-auto mb-4 sm:mb-6">
-                  <div className="bg-bg border border-border/80 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 text-center">
-                    <span className="block text-xl sm:text-3xl md:text-4xl font-display font-normal text-accent leading-none sm:leading-tight">
-                      {formatNumber(timeLeft.days)}
-                    </span>
-                    <span className="block text-[9px] sm:text-[10px] md:text-xs font-sans text-olive uppercase tracking-wider mt-1">
-                      Dias
-                    </span>
-                  </div>
-                  <div className="bg-bg border border-border/80 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 text-center">
-                    <span className="block text-xl sm:text-3xl md:text-4xl font-display font-normal text-accent leading-none sm:leading-tight">
-                      {formatNumber(timeLeft.hours)}
-                    </span>
-                    <span className="block text-[9px] sm:text-[10px] md:text-xs font-sans text-olive uppercase tracking-wider mt-1">
-                      Horas
-                    </span>
-                  </div>
-                  <div className="bg-bg border border-border/80 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 text-center">
-                    <span className="block text-xl sm:text-3xl md:text-4xl font-display font-normal text-accent leading-none sm:leading-tight">
-                      {formatNumber(timeLeft.minutes)}
-                    </span>
-                    <span className="block text-[9px] sm:text-[10px] md:text-xs font-sans text-olive uppercase tracking-wider mt-1">
-                      Minutos
-                    </span>
-                  </div>
-                  <div className="bg-bg border border-border/80 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 text-center">
-                    <span className="block text-xl sm:text-3xl md:text-4xl font-display font-normal text-accent leading-none sm:leading-tight">
-                      {formatNumber(timeLeft.seconds)}
-                    </span>
-                    <span className="block text-[9px] sm:text-[10px] md:text-xs font-sans text-olive uppercase tracking-wider mt-1">
-                      Segundos
-                    </span>
-                  </div>
-                </div>
-
-                <p className="text-xs sm:text-sm font-sans text-text/80 font-light px-2">
-                  Compre agora e receba essa atualização de graça quando lançar.
-                </p>
+            <div className="bg-card border border-border p-4 sm:p-6 md:p-8 text-center">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] font-sans font-semibold tracking-[0.16em] sm:tracking-[0.2em] text-accent uppercase bg-accent/10 px-3 py-1 rounded-full mb-3">
+                <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
+                <span>PRÓXIMA ATUALIZAÇÃO</span>
               </div>
-            </Reveal>
-          </div>
-        </section>
 
-        {/* 3. PRODUTO - OS 5 PILARES QUE JÁ ESTÃO DE PÉ */}
-        <section className="py-14 sm:py-20 md:py-28 bg-beige-light border-y border-border">
-          <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
-            <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-16">
-              <Reveal>
-                <span className="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.18em] sm:tracking-[0.2em] text-accent uppercase block mb-2 sm:mb-3">
-                  DISPONÍVEL AGORA
-                </span>
-                <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-normal text-text mb-4 sm:mb-6">
-                  Os 5 pilares que já estão de pé
-                </h2>
-                <p className="text-text/80 text-sm sm:text-base md:text-lg font-light leading-relaxed">
-                  Não é um curso pra você assistir e esquecer. É uma série de devocionais - vídeo e material de apoio - organizada num caminho progressivo, passo a passo:
-                </p>
-              </Reveal>
+              <h2 className="text-base sm:text-lg md:text-xl font-display font-normal text-text mb-4 sm:mb-6 px-1">
+                O Pilar 6 - Multiplique seus Talentos - chega em:
+              </h2>
+
+              {/* Relógio regressivo em faixa única contígua */}
+              <div className="border border-border rounded-md grid grid-cols-4 max-w-md mx-auto mb-4 sm:mb-6 bg-bg overflow-hidden">
+                <div className="py-2.5 px-1 sm:p-3 md:p-4 text-center">
+                  <span className="block text-2xl sm:text-3xl md:text-4xl font-display font-normal text-accent leading-none sm:leading-tight">
+                    {formatNumber(timeLeft.days)}
+                  </span>
+                  <span className="block text-[10px] sm:text-[10px] md:text-xs font-sans text-olive uppercase tracking-wider mt-1.5 truncate">
+                    Dias
+                  </span>
+                </div>
+                <div className="py-2.5 px-1 sm:p-3 md:p-4 text-center border-l border-border">
+                  <span className="block text-2xl sm:text-3xl md:text-4xl font-display font-normal text-accent leading-none sm:leading-tight">
+                    {formatNumber(timeLeft.hours)}
+                  </span>
+                  <span className="block text-[10px] sm:text-[10px] md:text-xs font-sans text-olive uppercase tracking-wider mt-1.5 truncate">
+                    Horas
+                  </span>
+                </div>
+                <div className="py-2.5 px-1 sm:p-3 md:p-4 text-center border-l border-border">
+                  <span className="block text-2xl sm:text-3xl md:text-4xl font-display font-normal text-accent leading-none sm:leading-tight">
+                    {formatNumber(timeLeft.minutes)}
+                  </span>
+                  <span className="block text-[10px] sm:text-[10px] md:text-xs font-sans text-olive uppercase tracking-wider mt-1.5 truncate">
+                    Min
+                  </span>
+                </div>
+                <div className="py-2.5 px-1 sm:p-3 md:p-4 text-center border-l border-border">
+                  <span className="block text-2xl sm:text-3xl md:text-4xl font-display font-normal text-accent leading-none sm:leading-tight">
+                    {formatNumber(timeLeft.seconds)}
+                  </span>
+                  <span className="block text-[10px] sm:text-[10px] md:text-xs font-sans text-olive uppercase tracking-wider mt-1.5 truncate">
+                    Seg
+                  </span>
+                </div>
+              </div>
+
+              <p className="text-xs sm:text-sm font-sans text-text/80 font-light px-2">
+                Compre agora e receba essa atualização de graça quando lançar.
+              </p>
             </div>
-
-            {/* Grid dos 5 Pilares */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mb-10 sm:mb-16">
-              {pilares.map((pilar, idx) => (
-                <Reveal key={idx} delay={idx * 0.04}>
-                  <div className="h-full p-5 sm:p-7 md:p-8 rounded-xl border border-border bg-card hover:border-accent/30 transition-all flex flex-col justify-between group">
-                    <div>
-                      <div className="flex items-center justify-between mb-4 sm:mb-6">
-                        <span className="text-[10px] sm:text-[11px] font-sans font-semibold tracking-widest text-olive uppercase">
-                          PILAR {pilar.num}
-                        </span>
-                        <span className="text-[11px] sm:text-xs font-serif italic text-accent/70 group-hover:text-accent transition-colors">
-                          Disponível
-                        </span>
-                      </div>
-
-                      <h3 className="text-lg sm:text-xl md:text-2xl font-display font-normal text-text mb-2.5 sm:mb-3 leading-snug">
-                        {pilar.title}
-                      </h3>
-
-                      <p className="text-xs sm:text-sm md:text-base text-text/85 font-light leading-relaxed">
-                        {pilar.desc}
-                      </p>
-                    </div>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* 4. SEÇÃO DEDICADA AO PILAR 6 */}
-            <Reveal delay={0.1}>
-              <div className="max-w-4xl mx-auto bg-card border border-accent/40 sm:border-2 p-5 sm:p-8 md:p-12 rounded-2xl shadow-sm mb-10 sm:mb-16 relative overflow-hidden">
-                <div className="inline-flex items-center text-[10px] sm:text-xs font-sans font-semibold tracking-[0.16em] sm:tracking-[0.2em] text-accent uppercase bg-accent/10 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full mb-3 sm:mb-4">
-                  <span>CHEGANDO EM OUTUBRO</span>
-                </div>
-
-                <h3 className="text-xl sm:text-3xl md:text-4xl font-display font-normal text-text mb-4 sm:mb-6 leading-snug">
-                  O 6º pilar: Multiplique seus Talentos
-                </h3>
-
-                <div className="space-y-3 sm:space-y-4 text-sm sm:text-base md:text-lg text-text/85 font-light leading-relaxed">
-                  <p>
-                    Crescimento intelectual, autoconhecimento e finanças caminhando juntos, fechando o ciclo: até o seu dinheiro alinhado com quem você é. Três semanas que respondem uma pergunta que a Jornada ainda não tinha respondido - o que fazer com tudo que você já reconstruiu até aqui.
-                  </p>
-                  <p>
-                    Se você começar agora, esse pilar entra na sua área de membros sozinho, no dia do lançamento. Sem pagar de novo, sem fazer nada. É como a Jornada agradece quem topou começar antes de todo mundo saber que ela tinha voltado.
-                  </p>
-                </div>
-              </div>
-            </Reveal>
-
-            {/* Texto de fechamento */}
-            <Reveal delay={0.15}>
-              <div className="max-w-3xl mx-auto bg-bg border border-border p-5 sm:p-8 md:p-10 rounded-2xl text-center">
-                <p className="text-sm sm:text-base md:text-lg text-text/85 font-light leading-relaxed">
-                  Não é um monte de aula solta pra você escolher o que assistir hoje. É um caminho inteiro, pensado do começo ao fim, pra te levar de onde você tá até uma vida com propósito de verdade. Você não precisa decidir por onde começar nem manter disciplina sozinho pra dar conta - o caminho já tá desenhado, você só segue.
-                </p>
-              </div>
-            </Reveal>
           </div>
         </section>
 
@@ -349,37 +307,96 @@ export default function App() {
         <section className="py-14 sm:py-20 md:py-28 bg-bg border-b border-border">
           <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
             <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-16">
-              <Reveal>
-                <span className="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.18em] sm:tracking-[0.2em] text-accent uppercase block mb-2 sm:mb-3">
-                  POR DENTRO DA JORNADA
-                </span>
-                <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-normal text-text mb-4 sm:mb-6">
-                  O que você encontra lá dentro
-                </h2>
-              </Reveal>
+              <span className="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.18em] sm:tracking-[0.2em] text-accent uppercase block mb-2 sm:mb-3">
+                POR DENTRO DA JORNADA
+              </span>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-normal text-text mb-4 sm:mb-6">
+                O que você encontra lá dentro
+              </h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+            <div 
+              ref={carouselRef}
+              className="flex gap-4 sm:gap-6 overflow-x-auto pb-2 scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+            >
               {provaSocial.map((item, idx) => (
-                <Reveal key={idx} delay={idx * 0.05}>
-                  <div className="rounded-xl border border-border bg-card overflow-hidden shadow-sm flex flex-col h-full">
-                    <div className="w-full bg-black/5 flex items-center justify-center overflow-hidden">
-                      <img
-                        src={item.img}
-                        alt={item.caption}
-                        loading="lazy"
-                        decoding="async"
-                        className="w-full h-auto object-contain block transition-transform duration-300 hover:scale-[1.01]"
-                      />
-                    </div>
-                    <div className="p-3.5 sm:p-4 bg-card border-t border-border/60 flex-1 flex items-center">
-                      <span className="text-xs sm:text-sm text-text/85 font-light leading-snug">
-                        {item.caption}
-                      </span>
-                    </div>
+                <div key={idx} className="shrink-0 w-[280px] sm:w-[340px] border border-border bg-card overflow-hidden flex flex-col h-full">
+                  <div className="w-full bg-black/5 flex items-center justify-center overflow-hidden">
+                    <img
+                      src={item.img}
+                      alt={item.caption}
+                      loading="lazy"
+                      decoding="async"
+                      className="w-full h-auto object-contain block transition-transform duration-300 hover:scale-[1.01]"
+                    />
                   </div>
-                </Reveal>
+                  <div className="p-3.5 sm:p-4 bg-card border-t border-border/60 flex-1 flex items-center">
+                    <span className="text-xs sm:text-sm text-text/85 font-light leading-snug">
+                      {item.caption}
+                    </span>
+                  </div>
+                </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* 3. PRODUTO - OS 5 PILARES QUE JÁ ESTÃO DE PÉ */}
+        <section className="py-14 sm:py-20 md:py-28 bg-beige-light border-y border-border">
+          <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
+            <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-16">
+              <span className="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.18em] sm:tracking-[0.2em] text-accent uppercase block mb-2 sm:mb-3">
+                DISPONÍVEL AGORA
+              </span>
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-normal text-text mb-4 sm:mb-6">
+                Os 5 pilares que já estão de pé
+              </h2>
+              <p className="text-text/80 text-sm sm:text-base md:text-lg font-light leading-relaxed">
+                Não é um curso pra você assistir e esquecer. É uma série de devocionais - vídeo e material de apoio - organizada num caminho progressivo, passo a passo:
+              </p>
+            </div>
+
+            {/* Grid contíguo dos 5 Pilares */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 border border-border md:border-b-0 md:border-r-0 mb-10 sm:mb-16">
+              {pilares.map((pilar, idx) => (
+                <div 
+                  key={idx} 
+                  className={`border-b last:border-b-0 md:border-r md:border-b border-border bg-card p-5 sm:p-8 flex flex-col justify-between ${
+                    idx === 4 ? 'md:col-span-2 lg:col-span-2' : ''
+                  }`}
+                >
+                  <div>
+                    <span className="block text-4xl sm:text-5xl font-display text-accent/30 mb-3 sm:mb-4 select-none leading-none">
+                      {pilar.num}
+                    </span>
+
+                    <h3 className="text-lg sm:text-xl md:text-2xl font-display font-normal text-text mb-2 sm:mb-3 leading-snug">
+                      {pilar.title}
+                    </h3>
+
+                    <p className="text-xs sm:text-sm md:text-base text-text/85 font-light leading-relaxed">
+                      {pilar.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* 4. SEÇÃO DEDICADA AO PILAR 6 */}
+            <div className="max-w-4xl mx-auto bg-accent p-5 sm:p-8 md:p-12 rounded-md mb-10 sm:mb-16 relative overflow-hidden">
+              <div className="inline-flex items-center text-[10px] sm:text-xs font-sans font-semibold tracking-[0.16em] sm:tracking-[0.2em] text-white uppercase bg-white/15 px-3 sm:px-4 py-1 sm:py-1.5 rounded-full mb-3 sm:mb-4">
+                <span>CHEGANDO EM OUTUBRO</span>
+              </div>
+
+              <h3 className="text-xl sm:text-3xl md:text-4xl font-display font-normal text-white mb-4 sm:mb-6 leading-snug">
+                O 6º pilar: Multiplique seus Talentos
+              </h3>
+
+              <div className="text-sm sm:text-base md:text-lg text-white/90 font-light leading-relaxed">
+                <p>
+                  Crescimento intelectual, autoconhecimento e finanças caminhando juntos, fechando o ciclo: até o seu dinheiro alinhado com quem você é. Três semanas que respondem uma pergunta que a Jornada ainda não tinha respondido - o que fazer com tudo que você já reconstruiu até aqui.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -388,51 +405,53 @@ export default function App() {
         <section className="py-14 sm:py-20 md:py-28">
           <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
             <div className="text-center mb-10 sm:mb-16">
-              <Reveal>
-                <span className="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.18em] sm:tracking-[0.2em] text-accent uppercase block mb-2 sm:mb-3">
-                  Dúvidas Frequentes
-                </span>
-                <h2 className="text-2xl sm:text-3.5xl md:text-4.5xl font-display font-normal text-text mb-2 sm:mb-4">
-                  Perguntas e Respostas
-                </h2>
-              </Reveal>
+              <span className="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.18em] sm:tracking-[0.2em] text-accent uppercase block mb-2 sm:mb-3">
+                Dúvidas Frequentes
+              </span>
+              <h2 className="text-2xl sm:text-3.5xl md:text-4.5xl font-display font-normal text-text mb-2 sm:mb-4">
+                Perguntas e Respostas
+              </h2>
             </div>
 
-            <div className="space-y-3 sm:space-y-4">
+            <div className="border-t border-border">
               {faqItems.map((item, idx) => {
                 const isOpen = openFaq === idx;
+                const numStr = (idx + 1).toString().padStart(2, '0');
                 return (
-                  <Reveal key={idx} delay={idx * 0.03}>
-                    <div className="border border-border rounded-xl bg-card overflow-hidden transition-colors">
-                      <button
-                        onClick={() => toggleFaq(idx)}
-                        className="w-full text-left p-4 sm:p-6 flex items-center justify-between gap-3 sm:gap-4 cursor-pointer focus:outline-none min-h-[48px]"
-                      >
+                  <div key={idx} className="border-b border-border transition-colors">
+                    <button
+                      onClick={() => toggleFaq(idx)}
+                      className="w-full text-left py-4 sm:py-6 flex items-start sm:items-center justify-between gap-3 sm:gap-6 cursor-pointer focus:outline-none min-h-[48px]"
+                    >
+                      <div className="flex items-baseline sm:items-center gap-2.5 sm:gap-5 flex-1">
+                        <span className="text-xl sm:text-3xl font-display text-text/30 shrink-0 w-7 sm:w-10 select-none leading-none">
+                          {numStr}
+                        </span>
                         <span className="font-display font-normal text-base sm:text-lg md:text-xl text-text leading-snug">
                           {item.q}
                         </span>
-                        <ChevronDown 
-                          className={`w-4 h-4 sm:w-5 sm:h-5 text-accent shrink-0 transition-transform duration-300 ${
-                            isOpen ? 'rotate-180' : ''
-                          }`} 
-                        />
-                      </button>
-                      <AnimatePresence initial={false}>
-                        {isOpen && (
-                          <motion.div
-                            initial={{ height: 0, opacity: 0 }}
-                            animate={{ height: "auto", opacity: 1 }}
-                            exit={{ height: 0, opacity: 0 }}
-                            transition={{ duration: 0.25, ease: "easeInOut" }}
-                          >
-                            <div className="px-4 pb-4 sm:px-6 sm:pb-6 pt-0 text-text/85 text-xs sm:text-sm md:text-base font-light leading-relaxed border-t border-border/40 mt-1 sm:mt-2">
-                              {item.a}
-                            </div>
-                          </motion.div>
-                        )}
-                      </AnimatePresence>
-                    </div>
-                  </Reveal>
+                      </div>
+                      <ChevronDown 
+                        className={`w-4 h-4 sm:w-5 sm:h-5 text-accent shrink-0 mt-1 sm:mt-0 transition-transform duration-300 ${
+                          isOpen ? 'rotate-180' : ''
+                        }`} 
+                      />
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.25, ease: "easeInOut" }}
+                        >
+                          <div className="pl-9 sm:pl-15 pr-2 sm:pr-4 pb-4 sm:pb-6 pt-0 text-text/85 text-xs sm:text-sm md:text-base font-light leading-relaxed border-t border-border/40 mt-1 sm:mt-2">
+                            {item.a}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
                 );
               })}
             </div>
@@ -442,68 +461,66 @@ export default function App() {
         {/* 6. OFERTA + ENTREGÁVEIS + CTA FINAL */}
         <section id="oferta" className="py-16 sm:py-24 md:py-32 bg-beige-light border-t border-border">
           <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
-            <Reveal>
-              <div className="bg-card border border-border p-5 sm:p-8 md:p-12 rounded-2xl shadow-sm text-center relative overflow-hidden">
-                <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-normal text-text mb-3 sm:mb-4">
-                  O que você recebe ao entrar hoje
-                </h2>
+            <div className="bg-card border border-border p-5 sm:p-8 md:p-12 text-center relative overflow-hidden">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-normal text-text mb-3 sm:mb-4">
+                O que você recebe ao entrar hoje
+              </h2>
 
-                <p className="text-text/80 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-xl mx-auto mb-6 sm:mb-10">
-                  A Jornada Propósito Pleno é sua, pra sempre, a partir de agora.
-                </p>
+              <p className="text-text/80 text-sm sm:text-base md:text-lg font-light leading-relaxed max-w-xl mx-auto mb-6 sm:mb-10">
+                A Jornada Propósito Pleno é sua, pra sempre, a partir de agora.
+              </p>
 
-                {/* Lista de Entregáveis */}
-                <div className="text-left max-w-xl mx-auto bg-bg border border-border/80 p-4 sm:p-6 md:p-8 rounded-xl mb-6 sm:mb-10 space-y-3 sm:space-y-4">
-                  <span className="text-[10px] sm:text-xs font-sans font-semibold tracking-widest text-olive uppercase block mb-2 sm:mb-4">
-                    O que você vai receber:
-                  </span>
-                  {entregaveis.map((item, idx) => (
-                    <div key={idx} className="flex items-start gap-2.5 sm:gap-3">
-                      <div className="w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-accent/15 text-accent flex items-center justify-center shrink-0 mt-0.5">
-                        <Check className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 stroke-[2.5]" />
-                      </div>
-                      <span className="text-xs sm:text-sm md:text-base text-text/90 font-light leading-snug">
-                        {item}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Texto de Preço */}
-                <div className="mb-6 sm:mb-10 max-w-xl mx-auto space-y-2 sm:space-y-3">
-                  <div className="flex items-center justify-center gap-3 sm:gap-4">
-                    <span className="text-lg sm:text-xl md:text-2xl font-display text-text/40 line-through">
-                      R$ 697
+              {/* Lista de Entregáveis */}
+              <div className="text-left max-w-xl mx-auto bg-bg border border-border/80 p-4 sm:p-6 md:p-8 mb-6 sm:mb-10 space-y-3 sm:space-y-4">
+                <span className="text-[10px] sm:text-xs font-sans font-semibold tracking-widest text-olive uppercase block mb-2 sm:mb-4">
+                  O que você vai receber:
+                </span>
+                {entregaveis.map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <span className="font-display text-sm sm:text-base text-accent/50 font-normal shrink-0 mt-0.5 w-6 select-none leading-none">
+                      {(idx + 1).toString().padStart(2, '0')}
                     </span>
-                    <span className="text-3xl sm:text-4xl md:text-5xl font-display font-normal text-accent">
-                      R$ 97
+                    <span className="text-xs sm:text-sm md:text-base text-text/90 font-light leading-snug">
+                      {item}
                     </span>
                   </div>
-                  <p className="text-xs sm:text-sm font-sans text-olive font-medium">
-                    Vagas limitadas a esse valor.
-                  </p>
-                  <p className="text-xs sm:text-sm md:text-base text-text/80 font-light leading-relaxed px-1">
-                    Os 6 pilares, o caminho inteiro, por um pagamento único de R$97. Você entra uma vez, e esse caminho é seu pra sempre.
-                  </p>
-                </div>
-
-                {/* Botão CTA Grande */}
-                <a 
-                  href="https://pay.hub.la/RBS2l0kJ8JIuPjA14Nr5"
-                  className="w-full sm:w-auto min-h-[52px] sm:min-w-[320px] bg-accent hover:bg-accent-hover active:scale-[0.98] text-white font-medium py-4 sm:py-5 px-6 sm:px-10 rounded-xl shadow-md hover:shadow-lg transition-all text-base sm:text-lg md:text-xl inline-flex items-center justify-center gap-2 sm:gap-3 cursor-pointer text-center"
-                >
-                  <span>Quero começar minha Jornada</span>
-                </a>
+                ))}
               </div>
-            </Reveal>
+
+              {/* Texto de Preço */}
+              <div className="mb-6 sm:mb-10 max-w-xl mx-auto space-y-2 sm:space-y-3">
+                <div className="flex items-center justify-center gap-3 sm:gap-4">
+                  <span className="text-lg sm:text-xl md:text-2xl font-display text-text/40 line-through">
+                    R$ 697
+                  </span>
+                  <span className="text-3xl sm:text-4xl md:text-5xl font-display font-normal text-accent">
+                    R$ 97
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm font-sans text-olive font-medium">
+                  Vagas limitadas a esse valor.
+                </p>
+                <p className="text-xs sm:text-sm md:text-base text-text/80 font-light leading-relaxed px-1">
+                  Os 6 pilares, o caminho inteiro, por um pagamento único de R$97. Você entra uma vez, e esse caminho é seu pra sempre.
+                </p>
+              </div>
+
+              {/* Botão CTA Grande */}
+              <a 
+                href="https://pay.hub.la/RBS2l0kJ8JIuPjA14Nr5"
+                className="w-full sm:w-auto min-h-[52px] sm:min-w-[320px] bg-accent hover:bg-accent-hover active:scale-[0.98] text-white font-medium py-4 sm:py-5 px-6 sm:px-10 rounded-xl shadow-md hover:shadow-lg transition-all text-base sm:text-lg md:text-xl inline-flex items-center justify-center gap-2 sm:gap-3 cursor-pointer text-center"
+              >
+                <span>Quero começar minha Jornada</span>
+              </a>
+            </div>
           </div>
         </section>
 
         {/* Seção de Fechamento com citação do Koichi */}
-        <section className="py-12 sm:py-16 md:py-20 text-center border-t border-border bg-bg">
-          <div className="container mx-auto px-4 sm:px-6 max-w-2xl">
-            <Reveal>
-              <blockquote className="text-lg sm:text-xl md:text-2.5xl font-display font-normal text-text leading-snug italic mb-4 sm:mb-6 px-2">
+        <section className="py-12 sm:py-16 md:py-20 border-t border-border bg-bg text-left">
+          <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
+            <div className="max-w-2xl">
+              <blockquote className="text-lg sm:text-xl md:text-2.5xl font-display font-normal text-text leading-snug italic mb-4 sm:mb-6">
                 "A Jornada não é pra todo mundo. Mas se você sente que nasceu pra algo maior... essa é a hora."
               </blockquote>
 
@@ -512,7 +529,7 @@ export default function App() {
                   Guilherme Koichi
                 </span>
               </div>
-            </Reveal>
+            </div>
           </div>
         </section>
 
