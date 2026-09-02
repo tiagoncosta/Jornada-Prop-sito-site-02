@@ -195,10 +195,6 @@ export default function App() {
                 Sua vida não vai mudar sozinha. Mas ela também não precisa mudar tudo de uma vez.
               </h1>
               
-              <p className="text-base sm:text-xl md:text-2xl font-serif text-text/85 max-w-3xl mx-auto leading-relaxed mb-5 sm:mb-6 px-1 sm:px-0">
-                A Jornada Propósito Pleno já está aberta, com 5 pilares e 70 devocionais prontos pra você começar hoje. E em outubro, ela cresce: chega o 6º pilar, com mais 3 semanas inteiras de conteúdo novo, direto pra quem já é aluno.
-              </p>
-
               <p className="text-xs sm:text-sm md:text-base font-sans text-olive tracking-wide max-w-2xl mx-auto mb-8 sm:mb-10 px-2">
                 Cada dia que passa esperando é um dia de propósito que você não viveu. Comece agora.
               </p>
@@ -366,14 +362,18 @@ export default function App() {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
               {provaSocial.map((item, idx) => (
                 <Reveal key={idx} delay={idx * 0.05}>
-                  <div className="rounded-xl border border-border bg-card overflow-hidden shadow-sm">
-                    <img
-                      src={item.img}
-                      alt={item.caption}
-                      className="w-full h-auto object-cover"
-                    />
-                    <div className="p-3 sm:p-4">
-                      <span className="text-xs sm:text-sm text-text/80 font-light leading-snug">
+                  <div className="rounded-xl border border-border bg-card overflow-hidden shadow-sm flex flex-col h-full">
+                    <div className="w-full bg-black/5 flex items-center justify-center overflow-hidden">
+                      <img
+                        src={item.img}
+                        alt={item.caption}
+                        loading="lazy"
+                        decoding="async"
+                        className="w-full h-auto object-contain block transition-transform duration-300 hover:scale-[1.01]"
+                      />
+                    </div>
+                    <div className="p-3.5 sm:p-4 bg-card border-t border-border/60 flex-1 flex items-center">
+                      <span className="text-xs sm:text-sm text-text/85 font-light leading-snug">
                         {item.caption}
                       </span>
                     </div>
