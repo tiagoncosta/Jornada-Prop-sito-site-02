@@ -176,19 +176,27 @@ export default function App() {
   const provaSocial = [
     {
       img: '/prova-social-capa-membros.png',
-      caption: 'Conteúdo em vídeo, direto ao ponto'
+      caption: 'Conteúdo em vídeo, direto ao ponto',
+      width: 1280,
+      height: 653
     },
     {
       img: '/prova-social-galeria-modulos.png',
-      caption: '6 pilares, 17 semanas de jornada'
+      caption: '6 pilares, 17 semanas de jornada',
+      width: 1280,
+      height: 654
     },
     {
       img: '/prova-social-lista-progresso.png',
-      caption: 'Acompanhe seu progresso semana a semana'
+      caption: 'Acompanhe seu progresso semana a semana',
+      width: 1280,
+      height: 646
     },
     {
       img: '/prova-social-whatsapp.png',
-      caption: 'Uma comunidade real de quem está vivendo a jornada'
+      caption: 'Uma comunidade real de quem está vivendo a jornada',
+      width: 1280,
+      height: 968
     }
   ];
 
@@ -216,7 +224,7 @@ export default function App() {
           </div>
           <button 
             onClick={scrollToOffer}
-            className="text-[11px] sm:text-xs font-sans font-medium text-accent hover:text-accent-hover transition-colors border border-accent/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-md hover:bg-accent/5 cursor-pointer whitespace-nowrap active:scale-95"
+            className="text-[11px] sm:text-xs font-sans font-medium text-accent-hover hover:text-accent transition-colors border border-accent/30 px-3 sm:px-4 py-1.5 sm:py-2 rounded-md hover:bg-accent/5 cursor-pointer whitespace-nowrap active:scale-95"
           >
             Garantir Acesso
           </button>
@@ -251,7 +259,7 @@ export default function App() {
         <section className="pb-12 sm:pb-16 md:pb-24">
           <div className="container mx-auto px-4 sm:px-6 max-w-3xl">
             <div className="bg-card border border-border p-4 sm:p-6 md:p-8 text-center">
-              <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] font-sans font-semibold tracking-[0.16em] sm:tracking-[0.2em] text-accent uppercase bg-accent/10 px-3 py-1 rounded-full mb-3">
+              <div className="inline-flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-[11px] font-sans font-semibold tracking-[0.16em] sm:tracking-[0.2em] text-accent-hover uppercase bg-accent/10 px-3 py-1 rounded-full mb-3">
                 <Clock className="w-3 h-3 sm:w-3.5 sm:h-3.5 shrink-0" />
                 <span>PRÓXIMA ATUALIZAÇÃO</span>
               </div>
@@ -307,7 +315,7 @@ export default function App() {
         <section className="py-14 sm:py-20 md:py-28 bg-bg border-b border-border">
           <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
             <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-16">
-              <span className="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.18em] sm:tracking-[0.2em] text-accent uppercase block mb-2 sm:mb-3">
+              <span className="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.18em] sm:tracking-[0.2em] text-accent-hover uppercase block mb-2 sm:mb-3">
                 POR DENTRO DA JORNADA
               </span>
               <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-normal text-text mb-4 sm:mb-6">
@@ -325,7 +333,10 @@ export default function App() {
                     <img
                       src={item.img}
                       alt={item.caption}
-                      loading="lazy"
+                      width={item.width}
+                      height={item.height}
+                      loading={idx === 0 ? undefined : "lazy"}
+                      fetchPriority={idx === 0 ? "high" : undefined}
                       decoding="async"
                       className="w-full h-auto object-contain block transition-transform duration-300 hover:scale-[1.01]"
                     />
