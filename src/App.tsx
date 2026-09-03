@@ -175,28 +175,28 @@ export default function App() {
 
   const provaSocial = [
     {
-      img: '/prova-social-capa-membros.png',
+      img: '/prova-social-capa-membros.webp',
       caption: 'Conteúdo em vídeo, direto ao ponto',
-      width: 1280,
-      height: 653
+      width: 560,
+      height: 286
     },
     {
-      img: '/prova-social-galeria-modulos.png',
+      img: '/prova-social-galeria-modulos.webp',
       caption: '6 pilares, 17 semanas de jornada',
-      width: 1280,
-      height: 654
+      width: 560,
+      height: 286
     },
     {
-      img: '/prova-social-lista-progresso.png',
+      img: '/prova-social-lista-progresso.webp',
       caption: 'Acompanhe seu progresso semana a semana',
-      width: 1280,
-      height: 646
+      width: 560,
+      height: 283
     },
     {
-      img: '/prova-social-whatsapp.png',
+      img: '/prova-social-whatsapp.webp',
       caption: 'Uma comunidade real de quem está vivendo a jornada',
-      width: 1280,
-      height: 968
+      width: 560,
+      height: 423
     }
   ];
 
@@ -335,8 +335,7 @@ export default function App() {
                       alt={item.caption}
                       width={item.width}
                       height={item.height}
-                      loading={idx === 0 ? undefined : "lazy"}
-                      fetchPriority={idx === 0 ? "high" : undefined}
+                      loading="lazy"
                       decoding="async"
                       className="w-full h-auto object-contain block transition-transform duration-300 hover:scale-[1.01]"
                     />
