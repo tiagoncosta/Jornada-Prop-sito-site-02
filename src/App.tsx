@@ -416,21 +416,15 @@ export default function App() {
             <div className="border-t border-border">
               {faqItems.map((item, idx) => {
                 const isOpen = openFaq === idx;
-                const numStr = (idx + 1).toString().padStart(2, '0');
                 return (
                   <div key={idx} className="border-b border-border transition-colors">
                     <button
                       onClick={() => toggleFaq(idx)}
                       className="w-full text-left py-4 sm:py-6 flex items-start sm:items-center justify-between gap-3 sm:gap-6 cursor-pointer focus:outline-none min-h-[48px]"
                     >
-                      <div className="flex items-baseline sm:items-center gap-2.5 sm:gap-5 flex-1">
-                        <span className="text-xl sm:text-3xl font-display text-text/30 shrink-0 w-7 sm:w-10 select-none leading-none">
-                          {numStr}
-                        </span>
-                        <span className="font-display font-normal text-base sm:text-lg md:text-xl text-text leading-snug">
-                          {item.q}
-                        </span>
-                      </div>
+                      <span className="font-display font-normal text-base sm:text-lg md:text-xl text-text leading-snug flex-1">
+                        {item.q}
+                      </span>
                       <ChevronDown 
                         className={`w-4 h-4 sm:w-5 sm:h-5 text-accent shrink-0 mt-1 sm:mt-0 transition-transform duration-300 ${
                           isOpen ? 'rotate-180' : ''
@@ -445,7 +439,7 @@ export default function App() {
                           exit={{ height: 0, opacity: 0 }}
                           transition={{ duration: 0.25, ease: "easeInOut" }}
                         >
-                          <div className="pl-9 sm:pl-15 pr-2 sm:pr-4 pb-4 sm:pb-6 pt-0 text-text/85 text-xs sm:text-sm md:text-base font-light leading-relaxed border-t border-border/40 mt-1 sm:mt-2">
+                          <div className="pr-2 sm:pr-4 pb-4 sm:pb-6 pt-3 text-text/85 text-xs sm:text-sm md:text-base font-light leading-relaxed border-t border-border/40">
                             {item.a}
                           </div>
                         </motion.div>
@@ -476,11 +470,8 @@ export default function App() {
                   O que você vai receber:
                 </span>
                 {entregaveis.map((item, idx) => (
-                  <div key={idx} className="flex items-start gap-3">
-                    <span className="font-display text-sm sm:text-base text-accent/50 font-normal shrink-0 mt-0.5 w-6 select-none leading-none">
-                      {(idx + 1).toString().padStart(2, '0')}
-                    </span>
-                    <span className="text-xs sm:text-sm md:text-base text-text/90 font-light leading-snug">
+                  <div key={idx} className="flex items-start">
+                    <span className="text-xs sm:text-sm md:text-base text-accent font-medium leading-snug">
                       {item}
                     </span>
                   </div>
