@@ -594,9 +594,6 @@ export default function App() {
                     R$ 97
                   </span>
                 </div>
-                <p className="text-xs sm:text-sm font-sans text-olive font-medium">
-                  Esse valor vale até o lançamento dos 3 módulos novos. Depois disso, o preço sobe.
-                </p>
                 <p className="text-xs sm:text-sm md:text-base font-sans text-olive font-medium">
                   Cada semana adiando é uma semana a mais no mesmo lugar.
                 </p>
