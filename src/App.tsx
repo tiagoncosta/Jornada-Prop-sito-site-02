@@ -200,6 +200,36 @@ export default function App() {
     }
   ];
 
+  const problemas = [
+    {
+      title: 'Você já tentou mudar sozinho',
+      desc: 'Motivação forte na primeira semana, e depois nada pra sustentar. Não falta vontade, falta um caminho.'
+    },
+    {
+      title: 'Sua fé fica num compartimento separado',
+      desc: 'Você sabe o que a Bíblia diz, mas ela nunca chega no seu trabalho, no seu relacionamento, no seu dinheiro.'
+    },
+    {
+      title: 'Conteúdo solto, sem ordem',
+      desc: 'Você já consumiu conteúdo cristão sobre isso, mas nunca em sequência, nunca formando um caminho de verdade.'
+    }
+  ];
+
+  const passosComoFunciona = [
+    {
+      title: 'Comece pelo Pilar 1',
+      desc: 'A Jornada segue uma ordem definida, um pilar de cada vez. Você não decide o que vem depois, só segue o caminho.'
+    },
+    {
+      title: 'Assista o devocional do dia',
+      desc: 'Vídeo curto, direto ao ponto, dentro da área de membros.'
+    },
+    {
+      title: 'Aplique com o material de apoio',
+      desc: 'O ebook de cada módulo ajuda a levar aquilo pra prática real, antes de seguir pro próximo.'
+    }
+  ];
+
   const scrollToOffer = () => {
     const el = document.getElementById('oferta');
     if (el) {
@@ -241,16 +271,9 @@ export default function App() {
                 Sua vida não vai mudar sozinha. Mas ela também não precisa mudar tudo de uma vez.
               </h1>
               
-              <p className="text-xs sm:text-sm md:text-base font-sans text-olive tracking-wide max-w-2xl mx-auto mb-8 sm:mb-10 px-2">
-                Cada dia que passa esperando é um dia de propósito que você não viveu. Comece agora.
+              <p className="text-xs sm:text-sm md:text-base font-sans text-olive tracking-wide max-w-2xl mx-auto px-2">
+                Não é falta de vontade. É nunca ter tido um caminho claro pra seguir. Esse é o caminho.
               </p>
-
-              <button 
-                onClick={scrollToOffer}
-                className="w-full sm:w-auto min-h-[48px] sm:min-w-[300px] bg-accent hover:bg-accent-hover active:scale-[0.98] text-white font-medium py-3.5 sm:py-4 px-6 sm:px-8 rounded-xl shadow-md hover:shadow-lg transition-all text-base sm:text-lg inline-flex items-center justify-center gap-2 cursor-pointer"
-              >
-                <span>Quero começar minha Jornada</span>
-              </button>
             </Reveal>
           </div>
         </section>
@@ -351,6 +374,42 @@ export default function App() {
           </div>
         </section>
 
+        {/* NOVA SEÇÃO: PROBLEMA */}
+        <section className="py-14 sm:py-20 md:py-28 bg-bg border-b border-border">
+          <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
+            <Reveal>
+              <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-16">
+                <span className="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.18em] sm:tracking-[0.2em] text-accent-hover uppercase block mb-2 sm:mb-3">
+                  O QUE TRAVA VOCÊ
+                </span>
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-normal text-text mb-4 sm:mb-6">
+                  Por que muita gente começa e nunca chega lá
+                </h2>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="grid grid-cols-1 md:grid-cols-3 border border-border md:border-b-0 md:border-r-0">
+                {problemas.map((item, idx) => (
+                  <div 
+                    key={idx} 
+                    className="border-b last:border-b-0 md:border-r md:border-b border-border bg-card p-5 sm:p-8 flex flex-col justify-between"
+                  >
+                    <div>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-display font-normal text-text mb-2 sm:mb-3 leading-snug">
+                        {item.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm md:text-base text-text/85 font-light leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
+        </section>
+
         {/* 3. PRODUTO - OS 5 PILARES QUE JÁ ESTÃO DE PÉ */}
         <section className="py-14 sm:py-20 md:py-28 bg-beige-light border-y border-border">
           <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
@@ -408,6 +467,43 @@ export default function App() {
                 </p>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* NOVA SEÇÃO: COMO FUNCIONA */}
+        <section className="py-14 sm:py-20 md:py-28 bg-bg border-b border-border">
+          <div className="container mx-auto px-4 sm:px-6 max-w-5xl">
+            <Reveal>
+              <div className="max-w-3xl mx-auto text-center mb-10 sm:mb-16">
+                <span className="text-[11px] sm:text-xs font-sans font-semibold tracking-[0.18em] sm:tracking-[0.2em] text-accent-hover uppercase block mb-2 sm:mb-3">
+                  COMO FUNCIONA
+                </span>
+                <h2 className="text-2xl sm:text-4xl md:text-5xl font-display font-normal text-text mb-4 sm:mb-6">
+                  Como funciona
+                </h2>
+              </div>
+            </Reveal>
+
+            <Reveal delay={0.1}>
+              <div className="grid grid-cols-1 md:grid-cols-3 border border-border md:border-b-0 md:border-r-0">
+                {passosComoFunciona.map((item, idx) => (
+                  <div 
+                    key={idx} 
+                    className="border-b last:border-b-0 md:border-r md:border-b border-border bg-card p-5 sm:p-8 flex flex-col justify-between"
+                  >
+                    <div>
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-display font-normal text-text mb-2 sm:mb-3 leading-snug">
+                        {item.title}
+                      </h3>
+
+                      <p className="text-xs sm:text-sm md:text-base text-text/85 font-light leading-relaxed">
+                        {item.desc}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Reveal>
           </div>
         </section>
 
@@ -499,10 +595,10 @@ export default function App() {
                   </span>
                 </div>
                 <p className="text-xs sm:text-sm font-sans text-olive font-medium">
-                  Vagas limitadas a esse valor.
+                  Esse valor vale até o lançamento dos 3 módulos novos. Depois disso, o preço sobe.
                 </p>
-                <p className="text-xs sm:text-sm md:text-base text-text/80 font-light leading-relaxed px-1">
-                  Os 6 pilares, o caminho inteiro, por um pagamento único de R$97. Você entra uma vez, e esse caminho é seu pra sempre.
+                <p className="text-xs sm:text-sm md:text-base font-sans text-olive font-medium">
+                  Cada semana adiando é uma semana a mais no mesmo lugar.
                 </p>
               </div>
 
