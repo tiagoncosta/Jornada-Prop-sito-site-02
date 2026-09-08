@@ -32,8 +32,8 @@ export default function PorDentroSection() {
       desc: 'Uma comunidade exclusiva no WhatsApp com pessoas que compartilham da mesma busca.',
       caption: 'Uma comunidade real de quem está vivendo a jornada',
       img: '/prova-social-whatsapp.webp',
-      width: 560,
-      height: 423
+      width: 450,
+      height: 340
     }
   ];
 

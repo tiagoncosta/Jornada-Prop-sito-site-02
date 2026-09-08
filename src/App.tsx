@@ -129,16 +129,137 @@ export default function App() {
           </div>
         </section>
 
-        {/* 2 a 9. SEÇÕES ABAIXO DA DOBRA (Code Splitting via React.lazy + Suspense) */}
-        <Suspense fallback={null}>
+        {/* 2 a 9. SEÇÕES ABAIXO DA DOBRA (Code Splitting com Fallbacks Individuais para Zero CLS) */}
+        <Suspense
+          fallback={
+            <div id="proxima-secao" className="py-10 sm:py-14 bg-bg-alt/60 border-b border-text/8 min-h-[340px] sm:min-h-[360px] flex items-center justify-center">
+              <div className="container mx-auto px-5 sm:px-8 max-w-3xl w-full">
+                <div className="bg-card border border-text/10 rounded-sm p-6 sm:p-8 md:p-9 h-[230px] sm:h-[220px] shadow-xs animate-pulse" />
+              </div>
+            </div>
+          }
+        >
           <CountdownSection />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <div className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 min-h-[580px] lg:min-h-[580px] max-lg:min-h-[1450px]">
+              <div className="container mx-auto px-5 sm:px-8 max-w-6xl">
+                <div className="max-w-2xl mx-auto h-20 bg-text/5 rounded-sm mb-10 sm:mb-14 animate-pulse" />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div key={i} className="h-80 bg-card/60 border border-text/10 rounded-sm animate-pulse" />
+                  ))}
+                </div>
+              </div>
+            </div>
+          }
+        >
           <PorDentroSection />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <div className="py-14 sm:py-20 bg-bg-alt/40 border-b border-text/8 min-h-[420px] md:min-h-[420px] max-md:min-h-[700px]">
+              <div className="container mx-auto px-5 sm:px-8 max-w-5xl">
+                <div className="max-w-2xl mx-auto h-16 bg-text/5 rounded-sm mb-10 sm:mb-14 animate-pulse" />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="h-44 bg-card/60 border border-text/10 rounded-sm animate-pulse" />
+                  ))}
+                </div>
+              </div>
+            </div>
+          }
+        >
           <ProblemasSection />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <div className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 min-h-[850px] lg:min-h-[850px] max-lg:min-h-[1350px]">
+              <div className="container mx-auto px-5 sm:px-8 max-w-5xl">
+                <div className="max-w-2xl mx-auto h-16 bg-text/5 rounded-sm mb-10 sm:mb-14 animate-pulse" />
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <div key={i} className={`h-48 bg-card/60 border border-text/10 rounded-sm animate-pulse ${i === 5 ? 'md:col-span-2 lg:col-span-2' : ''}`} />
+                  ))}
+                </div>
+                <div className="max-w-3xl mx-auto h-40 bg-card/60 border border-text/10 rounded-sm animate-pulse" />
+              </div>
+            </div>
+          }
+        >
           <PilaresSection />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <div id="como-funciona" className="py-14 sm:py-20 bg-bg-alt/50 border-b border-text/8 min-h-[360px] md:min-h-[360px] max-md:min-h-[560px]">
+              <div className="container mx-auto px-5 sm:px-8 max-w-5xl">
+                <div className="max-w-2xl mx-auto h-12 bg-text/5 rounded-sm mb-10 sm:mb-14 animate-pulse" />
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="h-36 bg-card/60 border border-text/10 rounded-sm animate-pulse" />
+                  ))}
+                </div>
+              </div>
+            </div>
+          }
+        >
           <ComoFuncionaSection />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <div className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 min-h-[600px]">
+              <div className="container mx-auto px-5 sm:px-8 max-w-3xl">
+                <div className="h-12 bg-text/5 rounded-sm mb-10 sm:mb-14 max-w-sm mx-auto animate-pulse" />
+                <div className="space-y-4">
+                  {[1, 2, 3, 4, 5, 6, 7].map((i) => (
+                    <div key={i} className="h-12 border-b border-text/10 animate-pulse" />
+                  ))}
+                </div>
+              </div>
+            </div>
+          }
+        >
           <FaqSection />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <div id="oferta" className="py-16 sm:py-24 bg-bg-alt/40 border-b border-text/8 min-h-[720px]">
+              <div className="container mx-auto px-5 sm:px-8 max-w-2xl">
+                <div className="bg-card border border-text/12 rounded-sm p-7 sm:p-12 h-[600px] animate-pulse" />
+              </div>
+            </div>
+          }
+        >
           <OfertaSection />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <div className="py-14 sm:py-18 bg-bg/85 border-b border-text/8 min-h-[180px]">
+              <div className="container mx-auto px-5 sm:px-8 max-w-3xl">
+                <div className="h-14 bg-text/5 rounded-sm mb-4 max-w-xl mx-auto animate-pulse" />
+                <div className="h-4 bg-text/5 rounded-sm w-36 mx-auto animate-pulse" />
+              </div>
+            </div>
+          }
+        >
           <CitacaoSection />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <div className="py-8 sm:py-10 bg-bg-alt/30 min-h-[100px]">
+              <div className="container mx-auto px-5 sm:px-8 max-w-6xl h-8 animate-pulse" />
+            </div>
+          }
+        >
           <FooterSection />
         </Suspense>
 
