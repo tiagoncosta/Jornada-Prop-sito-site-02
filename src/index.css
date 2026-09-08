@@ -1,31 +1,44 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-display: "Lora", ui-serif, Georgia, serif;
-  --font-serif: "Cormorant Garamond", ui-serif, Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Lora", Georgia, serif;
+  --font-serif: "Cormorant Garamond", Georgia, serif;
   
-  --color-bg: #FAF7F2;               /* Peaceful luxury warm linen cream */
-  --color-text: #2B2825;             /* Deep warm charcoal wood */
-  --color-accent: #B35D43;           /* Earthy terracotta clay */
-  --color-accent-hover: #984A33;     /* Deeper terracotta passing WCAG AA (>= 4.5:1) */
-  --color-card: #F4EFE6;             /* Clean organic linen paper card bg */
-  --color-border: rgba(43, 40, 37, 0.12); /* Crisp hairline border */
-  --color-border-subtle: rgba(43, 40, 37, 0.06);
-  --color-beige-light: #F3ECE2;      /* Warm soft intermediate tone */
-  --color-olive: #4A5343;            /* Sanctuary forest sage green */
+  --color-bg: #F5F1EB;               /* Editorial warm linen off-white */
+  --color-bg-alt: #EFEAE2;           /* Subtle layered warm sand section */
+  --color-bg-light: #F8F6F2;         /* Pure soft ivory layer */
+  --color-text: #2A2927;             /* Deep warm charcoal wood */
+  --color-text-muted: #57524A;       /* Refined warm gray for secondary reading */
+  --color-accent: #8A5A44;           /* Sophisticated earthy terracotta */
+  --color-accent-hover: #724632;     /* Deeper roasted earth tone for hover */
+  --color-card: #FFFFFF;             /* Clean crisp paper card */
+  --color-card-warm: #FAF7F2;        /* Warm tinted paper card */
+  --color-border: rgba(42, 41, 39, 0.10); /* Fine hair-thin editorial border */
+  --color-border-subtle: rgba(42, 41, 39, 0.05);
+  --color-beige-light: #EFEAE2;
+  --color-olive: #57524A;            /* Warm muted tone passing WCAG AA */
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    background-color: var(--color-bg);
+    color: var(--color-text);
   }
   
   body {
     @apply font-sans bg-bg text-text antialiased;
+    letter-spacing: -0.01em;
   }
   
   h1, h2, h3, .display {
-    @apply font-display tracking-tight text-text;
+    @apply font-serif tracking-tight text-text;
   }
+}
+
+/* Subtle continuous journey path background lines */
+.editorial-path-bg {
+  background-image: radial-gradient(rgba(138, 90, 68, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px;
 }
