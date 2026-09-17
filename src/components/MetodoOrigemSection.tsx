@@ -1,30 +1,9 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import Reveal from './Reveal';
-import { ChevronLeft, ChevronRight, Play, Volume2, VolumeX } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
 
 export default function MetodoOrigemSection() {
   const carouselRef = useRef<HTMLDivElement>(null);
-  const firstVideoRef = useRef<HTMLVideoElement>(null);
-  const [isMuted, setIsMuted] = useState(true);
-
-  useEffect(() => {
-    if (firstVideoRef.current) {
-      firstVideoRef.current.muted = true;
-      firstVideoRef.current.play().catch(() => {
-        // Autoplay policy fallback
-      });
-    }
-  }, []);
-
-  const toggleMute = () => {
-    if (firstVideoRef.current) {
-      const nextMuted = !isMuted;
-      firstVideoRef.current.muted = nextMuted;
-      setIsMuted(nextMuted);
-    } else {
-      setIsMuted(!isMuted);
-    }
-  };
 
   const depoimentos = [
     {
@@ -96,80 +75,46 @@ export default function MetodoOrigemSection() {
             className="flex gap-5 sm:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-4 pt-1 px-1 no-scrollbar"
             style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
           >
-            {depoimentos.map((dep, idx) => {
-              const isFirst = idx === 0;
+            {depoimentos.map((dep, idx) => (
+              <div
+                key={idx}
+                className="w-[280px] sm:w-[320px] md:w-[340px] shrink-0 snap-center bg-card border border-text/10 rounded-sm overflow-hidden flex flex-col justify-between shadow-2xs hover:border-accent/30 transition-all"
+              >
+                {/* Reprodutor de Vídeo HTML5 */}
+                <div className="relative aspect-[9/16] bg-text/5 flex items-center justify-center overflow-hidden">
+                  <video
+                    controls
+                    preload="metadata"
+                    playsInline
+                    className="w-full h-full object-cover"
+                  >
+                    <source src={`${dep.src}#t=0.001`} type="video/mp4" />
+                    <source src={dep.src} type="video/mp4" />
+                    Seu navegador não suporta a reprodução deste vídeo.
+                  </video>
 
-              return (
-                <div
-                  key={idx}
-                  className="w-[280px] sm:w-[320px] md:w-[340px] shrink-0 snap-center bg-card border border-text/10 rounded-sm overflow-hidden flex flex-col justify-between shadow-2xs hover:border-accent/30 transition-all"
-                >
-                  {/* Reprodutor de Vídeo HTML5 */}
-                  <div className="relative aspect-[9/16] bg-text/5 flex items-center justify-center overflow-hidden">
-                    {isFirst ? (
-                      <>
-                        <video
-                          ref={firstVideoRef}
-                          src={dep.src}
-                          autoPlay
-                          muted={isMuted}
-                          playsInline
-                          preload="metadata"
-                          controls
-                          className="w-full h-full object-cover"
-                        >
-                          <source src={dep.src} type="video/mp4" />
-                          Seu navegador não suporta a reprodução deste vídeo.
-                        </video>
-                        <button
-                          type="button"
-                          onClick={toggleMute}
-                          className="absolute bottom-3 right-3 z-10 bg-bg/80 backdrop-blur-sm border border-text/10 rounded-full p-2 hover:bg-bg transition-colors cursor-pointer"
-                          aria-label={isMuted ? 'Ativar som' : 'Desativar som'}
-                        >
-                          {isMuted ? (
-                            <VolumeX className="w-4 h-4 text-text" />
-                          ) : (
-                            <Volume2 className="w-4 h-4 text-text" />
-                          )}
-                        </button>
-                      </>
-                    ) : (
-                      <video
-                        src={dep.src}
-                        controls
-                        preload="metadata"
-                        playsInline
-                        className="w-full h-full object-cover"
-                      >
-                        <source src={dep.src} type="video/mp4" />
-                        Seu navegador não suporta a reprodução deste vídeo.
-                      </video>
-                    )}
-
-                    {/* Placeholder Informativo de Fallback visual */}
-                    <div className="absolute inset-0 pointer-events-none -z-10 flex flex-col items-center justify-center p-4 text-center bg-bg-alt/60">
-                      <div className="w-12 h-12 rounded-full bg-accent/15 text-accent flex items-center justify-center mb-3">
-                        <Play className="w-5 h-5 fill-accent" />
-                      </div>
-                      <span className="text-xs font-serif font-medium text-text">
-                        Vídeo de {dep.nome}
-                      </span>
+                  {/* Placeholder Informativo de Fallback visual */}
+                  <div className="absolute inset-0 pointer-events-none -z-10 flex flex-col items-center justify-center p-4 text-center bg-bg-alt/60">
+                    <div className="w-12 h-12 rounded-full bg-accent/15 text-accent flex items-center justify-center mb-3">
+                      <Play className="w-5 h-5 fill-accent" />
                     </div>
-                  </div>
-
-                  {/* Legenda do Depoimento */}
-                  <div className="p-4 bg-card border-t border-text/8">
-                    <p className="text-sm font-serif font-normal text-text">
-                      Depoimento de {dep.nome}
-                    </p>
-                    <span className="text-[11px] font-sans text-olive block mt-0.5">
-                      {dep.cargo}
+                    <span className="text-xs font-serif font-medium text-text">
+                      Vídeo de {dep.nome}
                     </span>
                   </div>
                 </div>
-              );
-            })}
+
+                {/* Legenda do Depoimento */}
+                <div className="p-4 bg-card border-t border-text/8">
+                  <p className="text-sm font-serif font-normal text-text">
+                    Depoimento de {dep.nome}
+                  </p>
+                  <span className="text-[11px] font-sans text-olive block mt-0.5">
+                    {dep.cargo}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
 
           {/* Controles de Navegação Mobile */}
