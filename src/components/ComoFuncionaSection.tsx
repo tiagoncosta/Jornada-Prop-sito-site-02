@@ -6,12 +6,12 @@ export default function ComoFuncionaSection() {
     {
       step: '01',
       title: 'Comece pelo Pilar 1',
-      desc: 'A Jornada segue uma ordem definida, um pilar de cada vez. Você não decide o que vem depois, só segue o caminho.'
+      desc: 'A Jornada segue uma ordem definida, um pilar de cada vez - mas no seu tempo. Você não precisa decidir o que vem depois, só seguir o caminho, sem prazo pra isso.'
     },
     {
       step: '02',
       title: 'Assista o devocional do dia',
-      desc: 'Vídeo curto, direto ao ponto, dentro da área de membros.'
+      desc: 'Vídeo curto, direto ao ponto - pelo site ou pelo aplicativo, como for mais prático pra você.'
     },
     {
       step: '03',

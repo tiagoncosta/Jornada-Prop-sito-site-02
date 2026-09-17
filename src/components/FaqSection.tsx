@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, ArrowRight, ShieldCheck } from 'lucide-react';
 
 export default function FaqSection() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
@@ -16,11 +16,7 @@ export default function FaqSection() {
     },
     {
       q: 'Já tentei outros cursos e não terminei.',
-      a: 'Essa não é uma lista de aulas soltas pra você ter que se organizar sozinho. É um caminho com ordem definida - você não decide o que assistir, só segue o passo a passo.'
-    },
-    {
-      q: 'É só mais uma coisa sobre finanças/mentalidade?',
-      a: 'Não. É uma série de devocionais com base bíblica sobre desenvolvimento pessoal integrado - fé, mente, corpo, relacionamentos, vocação e finanças como parte de uma vida só, não tópicos soltos.'
+      a: 'Essa não é uma lista de aulas soltas pra você se organizar sozinho. É um caminho com ordem definida, mas sem prazo - você segue pilar a pilar, pausa quando precisar e retoma de onde parou. A Jornada espera por você.'
     },
     {
       q: 'Quanto tempo eu tenho acesso?',
@@ -32,11 +28,7 @@ export default function FaqSection() {
     },
     {
       q: 'E se eu não gostar ou não me identificar com a Jornada?',
-      a: 'Você tem 7 dias de garantia. Se não fizer sentido pra você, é só pedir o reembolso, sem burocracia.'
-    },
-    {
-      q: 'E se eu travar no meio e não conseguir terminar?',
-      a: 'Você não perde o acesso. É vitalício - você pode pausar, voltar, recomeçar um pilar, no seu tempo. A Jornada espera por você.'
+      a: 'Você não precisa carregar a dúvida. Tem 7 dias pra sentir se faz sentido pra você - sem risco, sem burocracia pra pedir reembolso.'
     }
   ];
 
@@ -91,6 +83,20 @@ export default function FaqSection() {
               </div>
             );
           })}
+        </div>
+
+        <div className="text-center mt-10 sm:mt-14">
+          <a 
+            href="https://pay.hub.la/RBS2l0kJ8JIuPjA14Nr5"
+            className="w-full sm:w-auto min-h-[48px] sm:min-w-[300px] bg-text hover:bg-text/90 active:scale-[0.98] text-[#F8F6F2] font-sans font-medium py-3.5 sm:py-4 px-8 rounded-sm shadow-sm hover:shadow transition-all duration-200 text-xs sm:text-sm tracking-wider uppercase inline-flex items-center justify-center gap-2.5 cursor-pointer text-center"
+          >
+            <span>Quero começar minha Jornada</span>
+            <ArrowRight className="w-4 h-4 text-[#F8F6F2]/80" />
+          </a>
+          <div className="mt-4 text-[11px] font-sans text-olive/70 flex items-center justify-center gap-1.5">
+            <ShieldCheck className="w-3.5 h-3.5 text-accent" />
+            <span>Garantia incondicional de 7 dias • Pagamento seguro via Hubla</span>
+          </div>
         </div>
 
       </div>

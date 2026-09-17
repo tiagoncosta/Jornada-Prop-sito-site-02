@@ -4,10 +4,10 @@ import { Check, ArrowRight, ShieldCheck } from 'lucide-react';
 export default function OfertaSection() {
   const entregaveis = [
     'Acesso vitalício à área de membros',
-    '70 devocionais em vídeo, organizados em 5 pilares, ao longo de 14 semanas',
-    'Material de apoio (ebook) por módulo, pra acompanhar cada devocional',
-    'Acesso ao grupo de WhatsApp exclusivo de quem comprou a Jornada',
-    'O Pilar 6 completo, incluso sem custo extra, quando lançar em outubro'
+    '70 devocionais em vídeo - 5 pilares, 14 semanas',
+    'Ebook de apoio por módulo',
+    'Grupo de WhatsApp exclusivo da Jornada',
+    'Pilar 6 incluso de graça, quando lançar em outubro'
   ];
 
   return (
@@ -38,6 +38,9 @@ export default function OfertaSection() {
 
           {/* Bloco de Preço com Tipografia Editorial */}
           <div className="mb-7 sm:mb-8 max-w-lg mx-auto space-y-1.5">
+            <div className="inline-flex items-center text-[10px] sm:text-[11px] font-sans font-medium tracking-[0.22em] text-accent uppercase bg-accent/10 px-3.5 py-1.5 rounded-sm mb-3">
+              <span>86% DE DESCONTO</span>
+            </div>
             <div className="flex items-baseline justify-center gap-3">
               <span className="text-base sm:text-lg font-serif text-olive/60 line-through">
                 R$ 697

@@ -1,11 +1,25 @@
-import React from 'react';
+import React, { useState, useRef } from 'react';
 import Reveal from './Reveal';
 
 export default function PorDentroSection() {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = () => {
+    if (containerRef.current) {
+      const scrollLeft = containerRef.current.scrollLeft;
+      const cardWidth = containerRef.current.offsetWidth * 0.85;
+      if (cardWidth > 0) {
+        const index = Math.round(scrollLeft / cardWidth);
+        setActiveIdx(Math.min(Math.max(index, 0), provaSocialCards.length - 1));
+      }
+    }
+  };
+
   const provaSocialCards = [
     {
       title: 'CONTEÚDO DIRETO AO PONTO',
-      desc: 'Vídeos objetivos e organizados para ajudar você a avançar sem se perder no caminho.',
+      desc: 'Vídeos objetivos e organizados, acessíveis pelo site ou pelo aplicativo - você escolhe o que for mais prático pra sua rotina.',
       caption: 'Conteúdo em vídeo, direto ao ponto',
       img: '/prova-social-capa-membros.webp',
       width: 560,
@@ -38,26 +52,31 @@ export default function PorDentroSection() {
   ];
 
   return (
-    <section className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 relative">
+    <section id="proxima-secao" className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 relative scroll-mt-16 sm:scroll-mt-18">
       <div className="container mx-auto px-5 sm:px-8 max-w-6xl">
         
         <div className="max-w-2xl mx-auto text-center mb-10 sm:mb-14">
           <span className="text-[11px] font-sans font-medium tracking-[0.24em] text-accent uppercase block mb-2">
             POR DENTRO DA JORNADA
           </span>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-normal text-text mb-3">
-            O que você encontra lá dentro
-          </h2>
           <p className="text-xs sm:text-sm md:text-base font-sans text-olive font-normal leading-relaxed">
             Cada elemento da plataforma foi desenhado para criar uma experiência de estudo contínua, sem atritos ou distrações.
           </p>
         </div>
 
-        {/* Grid Editorial com Todas as Pranchas Visíveis no Desktop */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Carrossel Horizontal no Mobile e Grid Editorial no Desktop */}
+        <div
+          ref={containerRef}
+          onScroll={handleScroll}
+          className="flex md:grid md:grid-cols-2 lg:grid-cols-4 gap-6 overflow-x-auto md:overflow-visible snap-x snap-mandatory md:snap-none -mx-5 px-5 md:mx-0 md:px-0 scrollbar-hide pb-2 md:pb-0"
+        >
           {provaSocialCards.map((card, idx) => (
-            <Reveal key={idx} delay={idx * 0.08}>
-              <div className="h-full bg-card border border-text/10 rounded-sm overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-accent/40 group">
+            <Reveal
+              key={idx}
+              delay={idx * 0.08}
+              className="snap-center shrink-0 w-[85vw] max-w-sm md:w-auto md:max-w-none h-full"
+            >
+              <div className="w-full h-full bg-card border border-text/10 rounded-sm overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-accent/40 group">
                 
                 {/* Moldura da Imagem com Aspect Ratio Preciso */}
                 <div className="relative aspect-[16/10] bg-bg-alt/50 overflow-hidden border-b border-text/8">
@@ -90,6 +109,23 @@ export default function PorDentroSection() {
               </div>
             </Reveal>
           ))}
+        </div>
+
+        {/* Indicador Visível Apenas no Mobile */}
+        <div className="md:hidden flex flex-col items-center justify-center gap-2 mt-4">
+          <div className="flex items-center justify-center gap-1.5" aria-hidden="true">
+            {provaSocialCards.map((_, i) => (
+              <span
+                key={i}
+                className={`h-1.5 rounded-full transition-all duration-300 ${
+                  activeIdx === i ? 'w-5 bg-accent' : 'w-1.5 bg-text/25'
+                }`}
+              />
+            ))}
+          </div>
+          <p className="text-center text-[11px] font-sans text-olive/70">
+            Arraste para o lado para ver mais →
+          </p>
         </div>
 
       </div>

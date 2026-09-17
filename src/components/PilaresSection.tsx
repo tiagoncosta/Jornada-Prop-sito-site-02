@@ -1,6 +1,39 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 export default function PilaresSection() {
+  const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number }>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
+
+  useEffect(() => {
+    const calculateTimeLeft = () => {
+      const target = new Date('2026-10-05T00:00:00-03:00');
+      const now = new Date();
+      const diff = target.getTime() - now.getTime();
+
+      if (diff > 0) {
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((diff / 1000 / 60) % 60);
+        const seconds = Math.floor((diff / 1000) % 60);
+        setTimeLeft({ days, hours, minutes, seconds });
+      } else {
+        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+      }
+    };
+
+    calculateTimeLeft();
+    const interval = setInterval(calculateTimeLeft, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const formatNumber = (num: number) => {
+    return num.toString().padStart(2, '0');
+  };
+
   const pilares = [
     {
       num: '01',
@@ -82,6 +115,52 @@ export default function PilaresSection() {
             <div className="text-xs sm:text-sm md:text-base font-sans text-olive font-normal leading-relaxed">
               <p>
                 Crescimento intelectual, autoconhecimento e finanças caminhando juntos, fechando o ciclo: até o seu dinheiro alinhado com quem você é. Três semanas que respondem uma pergunta que a Jornada ainda não tinha respondido - o que fazer com tudo que você já reconstruiu até aqui.
+              </p>
+            </div>
+
+            {/* Contador Regressivo Integrado */}
+            <div className="mt-6 pt-6 border-t border-text/10">
+              <p className="text-[11px] font-sans font-medium tracking-[0.2em] text-accent uppercase mb-3">
+                Chega em:
+              </p>
+              
+              <div className="border border-text/12 rounded-sm grid grid-cols-4 max-w-md mx-auto mb-3 bg-bg-light/90 overflow-hidden">
+                <div className="py-2.5 px-1 sm:py-3 text-center">
+                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-text leading-none">
+                    {formatNumber(timeLeft.days)}
+                  </span>
+                  <span className="block text-[10px] font-sans text-olive uppercase tracking-widest mt-1.5 font-medium">
+                    Dias
+                  </span>
+                </div>
+                <div className="py-2.5 px-1 sm:py-3 text-center border-l border-text/10">
+                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-text leading-none">
+                    {formatNumber(timeLeft.hours)}
+                  </span>
+                  <span className="block text-[10px] font-sans text-olive uppercase tracking-widest mt-1.5 font-medium">
+                    Horas
+                  </span>
+                </div>
+                <div className="py-2.5 px-1 sm:py-3 text-center border-l border-text/10">
+                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-text leading-none">
+                    {formatNumber(timeLeft.minutes)}
+                  </span>
+                  <span className="block text-[10px] font-sans text-olive uppercase tracking-widest mt-1.5 font-medium">
+                    Min
+                  </span>
+                </div>
+                <div className="py-2.5 px-1 sm:py-3 text-center border-l border-text/10">
+                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-text leading-none">
+                    {formatNumber(timeLeft.seconds)}
+                  </span>
+                  <span className="block text-[10px] font-sans text-olive uppercase tracking-widest mt-1.5 font-medium">
+                    Seg
+                  </span>
+                </div>
+              </div>
+
+              <p className="text-xs font-sans text-olive mt-3">
+                Compre agora e receba essa atualização de graça quando lançar.
               </p>
             </div>
           </div>

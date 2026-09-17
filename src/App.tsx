@@ -6,11 +6,11 @@
 import React, { Suspense } from 'react';
 
 // Code splitting: Seções abaixo da dobra carregadas assincronamente com React.lazy
-const CountdownSection = React.lazy(() => import('./components/CountdownSection'));
 const PorDentroSection = React.lazy(() => import('./components/PorDentroSection'));
 const ProblemasSection = React.lazy(() => import('./components/ProblemasSection'));
 const PilaresSection = React.lazy(() => import('./components/PilaresSection'));
 const ComoFuncionaSection = React.lazy(() => import('./components/ComoFuncionaSection'));
+const MetodoOrigemSection = React.lazy(() => import('./components/MetodoOrigemSection'));
 const FaqSection = React.lazy(() => import('./components/FaqSection'));
 const OfertaSection = React.lazy(() => import('./components/OfertaSection'));
 const CitacaoSection = React.lazy(() => import('./components/CitacaoSection'));
@@ -104,16 +104,16 @@ export default function App() {
             {/* Headline em Tamanho Editorial Harmonioso - Renderização Direta sem Atraso de Animação */}
             <h1 className="text-[1.85rem] sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-normal tracking-tight leading-[1.22] sm:leading-[1.18] mb-5 sm:mb-6 max-w-3xl mx-auto">
               <span className="text-accent block">
-                Sua vida não vai mudar sozinha.
+                Você não sabe seu propósito
               </span>
               <span className="text-text block mt-1.5 sm:mt-1">
-                Mas ela também não precisa mudar tudo de uma vez.
+                porque ainda não sabe quem você é.
               </span>
             </h1>
             
             {/* Subtítulo Arejado e Reflexivo */}
             <p className="text-base sm:text-lg font-sans text-olive font-normal leading-relaxed max-w-xl mx-auto mb-8 sm:mb-9 px-1 sm:px-0">
-              Não é falta de vontade. É nunca ter tido um caminho claro pra seguir. Esse é o caminho.
+              Nenhuma meta, motivação ou tentativa nova resolve isso. Primeiro se reconstrói a base - depois vem a clareza.
             </p>
 
             {/* Botão de Navegação */}
@@ -129,22 +129,10 @@ export default function App() {
           </div>
         </section>
 
-        {/* 2 a 9. SEÇÕES ABAIXO DA DOBRA (Code Splitting com Fallbacks Individuais para Zero CLS) */}
+        {/* 2 a 10. SEÇÕES ABAIXO DA DOBRA (Code Splitting com Fallbacks Individuais para Zero CLS) */}
         <Suspense
           fallback={
-            <div id="proxima-secao" className="py-10 sm:py-14 bg-bg-alt/60 border-b border-text/8 min-h-[340px] sm:min-h-[360px] flex items-center justify-center">
-              <div className="container mx-auto px-5 sm:px-8 max-w-3xl w-full">
-                <div className="bg-card border border-text/10 rounded-sm p-6 sm:p-8 md:p-9 h-[230px] sm:h-[220px] shadow-xs animate-pulse" />
-              </div>
-            </div>
-          }
-        >
-          <CountdownSection />
-        </Suspense>
-
-        <Suspense
-          fallback={
-            <div className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 min-h-[580px] lg:min-h-[580px] max-lg:min-h-[1450px]">
+            <div id="proxima-secao" className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 min-h-[580px] lg:min-h-[580px] max-lg:min-h-[1450px] scroll-mt-16 sm:scroll-mt-18">
               <div className="container mx-auto px-5 sm:px-8 max-w-6xl">
                 <div className="max-w-2xl mx-auto h-20 bg-text/5 rounded-sm mb-10 sm:mb-14 animate-pulse" />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -213,6 +201,35 @@ export default function App() {
 
         <Suspense
           fallback={
+            <div className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 min-h-[500px]">
+              <div className="container mx-auto px-5 sm:px-8 max-w-5xl">
+                <div className="max-w-2xl mx-auto h-16 bg-text/5 rounded-sm mb-8 sm:mb-12 animate-pulse" />
+                <div className="flex gap-6 max-w-4xl mx-auto mb-8 overflow-hidden">
+                  {[1, 2, 3].map((i) => (
+                    <div key={i} className="w-[320px] h-[480px] bg-card/60 border border-text/10 rounded-sm animate-pulse shrink-0" />
+                  ))}
+                </div>
+              </div>
+            </div>
+          }
+        >
+          <MetodoOrigemSection />
+        </Suspense>
+
+        <Suspense
+          fallback={
+            <div id="oferta" className="py-16 sm:py-24 bg-bg-alt/40 border-b border-text/8 min-h-[720px]">
+              <div className="container mx-auto px-5 sm:px-8 max-w-2xl">
+                <div className="bg-card border border-text/12 rounded-sm p-7 sm:p-12 h-[600px] animate-pulse" />
+              </div>
+            </div>
+          }
+        >
+          <OfertaSection />
+        </Suspense>
+
+        <Suspense
+          fallback={
             <div className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 min-h-[600px]">
               <div className="container mx-auto px-5 sm:px-8 max-w-3xl">
                 <div className="h-12 bg-text/5 rounded-sm mb-10 sm:mb-14 max-w-sm mx-auto animate-pulse" />
@@ -226,18 +243,6 @@ export default function App() {
           }
         >
           <FaqSection />
-        </Suspense>
-
-        <Suspense
-          fallback={
-            <div id="oferta" className="py-16 sm:py-24 bg-bg-alt/40 border-b border-text/8 min-h-[720px]">
-              <div className="container mx-auto px-5 sm:px-8 max-w-2xl">
-                <div className="bg-card border border-text/12 rounded-sm p-7 sm:p-12 h-[600px] animate-pulse" />
-              </div>
-            </div>
-          }
-        >
-          <OfertaSection />
         </Suspense>
 
         <Suspense

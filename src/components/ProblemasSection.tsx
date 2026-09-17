@@ -4,19 +4,16 @@ import Reveal from './Reveal';
 export default function ProblemasSection() {
   const problemas = [
     {
-      roman: 'I',
       title: 'Você já tentou mudar sozinho',
-      desc: 'Motivação forte na primeira semana, e depois nada pra sustentar. Não falta vontade, falta um caminho.'
+      desc: 'Você começa cheio de força, mas duas semanas depois já tá rolando o feed de novo, adiando pra amanhã. Não falta vontade, falta um caminho.'
     },
     {
-      roman: 'II',
       title: 'Sua fé fica num compartimento separado',
-      desc: 'Você sabe o que a Bíblia diz, mas ela nunca chega no seu trabalho, no seu relacionamento, no seu dinheiro.'
+      desc: 'Você lê um versículo de manhã, mas na reunião difícil, na discussão com quem você ama, na hora de decidir uma compra, é como se a Bíblia nunca tivesse sido aberta.'
     },
     {
-      roman: 'III',
       title: 'Conteúdo solto, sem ordem',
-      desc: 'Você já consumiu conteúdo cristão sobre isso, mas nunca em sequência, nunca formando um caminho de verdade.'
+      desc: 'Você já salvou dezenas de posts, assistiu vídeo atrás de vídeo - mas se alguém pedir pra explicar o que mudou de verdade na sua vida, a resposta não vem.'
     }
   ];
 
@@ -39,10 +36,6 @@ export default function ProblemasSection() {
             <Reveal key={idx} delay={idx * 0.1}>
               <div className="h-full bg-card border border-text/10 p-6 sm:p-7 rounded-sm flex flex-col justify-between relative">
                 <div>
-                  {/* Marcador Romano Editorial */}
-                  <span className="block font-serif text-2xl sm:text-3xl text-accent mb-4 font-normal">
-                    {item.roman}
-                  </span>
                   <h3 className="text-base sm:text-lg font-serif font-normal text-text mb-2.5 leading-snug">
                     {item.title}
                   </h3>
@@ -54,6 +47,19 @@ export default function ProblemasSection() {
             </Reveal>
           ))}
         </div>
+
+        {/* Parágrafo de Transição */}
+        <Reveal>
+          <div className="max-w-2xl mx-auto text-center mt-10 sm:mt-14">
+            <p className="text-lg sm:text-xl font-serif font-normal text-text leading-relaxed italic">
+              Por trás de tudo isso, uma pergunta vem antes de qualquer outra:{' '}
+              <span className="text-accent not-italic">você sabe quem você é?</span>
+            </p>
+            <p className="text-xs sm:text-sm font-sans text-olive font-normal leading-relaxed mt-3">
+              É aí que a Jornada começa.
+            </p>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
