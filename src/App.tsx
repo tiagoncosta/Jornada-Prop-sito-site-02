@@ -4,9 +4,9 @@
  */
 
 import React, { Suspense } from 'react';
+import PorDentroSection from './components/PorDentroSection';
 
 // Code splitting: Seções abaixo da dobra carregadas assincronamente com React.lazy
-const PorDentroSection = React.lazy(() => import('./components/PorDentroSection'));
 const ProblemasSection = React.lazy(() => import('./components/ProblemasSection'));
 const PilaresSection = React.lazy(() => import('./components/PilaresSection'));
 const ComoFuncionaSection = React.lazy(() => import('./components/ComoFuncionaSection'));
@@ -129,23 +129,8 @@ export default function App() {
           </div>
         </section>
 
-        {/* 2 a 10. SEÇÕES ABAIXO DA DOBRA (Code Splitting com Fallbacks Individuais para Zero CLS) */}
-        <Suspense
-          fallback={
-            <div id="proxima-secao" className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 min-h-[580px] lg:min-h-[580px] max-lg:min-h-[1450px] scroll-mt-16 sm:scroll-mt-18">
-              <div className="container mx-auto px-5 sm:px-8 max-w-6xl">
-                <div className="max-w-2xl mx-auto h-20 bg-text/5 rounded-sm mb-10 sm:mb-14 animate-pulse" />
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                  {[1, 2, 3, 4].map((i) => (
-                    <div key={i} className="h-80 bg-card/60 border border-text/10 rounded-sm animate-pulse" />
-                  ))}
-                </div>
-              </div>
-            </div>
-          }
-        >
-          <PorDentroSection />
-        </Suspense>
+        {/* 2. SEÇÃO LOGO ABAIXO DO HERO (Carregamento Estático Prioritário para LCP) */}
+        <PorDentroSection />
 
         <Suspense
           fallback={

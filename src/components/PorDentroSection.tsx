@@ -85,7 +85,8 @@ export default function PorDentroSection() {
                     alt={card.caption}
                     width={card.width}
                     height={card.height}
-                    loading="lazy"
+                    loading={idx === 0 ? 'eager' : 'lazy'}
+                    fetchPriority={idx === 0 ? 'high' : 'auto'}
                     decoding="async"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                   />
