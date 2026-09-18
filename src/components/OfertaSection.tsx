@@ -5,7 +5,9 @@ export default function OfertaSection() {
   const entregaveis = [
     'Acesso vitalício à área de membros',
     '70 devocionais em vídeo - 5 pilares, 14 semanas',
+    'Aplicativo exclusivo para assistir os devocionais de onde quiser',
     'Ebook de apoio por módulo',
+    'Agente de IA na plataforma: peça um resumo, um mapa mental ou os principais insights de qualquer parte do conteúdo, quando quiser',
     'Grupo de WhatsApp exclusivo da Jornada',
     'Pilar 6 incluso de graça, quando lançar em outubro'
   ];
