@@ -63,8 +63,8 @@ export default function PilaresSection() {
   ];
 
   return (
-    <section className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 relative">
-      <div className="container mx-auto px-5 sm:px-8 max-w-5xl">
+    <section className="py-14 sm:py-20 relative bg-transparent">
+      <div className="container mx-auto px-5 sm:px-8 max-w-5xl relative z-10">
         
         <div className="max-w-2xl mx-auto text-center mb-10 sm:mb-14">
           <span className="text-[11px] font-sans font-medium tracking-[0.24em] text-accent uppercase block mb-2">
@@ -80,12 +80,12 @@ export default function PilaresSection() {
           {pilares.map((pilar, idx) => (
             <div 
               key={idx} 
-              className={`border border-text/10 bg-card p-6 sm:p-7 rounded-sm shadow-2xs hover:border-accent/30 transition-all flex flex-col justify-between ${
+              className={`border border-accent/15 bg-card p-6 sm:p-7 rounded-sm shadow-2xs hover:border-gold/50 transition-all flex flex-col justify-between group ${
                 idx === 4 ? 'md:col-span-2 lg:col-span-2' : ''
               }`}
             >
               <div>
-                <span className="block text-3xl sm:text-4xl font-serif font-normal text-accent mb-3 select-none leading-none">
+                <span className="block text-3xl sm:text-4xl font-serif font-normal text-gold group-hover:text-accent transition-colors mb-3 select-none leading-none">
                   {pilar.num}
                 </span>
 
@@ -101,65 +101,69 @@ export default function PilaresSection() {
           ))}
         </div>
 
-        {/* 6º Pilar: Card Editorial com Badge de Prévia e Cores Alinhadas */}
-        <div className="max-w-3xl mx-auto bg-card border border-text/10 p-6 sm:p-8 md:p-10 rounded-sm relative overflow-hidden">
+        {/* 6º Pilar: Card Atmosférico Crepuscular com a Iluminação da Imagem */}
+        <div className="max-w-3xl mx-auto jornada-dusk-card border border-gold/30 p-6 sm:p-8 md:p-10 rounded-sm relative overflow-hidden shadow-lg">
+          {/* Brilho da Aurora e do Azul Celeste nos cantos do card */}
+          <div className="pointer-events-none absolute -top-12 -left-12 w-48 h-48 rounded-full bg-gold-light/25 blur-2xl" aria-hidden="true" />
+          <div className="pointer-events-none absolute -bottom-12 -right-12 w-52 h-52 rounded-full bg-azure-light/25 blur-2xl" aria-hidden="true" />
+          
           <div className="relative z-10">
-            <div className="inline-flex items-center text-[10px] sm:text-[11px] font-sans font-medium tracking-[0.22em] text-accent uppercase bg-accent/10 px-3.5 py-1.5 rounded-sm mb-3.5">
+            <div className="inline-flex items-center text-[10px] sm:text-[11px] font-sans font-semibold tracking-[0.22em] text-gold-light uppercase bg-gold/15 border border-gold/30 px-3.5 py-1.5 rounded-sm mb-3.5">
               <span>CHEGANDO EM OUTUBRO</span>
             </div>
 
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-normal text-text mb-3 leading-snug">
+            <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-normal text-[#FDFCFA] mb-3 leading-snug">
               O 6º pilar: Multiplique seus Talentos
             </h3>
 
-            <div className="text-xs sm:text-sm md:text-base font-sans text-olive font-normal leading-relaxed">
+            <div className="text-xs sm:text-sm md:text-base font-sans text-[#E5E0D6] font-normal leading-relaxed">
               <p>
                 Crescimento intelectual, autoconhecimento e finanças caminhando juntos, fechando o ciclo: até o seu dinheiro alinhado com quem você é. Três semanas que respondem uma pergunta que a Jornada ainda não tinha respondido - o que fazer com tudo que você já reconstruiu até aqui.
               </p>
             </div>
 
-            {/* Contador Regressivo Integrado */}
-            <div className="mt-6 pt-6 border-t border-text/10">
-              <p className="text-[11px] font-sans font-medium tracking-[0.2em] text-accent uppercase mb-3">
+            {/* Contador Regressivo Integrado com as Cores da Identidade */}
+            <div className="mt-6 pt-6 border-t border-gold/20">
+              <p className="text-[11px] font-sans font-medium tracking-[0.2em] text-gold-light uppercase mb-3">
                 Chega em:
               </p>
               
-              <div className="border border-text/12 rounded-sm grid grid-cols-4 max-w-md mx-auto mb-3 bg-bg-light/90 overflow-hidden">
+              <div className="border border-gold/30 rounded-sm grid grid-cols-4 max-w-md mx-auto mb-3 bg-[#111A26]/85 backdrop-blur-xs overflow-hidden">
                 <div className="py-2.5 px-1 sm:py-3 text-center">
-                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-text leading-none">
+                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-gold-light leading-none">
                     {formatNumber(timeLeft.days)}
                   </span>
-                  <span className="block text-[10px] font-sans text-olive uppercase tracking-widest mt-1.5 font-medium">
+                  <span className="block text-[10px] font-sans text-gold/80 uppercase tracking-widest mt-1.5 font-medium">
                     Dias
                   </span>
                 </div>
-                <div className="py-2.5 px-1 sm:py-3 text-center border-l border-text/10">
-                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-text leading-none">
+                <div className="py-2.5 px-1 sm:py-3 text-center border-l border-gold/20">
+                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-gold-light leading-none">
                     {formatNumber(timeLeft.hours)}
                   </span>
-                  <span className="block text-[10px] font-sans text-olive uppercase tracking-widest mt-1.5 font-medium">
+                  <span className="block text-[10px] font-sans text-gold/80 uppercase tracking-widest mt-1.5 font-medium">
                     Horas
                   </span>
                 </div>
-                <div className="py-2.5 px-1 sm:py-3 text-center border-l border-text/10">
-                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-text leading-none">
+                <div className="py-2.5 px-1 sm:py-3 text-center border-l border-gold/20">
+                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-gold-light leading-none">
                     {formatNumber(timeLeft.minutes)}
                   </span>
-                  <span className="block text-[10px] font-sans text-olive uppercase tracking-widest mt-1.5 font-medium">
+                  <span className="block text-[10px] font-sans text-gold/80 uppercase tracking-widest mt-1.5 font-medium">
                     Min
                   </span>
                 </div>
-                <div className="py-2.5 px-1 sm:py-3 text-center border-l border-text/10">
-                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-text leading-none">
+                <div className="py-2.5 px-1 sm:py-3 text-center border-l border-gold/20">
+                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-gold-light leading-none">
                     {formatNumber(timeLeft.seconds)}
                   </span>
-                  <span className="block text-[10px] font-sans text-olive uppercase tracking-widest mt-1.5 font-medium">
+                  <span className="block text-[10px] font-sans text-gold/80 uppercase tracking-widest mt-1.5 font-medium">
                     Seg
                   </span>
                 </div>
               </div>
 
-              <p className="text-xs font-sans text-olive mt-3">
+              <p className="text-xs font-sans text-gold-light/85 mt-3">
                 Compre agora e receba essa atualização de graça quando lançar.
               </p>
             </div>

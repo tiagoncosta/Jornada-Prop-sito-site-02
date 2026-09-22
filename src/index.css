@@ -5,19 +5,29 @@
   --font-display: "Lora", Georgia, serif;
   --font-serif: "Cormorant Garamond", Georgia, serif;
   
-  --color-bg: #F5F1EB;               /* Editorial warm linen off-white */
-  --color-bg-alt: #EFEAE2;           /* Subtle layered warm sand section */
-  --color-bg-light: #F8F6F2;         /* Pure soft ivory layer */
-  --color-text: #2A2927;             /* Deep warm charcoal wood */
-  --color-text-muted: #57524A;       /* Refined warm gray for secondary reading */
-  --color-accent: #8A5A44;           /* Sophisticated earthy terracotta */
-  --color-accent-hover: #724632;     /* Deeper roasted earth tone for hover */
-  --color-card: #FFFFFF;             /* Clean crisp paper card */
-  --color-card-warm: #FAF7F2;        /* Warm tinted paper card */
-  --color-border: rgba(42, 41, 39, 0.10); /* Fine hair-thin editorial border */
-  --color-border-subtle: rgba(42, 41, 39, 0.05);
-  --color-beige-light: #EFEAE2;
-  --color-olive: #57524A;            /* Warm muted tone passing WCAG AA */
+  --color-bg: #FAF7F2;               /* Warm ivory linen */
+  --color-bg-alt: #F1ECE2;           /* Soft sand dusk layer */
+  --color-bg-light: #FDFCFA;         /* Pure warm ivory surface */
+  --color-text: #162330;             /* Deep twilight charcoal/navy */
+  --color-text-muted: #505F70;       /* Dusk slate reading */
+  --color-accent: #0C4566;           /* Deep Petrol Ocean Blue from official typography */
+  --color-accent-hover: #08344E;     /* Deeper midnight teal */
+  --color-azure: #387B9F;            /* Celestial light blue from dawn sky */
+  --color-azure-light: #5B9EC2;      /* Luminous softer azure glow */
+  --color-azure-soft: #8AC2DF;       /* Ethereal dawn azure mist */
+  --color-gold: #C89042;             /* Dawn Amber Gold */
+  --color-gold-light: #E8BA78;       /* Soft morning dawn glow */
+  --color-gold-warm: #F4D39B;        /* Radiant golden highlight */
+  --color-twilight: #182536;         /* Twilight deep indigo base */
+  --color-twilight-light: #24354D;   /* Twilight midtone */
+  --color-twilight-dark: #101925;    /* Deep night base */
+  --color-mauve: #76687D;            /* Atmospheric dusk mist */
+  --color-card: #FFFFFF;             /* Crisp paper */
+  --color-card-warm: #FAF8F5;        /* Warm tinted paper */
+  --color-border: rgba(12, 69, 102, 0.10); /* Petrol hair-thin border */
+  --color-border-subtle: rgba(12, 69, 102, 0.05);
+  --color-border-gold: rgba(200, 144, 66, 0.25);
+  --color-olive: #505F70;            /* Slate twilight passing WCAG AA */
 }
 
 @layer base {
@@ -37,9 +47,50 @@
   }
 }
 
-/* Subtle continuous journey path background lines */
+/* O gradiente da imagem de referência: aurora dourada, azul celeste luminoso, névoa e índigo */
+.jornada-image-gradient {
+  background: 
+    radial-gradient(ellipse 85% 70% at 10% 12%, #E8BA78 0%, rgba(216, 159, 84, 0.85) 22%, rgba(91, 158, 194, 0.45) 45%, rgba(118, 104, 125, 0.6) 65%, transparent 85%),
+    radial-gradient(ellipse 70% 60% at 92% 88%, #101925 0%, transparent 70%),
+    linear-gradient(155deg, #A88F80 0%, #4D6E8A 35%, #26354B 75%, #15202E 100%);
+}
+
+/* Atmosfera fluida de luz suave para o topo da página */
+.jornada-hero-atmosphere {
+  background: 
+    radial-gradient(ellipse 75% 60% at 5% 5%, rgba(232, 186, 120, 0.35) 0%, rgba(216, 159, 84, 0.12) 30%, transparent 60%),
+    radial-gradient(ellipse 70% 55% at 92% 35%, rgba(91, 158, 194, 0.18) 0%, rgba(56, 123, 159, 0.05) 35%, transparent 60%),
+    transparent;
+}
+
+/* Card Crepuscular Profundo com iluminação da Aurora e do Azul Celeste da imagem */
+.jornada-dusk-card {
+  background: 
+    radial-gradient(circle at 10% 12%, rgba(232, 186, 120, 0.32) 0%, transparent 48%),
+    radial-gradient(circle at 88% 22%, rgba(91, 158, 194, 0.30) 0%, transparent 52%),
+    radial-gradient(circle at 85% 85%, rgba(12, 69, 102, 0.45) 0%, transparent 55%),
+    linear-gradient(155deg, #1A283A 0%, #15212F 50%, #0F1722 100%);
+}
+
+/* Seção com gradiente suave da aurora e do azul celeste, transição totalmente fluida */
+.jornada-section-aurora {
+  background: 
+    radial-gradient(ellipse 65% 45% at 8% 35%, rgba(232, 186, 120, 0.16) 0%, transparent 55%),
+    radial-gradient(ellipse 65% 45% at 92% 65%, rgba(91, 158, 194, 0.14) 0%, transparent 55%),
+    transparent;
+}
+
+/* Atmosfera de luz azul celeste mais claro e aurora para áreas de transição */
+.jornada-celestial-glow {
+  background: 
+    radial-gradient(ellipse 60% 45% at 90% 40%, rgba(91, 158, 194, 0.16) 0%, transparent 50%),
+    radial-gradient(ellipse 55% 40% at 10% 60%, rgba(232, 186, 120, 0.14) 0%, transparent 48%),
+    transparent;
+}
+
+/* Sutil malha de linhas em tom petrol/dusk */
 .editorial-path-bg {
-  background-image: radial-gradient(rgba(138, 90, 68, 0.04) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(12, 69, 102, 0.06) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 

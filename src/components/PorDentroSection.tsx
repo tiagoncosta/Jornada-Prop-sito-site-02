@@ -52,11 +52,11 @@ export default function PorDentroSection() {
   ];
 
   return (
-    <section id="proxima-secao" className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 relative scroll-mt-16 sm:scroll-mt-18">
-      <div className="container mx-auto px-5 sm:px-8 max-w-6xl">
+    <section id="proxima-secao" className="py-14 sm:py-20 jornada-section-aurora relative scroll-mt-16 sm:scroll-mt-18 bg-transparent">
+      <div className="container mx-auto px-5 sm:px-8 max-w-6xl relative z-10">
         
         <div className="max-w-2xl mx-auto text-center mb-10 sm:mb-14">
-          <span className="text-[11px] font-sans font-medium tracking-[0.24em] text-accent uppercase block mb-2">
+          <span className="text-[11px] font-sans font-semibold tracking-[0.24em] text-accent uppercase block mb-2">
             POR DENTRO DA JORNADA
           </span>
           <p className="text-xs sm:text-sm md:text-base font-sans text-olive font-normal leading-relaxed">
@@ -76,10 +76,10 @@ export default function PorDentroSection() {
               delay={idx * 0.08}
               className="snap-center shrink-0 w-[85vw] max-w-sm md:w-auto md:max-w-none h-full"
             >
-              <div className="w-full h-full bg-card border border-text/10 rounded-sm overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-accent/40 group">
+              <div className="w-full h-full bg-card border border-accent/15 rounded-sm overflow-hidden flex flex-col justify-between transition-all duration-300 hover:border-gold/50 hover:shadow-md hover:shadow-accent/5 group">
                 
                 {/* Moldura da Imagem com Aspect Ratio Preciso */}
-                <div className="relative aspect-[16/10] bg-bg-alt/50 overflow-hidden border-b border-text/8">
+                <div className="relative aspect-[16/10] bg-bg-alt/50 overflow-hidden border-b border-accent/10">
                   <img
                     src={card.img}
                     alt={card.caption}

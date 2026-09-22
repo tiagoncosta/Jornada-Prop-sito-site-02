@@ -5,6 +5,7 @@
 
 import React, { Suspense } from 'react';
 import PorDentroSection from './components/PorDentroSection';
+import JornadaSymbol from './components/JornadaSymbol';
 
 // Code splitting: Seções abaixo da dobra carregadas assincronamente com React.lazy
 const ProblemasSection = React.lazy(() => import('./components/ProblemasSection'));
@@ -27,81 +28,53 @@ export default function App() {
   return (
     <div className="min-h-screen bg-bg text-text selection:bg-accent/20 selection:text-text font-sans flex flex-col justify-between antialiased overflow-x-hidden relative">
       
-      {/* Elemento de Linhas Tracejadas em Toda a Extensão da Página para Contraste e Estrutura Arquitetural */}
+      {/* Luzes Ambientais Contínuas e Fluídas em Toda a Extensão da Página */}
       <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden select-none" aria-hidden="true">
-        {/* Colunas verticais arquiteturais com linhas tracejadas */}
-        <div className="h-full max-w-6xl mx-auto px-5 sm:px-8 flex justify-between">
-          <div className="w-full h-full border-x border-dashed border-text/20 flex justify-between">
-            <div className="hidden md:block h-full border-r border-dashed border-text/10 w-1/3" />
-            <div className="h-full border-r border-dashed border-accent/20 w-1/2 md:w-1/3" />
-          </div>
-        </div>
-
-        {/* Padrão contínuo de trajetórias tracejadas e nós da jornada em toda a extensão da página */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.26] text-accent" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="jornada-dashed-path" width="1440" height="960" patternUnits="userSpaceOnUse">
-              {/* Linha mestra vertical tracejada central */}
-              <line x1="720" y1="0" x2="720" y2="960" stroke="currentColor" strokeWidth="1" strokeDasharray="6 8" strokeOpacity="0.45" />
-              
-              {/* Trajetória orgânica principal em curva tracejada */}
-              <path 
-                d="M-40,160 C280,260 480,60 720,240 C960,420 1160,180 1480,340" 
-                stroke="currentColor" 
-                strokeWidth="1.75" 
-                strokeDasharray="6 8" 
-                fill="none"
-              />
-              {/* Trajetória de retorno/convergência tracejada */}
-              <path 
-                d="M-40,640 C340,520 560,780 720,620 C940,460 1200,700 1480,590" 
-                stroke="currentColor" 
-                strokeWidth="1.25" 
-                strokeDasharray="4 6" 
-                fill="none"
-              />
-              {/* Conexão transversal diagonal pontilhada */}
-              <path 
-                d="M720,240 C760,400 780,480 720,620" 
-                stroke="currentColor" 
-                strokeWidth="1" 
-                strokeDasharray="3 5" 
-                strokeOpacity="0.5" 
-                fill="none"
-              />
-              {/* Marcos e nós de chegada nos cruzamentos */}
-              <circle cx="720" cy="240" r="4.5" fill="currentColor" />
-              <circle cx="720" cy="620" r="4.5" fill="currentColor" />
-              <circle cx="280" cy="260" r="3.5" fill="currentColor" />
-              <circle cx="1160" cy="180" r="3.5" fill="currentColor" />
-              <circle cx="340" cy="520" r="3.5" fill="currentColor" />
-              <circle cx="1200" cy="700" r="3.5" fill="currentColor" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#jornada-dashed-path)" />
-        </svg>
+        {/* Focos difusos de luz da aurora dourada e do azul celeste da imagem de referência */}
+        <div className="absolute top-[6%] -left-40 w-[580px] h-[580px] rounded-full bg-gold-light/20 blur-[140px]" />
+        <div className="absolute top-[20%] -right-40 w-[620px] h-[620px] rounded-full bg-azure-light/22 blur-[140px]" />
+        <div className="absolute top-[42%] -left-36 w-[560px] h-[560px] rounded-full bg-azure/16 blur-[130px]" />
+        <div className="absolute top-[62%] -right-36 w-[580px] h-[580px] rounded-full bg-gold/15 blur-[130px]" />
+        <div className="absolute top-[80%] left-[10%] w-[540px] h-[540px] rounded-full bg-azure-light/18 blur-[130px]" />
       </div>
 
-      {/* 0. HEADER EDITORIAL MINIMALISTA (Carregamento Imediato no Bundle Principal) */}
-      <header className="fixed top-0 w-full z-50 bg-bg/95 backdrop-blur-md border-b border-text/8 transition-all">
+      {/* 0. HEADER EDITORIAL MINIMALISTA */}
+      <header className="fixed top-0 w-full z-50 bg-bg/90 backdrop-blur-md transition-all shadow-xs">
         <div className="container mx-auto px-5 sm:px-8 h-16 sm:h-18 flex items-center justify-between max-w-6xl">
-          {/* Logomarca Editorial com Letras Espaçadas */}
-          <div className="flex items-center gap-3">
-            <span className="text-xs sm:text-sm font-serif font-semibold tracking-[0.22em] text-text uppercase select-none">
+          {/* Logomarca Editorial com o Símbolo Oficial da Imagem */}
+          <a href="#" className="flex items-center gap-2.5 group">
+            <div className="w-5 h-6 text-accent transition-transform duration-300 group-hover:scale-105 shrink-0">
+              <JornadaSymbol size="100%" color="currentColor" />
+            </div>
+            <span className="text-xs sm:text-sm font-serif font-semibold tracking-[0.24em] text-accent uppercase select-none">
               Jornada Propósito Pleno
             </span>
-          </div>
+          </a>
         </div>
       </header>
 
       <main className="flex-1 relative z-10">
 
-        {/* 1. HERO SECTION (Carregamento Imediato sem Lazy / Renderização Direta para LCP Instantâneo) */}
-        <section className="pt-24 sm:pt-28 md:pt-32 pb-12 sm:pb-16 relative overflow-hidden isolate border-b border-text/8">
+        {/* 1. HERO SECTION (Com a atmosfera fluida e sem linha dura de corte) */}
+        <section className="pt-26 sm:pt-32 md:pt-36 pb-14 sm:pb-22 relative isolate jornada-hero-atmosphere bg-transparent">
+          
+          {/* Brilhos suaves da aurora dourada e do azul celeste */}
+          <div className="pointer-events-none absolute -top-20 -left-20 w-80 h-80 rounded-full bg-gold-light/25 blur-3xl" aria-hidden="true" />
+          <div className="pointer-events-none absolute top-1/4 -right-20 w-80 h-80 rounded-full bg-azure-light/25 blur-3xl" aria-hidden="true" />
 
           <div className="container mx-auto px-5 sm:px-8 max-w-4xl relative z-10 text-center">
             
-            {/* Headline em Tamanho Editorial Harmonioso - Renderização Direta sem Atraso de Animação */}
+            {/* Emblema Central: A Cruz e o Caminho do Propósito */}
+            <div className="flex flex-col items-center justify-center mb-6 sm:mb-8">
+              <div className="w-11 h-13 sm:w-13 sm:h-15 text-accent mb-2.5 transition-transform duration-500 hover:scale-105">
+                <JornadaSymbol size="100%" color="currentColor" />
+              </div>
+              <span className="text-[10px] sm:text-[11px] font-sans font-semibold tracking-[0.26em] text-accent uppercase">
+                Jornada Propósito Pleno
+              </span>
+            </div>
+
+            {/* Headline em Tamanho Editorial Harmonioso */}
             <h1 className="text-[1.85rem] sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-normal tracking-tight leading-[1.22] sm:leading-[1.18] mb-5 sm:mb-6 max-w-3xl mx-auto">
               <span className="text-accent block">
                 Você não sabe seu propósito
@@ -116,11 +89,11 @@ export default function App() {
               Nenhuma meta, motivação ou tentativa nova resolve isso. Primeiro se reconstrói a base - depois vem a clareza.
             </p>
 
-            {/* Botão de Navegação */}
+            {/* Botão de Navegação com acabamento editorial nas cores da marca */}
             <div className="flex items-center justify-center max-w-md mx-auto">
               <button
                 onClick={scrollToNextSection}
-                className="w-full sm:w-auto border border-text/30 hover:border-text text-text hover:bg-text/5 bg-transparent font-sans font-medium text-xs sm:text-sm tracking-wider uppercase px-7 py-3.5 rounded-sm transition-all duration-200 inline-flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98] text-center"
+                className="w-full sm:w-auto min-h-[44px] bg-accent hover:bg-accent-hover text-[#FDFCFA] font-sans font-medium text-xs sm:text-sm tracking-wider uppercase px-8 py-3.5 rounded-sm transition-all duration-200 inline-flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98] text-center shadow-sm hover:shadow-md hover:ring-2 hover:ring-gold/30"
               >
                 <span>Explore a jornada</span>
               </button>
@@ -134,7 +107,7 @@ export default function App() {
 
         <Suspense
           fallback={
-            <div className="py-14 sm:py-20 bg-bg-alt/40 border-b border-text/8 min-h-[420px] md:min-h-[420px] max-md:min-h-[700px]">
+            <div className="py-14 sm:py-20 min-h-[420px] md:min-h-[420px] max-md:min-h-[700px]">
               <div className="container mx-auto px-5 sm:px-8 max-w-5xl">
                 <div className="max-w-2xl mx-auto h-16 bg-text/5 rounded-sm mb-10 sm:mb-14 animate-pulse" />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
@@ -151,7 +124,7 @@ export default function App() {
 
         <Suspense
           fallback={
-            <div className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 min-h-[850px] lg:min-h-[850px] max-lg:min-h-[1350px]">
+            <div className="py-14 sm:py-20 min-h-[850px] lg:min-h-[850px] max-lg:min-h-[1350px]">
               <div className="container mx-auto px-5 sm:px-8 max-w-5xl">
                 <div className="max-w-2xl mx-auto h-16 bg-text/5 rounded-sm mb-10 sm:mb-14 animate-pulse" />
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8">
@@ -169,7 +142,7 @@ export default function App() {
 
         <Suspense
           fallback={
-            <div id="como-funciona" className="py-14 sm:py-20 bg-bg-alt/50 border-b border-text/8 min-h-[360px] md:min-h-[360px] max-md:min-h-[560px]">
+            <div id="como-funciona" className="py-14 sm:py-20 min-h-[360px] md:min-h-[360px] max-md:min-h-[560px]">
               <div className="container mx-auto px-5 sm:px-8 max-w-5xl">
                 <div className="max-w-2xl mx-auto h-12 bg-text/5 rounded-sm mb-10 sm:mb-14 animate-pulse" />
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -186,7 +159,7 @@ export default function App() {
 
         <Suspense
           fallback={
-            <div className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 min-h-[500px]">
+            <div className="py-14 sm:py-20 min-h-[500px]">
               <div className="container mx-auto px-5 sm:px-8 max-w-5xl">
                 <div className="max-w-2xl mx-auto h-16 bg-text/5 rounded-sm mb-8 sm:mb-12 animate-pulse" />
                 <div className="flex gap-6 max-w-4xl mx-auto mb-8 overflow-hidden">
@@ -203,7 +176,7 @@ export default function App() {
 
         <Suspense
           fallback={
-            <div id="oferta" className="py-16 sm:py-24 bg-bg-alt/40 border-b border-text/8 min-h-[720px]">
+            <div id="oferta" className="py-16 sm:py-24 min-h-[720px]">
               <div className="container mx-auto px-5 sm:px-8 max-w-2xl">
                 <div className="bg-card border border-text/12 rounded-sm p-7 sm:p-12 h-[600px] animate-pulse" />
               </div>
@@ -215,7 +188,7 @@ export default function App() {
 
         <Suspense
           fallback={
-            <div className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 min-h-[600px]">
+            <div className="py-14 sm:py-20 min-h-[600px]">
               <div className="container mx-auto px-5 sm:px-8 max-w-3xl">
                 <div className="h-12 bg-text/5 rounded-sm mb-10 sm:mb-14 max-w-sm mx-auto animate-pulse" />
                 <div className="space-y-4">
@@ -232,7 +205,7 @@ export default function App() {
 
         <Suspense
           fallback={
-            <div className="py-14 sm:py-18 bg-bg/85 border-b border-text/8 min-h-[180px]">
+            <div className="py-14 sm:py-18 min-h-[180px]">
               <div className="container mx-auto px-5 sm:px-8 max-w-3xl">
                 <div className="h-14 bg-text/5 rounded-sm mb-4 max-w-xl mx-auto animate-pulse" />
                 <div className="h-4 bg-text/5 rounded-sm w-36 mx-auto animate-pulse" />
@@ -245,7 +218,7 @@ export default function App() {
 
         <Suspense
           fallback={
-            <div className="py-8 sm:py-10 bg-bg-alt/30 min-h-[100px]">
+            <div className="py-8 sm:py-10 bg-transparent min-h-[100px]">
               <div className="container mx-auto px-5 sm:px-8 max-w-6xl h-8 animate-pulse" />
             </div>
           }

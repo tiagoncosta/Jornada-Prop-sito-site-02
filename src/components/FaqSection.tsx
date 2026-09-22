@@ -33,22 +33,25 @@ export default function FaqSection() {
   ];
 
   return (
-    <section className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 relative">
-      <div className="container mx-auto px-5 sm:px-8 max-w-3xl">
+    <section className="py-14 sm:py-20 relative bg-transparent">
+      <div className="container mx-auto px-5 sm:px-8 max-w-3xl relative z-10">
         
         <div className="text-center mb-10 sm:mb-14">
+          <span className="text-[11px] font-sans font-semibold tracking-[0.24em] text-accent uppercase block mb-2">
+            CLAREZA TOTAL
+          </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-normal text-text">
             Dúvidas Frequentes
           </h2>
         </div>
 
-        <div className="border-t border-text/12">
+        <div className="border-t border-accent/15">
           {faqItems.map((item, idx) => {
             const isOpen = openFaq === idx;
             return (
               <div 
                 key={idx} 
-                className="border-b border-text/12 transition-colors"
+                className="border-b border-accent/12 transition-colors"
               >
                 <button
                   onClick={() => toggleFaq(idx)}
@@ -60,7 +63,7 @@ export default function FaqSection() {
                   <div className="w-6 h-6 flex items-center justify-center shrink-0 text-accent">
                     <ChevronDown 
                       className={`w-4 h-4 transition-transform duration-300 ${
-                        isOpen ? 'rotate-180 text-text' : 'text-accent'
+                        isOpen ? 'rotate-180 text-gold' : 'text-accent'
                       }`} 
                     />
                   </div>
@@ -88,10 +91,10 @@ export default function FaqSection() {
         <div className="text-center mt-10 sm:mt-14">
           <a 
             href="https://pay.hub.la/RBS2l0kJ8JIuPjA14Nr5"
-            className="w-full sm:w-auto min-h-[48px] sm:min-w-[300px] bg-text hover:bg-text/90 active:scale-[0.98] text-[#F8F6F2] font-sans font-medium py-3.5 sm:py-4 px-8 rounded-sm shadow-sm hover:shadow transition-all duration-200 text-xs sm:text-sm tracking-wider uppercase inline-flex items-center justify-center gap-2.5 cursor-pointer text-center"
+            className="w-full sm:w-auto min-h-[48px] sm:min-w-[300px] bg-accent hover:bg-accent-hover active:scale-[0.98] text-[#FDFCFA] font-sans font-medium py-3.5 sm:py-4 px-8 rounded-sm shadow-sm hover:shadow-md hover:ring-2 hover:ring-gold/30 transition-all duration-200 text-xs sm:text-sm tracking-wider uppercase inline-flex items-center justify-center gap-2.5 cursor-pointer text-center"
           >
             <span>Quero começar minha Jornada</span>
-            <ArrowRight className="w-4 h-4 text-[#F8F6F2]/80" />
+            <ArrowRight className="w-4 h-4 text-[#FDFCFA]/80" />
           </a>
           <div className="mt-4 text-[11px] font-sans text-olive/70 flex items-center justify-center gap-1.5">
             <ShieldCheck className="w-3.5 h-3.5 text-accent" />

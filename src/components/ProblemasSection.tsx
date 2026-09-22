@@ -18,8 +18,8 @@ export default function ProblemasSection() {
   ];
 
   return (
-    <section className="py-14 sm:py-20 bg-bg-alt/40 border-b border-text/8">
-      <div className="container mx-auto px-5 sm:px-8 max-w-5xl">
+    <section className="py-14 sm:py-20 relative bg-transparent">
+      <div className="container mx-auto px-5 sm:px-8 max-w-5xl relative z-10">
         <Reveal>
           <div className="max-w-2xl mx-auto text-center mb-10 sm:mb-14">
             <span className="text-[11px] font-sans font-medium tracking-[0.24em] text-accent uppercase block mb-2">
@@ -34,8 +34,9 @@ export default function ProblemasSection() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {problemas.map((item, idx) => (
             <Reveal key={idx} delay={idx * 0.1}>
-              <div className="h-full bg-card border border-text/10 p-6 sm:p-7 rounded-sm flex flex-col justify-between relative">
+              <div className="h-full bg-card border border-accent/15 hover:border-gold/40 p-6 sm:p-7 rounded-sm flex flex-col justify-between relative transition-all duration-300 hover:shadow-xs group">
                 <div>
+                  <div className="w-5 h-0.5 bg-gold/40 group-hover:bg-gold/80 transition-colors mb-3 rounded-full" />
                   <h3 className="text-base sm:text-lg font-serif font-normal text-text mb-2.5 leading-snug">
                     {item.title}
                   </h3>

@@ -31,8 +31,8 @@ export default function MetodoOrigemSection() {
   };
 
   return (
-    <section className="py-14 sm:py-20 bg-bg/85 border-b border-text/8 relative">
-      <div className="container mx-auto px-5 sm:px-8 max-w-5xl">
+    <section className="py-14 sm:py-20 relative bg-transparent">
+      <div className="container mx-auto px-5 sm:px-8 max-w-5xl relative z-10">
         
         {/* Cabeçalho da Seção */}
         <Reveal>
@@ -56,14 +56,14 @@ export default function MetodoOrigemSection() {
             <button
               onClick={() => scroll('left')}
               aria-label="Depoimento anterior"
-              className="w-9 h-9 rounded-sm border border-text/15 bg-card/80 hover:bg-card hover:border-text/30 flex items-center justify-center text-text transition-all cursor-pointer active:scale-95"
+              className="w-9 h-9 rounded-sm border border-accent/20 bg-card hover:bg-accent/5 hover:border-accent flex items-center justify-center text-accent transition-all cursor-pointer active:scale-95 shadow-2xs"
             >
               <ChevronLeft className="w-4 h-4" />
             </button>
             <button
               onClick={() => scroll('right')}
               aria-label="Próximo depoimento"
-              className="w-9 h-9 rounded-sm border border-text/15 bg-card/80 hover:bg-card hover:border-text/30 flex items-center justify-center text-text transition-all cursor-pointer active:scale-95"
+              className="w-9 h-9 rounded-sm border border-accent/20 bg-card hover:bg-accent/5 hover:border-accent flex items-center justify-center text-accent transition-all cursor-pointer active:scale-95 shadow-2xs"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
@@ -78,7 +78,7 @@ export default function MetodoOrigemSection() {
             {depoimentos.map((dep, idx) => (
               <div
                 key={idx}
-                className="w-[280px] sm:w-[320px] md:w-[340px] shrink-0 snap-center bg-card border border-text/10 rounded-sm overflow-hidden flex flex-col justify-between shadow-2xs hover:border-accent/30 transition-all"
+                className="w-[280px] sm:w-[320px] md:w-[340px] shrink-0 snap-center bg-card border border-accent/15 hover:border-gold/50 rounded-sm overflow-hidden flex flex-col justify-between shadow-2xs transition-all group"
               >
                 {/* Reprodutor de Vídeo HTML5 */}
                 <div className="relative aspect-[9/16] bg-text/5 flex items-center justify-center overflow-hidden">
@@ -122,16 +122,16 @@ export default function MetodoOrigemSection() {
             <button
               onClick={() => scroll('left')}
               aria-label="Depoimento anterior"
-              className="w-9 h-9 rounded-sm border border-text/15 bg-card flex items-center justify-center text-text transition-all cursor-pointer active:scale-95"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-sm border border-accent/20 bg-card hover:bg-accent/5 flex items-center justify-center text-accent transition-all cursor-pointer active:scale-95 shadow-2xs"
             >
-              <ChevronLeft className="w-4 h-4" />
+              <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={() => scroll('right')}
               aria-label="Próximo depoimento"
-              className="w-9 h-9 rounded-sm border border-text/15 bg-card flex items-center justify-center text-text transition-all cursor-pointer active:scale-95"
+              className="w-11 h-11 min-w-[44px] min-h-[44px] rounded-sm border border-accent/20 bg-card hover:bg-accent/5 flex items-center justify-center text-accent transition-all cursor-pointer active:scale-95 shadow-2xs"
             >
-              <ChevronRight className="w-4 h-4" />
+              <ChevronRight className="w-5 h-5" />
             </button>
           </div>
         </div>
