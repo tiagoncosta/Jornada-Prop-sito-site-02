@@ -27,6 +27,10 @@ export default function FaqSection() {
       a: 'Sim. Você garante o acesso vitalício hoje, com os 5 pilares disponíveis, e o Pilar 6 entra na sua área de membros automaticamente em outubro, sem cobrança adicional.'
     },
     {
+      q: 'Vou ter contato direto com o Guilherme?',
+      a: 'A Jornada é um programa gravado, que você faz no seu ritmo. Cada devocional foi gravado pelo Guilherme para caminhar com você semana a semana, mas o programa não inclui atendimento individual.'
+    },
+    {
       q: 'E se eu não gostar ou não me identificar com a Jornada?',
       a: 'Você não precisa carregar a dúvida. Tem 7 dias pra sentir se faz sentido pra você - sem risco, sem burocracia pra pedir reembolso.'
     }

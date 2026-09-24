@@ -5,7 +5,7 @@ import JornadaSymbol from './JornadaSymbol';
 export default function OfertaSection() {
   const entregaveis = [
     'Acesso vitalício à área de membros',
-    '70 devocionais em vídeo - 5 pilares, 14 semanas',
+    '17 semanas em 6 pilares: 5 pilares disponíveis agora e o Pilar 6 liberado em outubro, sem custo extra.',
     'Aplicativo exclusivo para assistir os devocionais de onde quiser',
     'Ebook de apoio por módulo',
     'Agente de IA na plataforma: peça um resumo, um mapa mental ou os principais insights de qualquer parte do conteúdo, quando quiser',
@@ -68,6 +68,9 @@ export default function OfertaSection() {
                   R$ 97
                 </span>
               </div>
+              <p className="text-xs sm:text-[13px] font-sans text-gold-light/90 font-normal">
+                Menos de R$1 por dia ao longo das 17 semanas, e o acesso é seu para sempre.
+              </p>
               <p className="text-xs font-sans text-gold-light/75 font-normal">
                 Cada semana adiando é uma semana a mais no mesmo lugar.
               </p>
