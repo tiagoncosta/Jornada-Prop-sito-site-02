@@ -30,13 +30,9 @@ export default function OfertaSection() {
 
           <div className="relative z-10">
             {/* Símbolo do Caminho e Cruz em Destaque Dourado */}
-            <div className="w-9 h-11 text-gold-light mx-auto mb-3.5 drop-shadow-xs">
+            <div className="w-9 h-11 text-gold-light mx-auto mb-6 drop-shadow-xs">
               <JornadaSymbol size="100%" color="currentColor" />
             </div>
-
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-normal text-[#FDFCFA] mb-7 sm:mb-8 leading-tight">
-              O que você recebe ao entrar hoje
-            </h2>
 
             {/* Lista de Entregáveis em Vidro Crepuscular */}
             <div className="text-left max-w-lg mx-auto bg-[#101A27]/85 backdrop-blur-xs border border-gold/25 p-5 sm:p-7 rounded-sm mb-7 sm:mb-8 space-y-3.5 shadow-inner">
