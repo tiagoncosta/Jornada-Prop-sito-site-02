@@ -3,7 +3,8 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { Suspense } from 'react';
+import React, { Suspense, useState, useEffect } from 'react';
+import { ArrowRight } from 'lucide-react';
 import PorDentroSection from './components/PorDentroSection';
 import JornadaSymbol from './components/JornadaSymbol';
 
@@ -18,10 +19,51 @@ const CitacaoSection = React.lazy(() => import('./components/CitacaoSection'));
 const FooterSection = React.lazy(() => import('./components/FooterSection'));
 
 export default function App() {
-  const scrollToNextSection = () => {
-    const el = document.getElementById('proxima-secao');
+  const [isCardCtaVisible, setIsCardCtaVisible] = useState(false);
+
+  useEffect(() => {
+    let observer: IntersectionObserver | null = null;
+    let cancelled = false;
+
+    const attachObserver = () => {
+      if (cancelled) return;
+      const target = document.getElementById('btn-cta-oferta');
+      if (target) {
+        observer = new IntersectionObserver(
+          ([entry]) => {
+            setIsCardCtaVisible(entry.isIntersecting);
+          },
+          { root: null, threshold: 0.1 }
+        );
+        observer.observe(target);
+      } else {
+        setTimeout(attachObserver, 200);
+      }
+    };
+
+    attachObserver();
+
+    return () => {
+      cancelled = true;
+      if (observer) observer.disconnect();
+    };
+  }, []);
+
+  const scrollToOferta = () => {
+    const el = document.getElementById('o-que-voce-recebe');
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 90;
+      const elementPosition = el.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.scrollY - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    } else {
+      const ofertaSec = document.getElementById('oferta');
+      if (ofertaSec) {
+        ofertaSec.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -64,16 +106,6 @@ export default function App() {
 
           <div className="container mx-auto px-5 sm:px-8 max-w-4xl relative z-10 text-center">
             
-            {/* Emblema Central: A Cruz e o Caminho do Propósito */}
-            <div className="flex flex-col items-center justify-center mb-6 sm:mb-8">
-              <div className="w-11 h-13 sm:w-13 sm:h-15 text-accent mb-2.5 transition-transform duration-500 hover:scale-105">
-                <JornadaSymbol size="100%" color="currentColor" />
-              </div>
-              <span className="text-[10px] sm:text-[11px] font-sans font-semibold tracking-[0.26em] text-accent uppercase">
-                Jornada Propósito Pleno
-              </span>
-            </div>
-
             {/* Headline em Tamanho Editorial Harmonioso */}
             <h1 className="text-[1.85rem] sm:text-4xl md:text-5xl lg:text-[3.25rem] font-serif font-normal tracking-tight leading-[1.22] sm:leading-[1.18] mb-5 sm:mb-6 max-w-3xl mx-auto">
               <span className="text-accent block">
@@ -85,17 +117,22 @@ export default function App() {
             </h1>
             
             {/* Subtítulo Arejado e Reflexivo */}
-            <p className="text-base sm:text-lg font-sans text-olive font-normal leading-relaxed max-w-xl mx-auto mb-8 sm:mb-9 px-1 sm:px-0">
+            <p className="text-base sm:text-lg font-sans text-olive font-normal leading-relaxed max-w-xl mx-auto mb-3 sm:mb-3.5 px-1 sm:px-0">
               Nenhuma meta, motivação ou tentativa nova resolve isso. Primeiro se reconstrói a base - depois vem a clareza.
+            </p>
+
+            {/* Resumo Direto da Jornada */}
+            <p className="text-sm sm:text-base font-sans text-olive font-normal leading-relaxed max-w-xl mx-auto mb-8 sm:mb-9 px-1 sm:px-0">
+              17 semanas de devocionais em vídeo para você descobrir quem é para Deus e ter clareza do seu propósito.
             </p>
 
             {/* Botão de Navegação com acabamento editorial nas cores da marca */}
             <div className="flex items-center justify-center max-w-md mx-auto">
               <button
-                onClick={scrollToNextSection}
+                onClick={scrollToOferta}
                 className="w-full sm:w-auto min-h-[44px] bg-accent hover:bg-accent-hover text-[#FDFCFA] font-sans font-medium text-xs sm:text-sm tracking-wider uppercase px-8 py-3.5 rounded-sm transition-all duration-200 inline-flex items-center justify-center gap-2 cursor-pointer active:scale-[0.98] text-center shadow-sm hover:shadow-md hover:ring-2 hover:ring-gold/30"
               >
-                <span>Explore a jornada</span>
+                <span>VER O QUE VOCÊ RECEBE</span>
               </button>
             </div>
 
@@ -227,6 +264,24 @@ export default function App() {
         </Suspense>
 
       </main>
+
+      {/* 8. BOTÃO FIXO DE CHECKOUT (Formato de pílula no canto inferior direito) */}
+      <a
+        id="btn-fixo-checkout"
+        href="https://pay.hub.la/RBS2l0kJ8JIuPjA14Nr5"
+        aria-label="Quero começar"
+        style={{
+          bottom: 'max(1rem, calc(0.75rem + env(safe-area-inset-bottom, 0px)))'
+        }}
+        className={`fixed right-4 sm:right-6 z-40 min-h-[44px] h-[46px] px-5 sm:px-6 rounded-full bg-accent hover:bg-accent-hover text-[#FDFCFA] border border-gold/40 font-sans font-medium text-xs sm:text-sm tracking-wider uppercase inline-flex items-center justify-center gap-2 shadow-xl hover:shadow-2xl hover:ring-2 hover:ring-gold/50 active:scale-[0.98] transition-all duration-300 ${
+          isCardCtaVisible
+            ? 'opacity-0 pointer-events-none translate-y-4 scale-95'
+            : 'opacity-100 pointer-events-auto translate-y-0 scale-100'
+        }`}
+      >
+        <span>Quero começar</span>
+        <ArrowRight className="w-3.5 h-3.5 text-[#FDFCFA]/80 shrink-0" />
+      </a>
 
     </div>
   );

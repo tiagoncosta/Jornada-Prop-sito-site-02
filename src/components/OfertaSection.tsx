@@ -35,7 +35,10 @@ export default function OfertaSection() {
             </div>
 
             {/* Lista de Entregáveis em Vidro Crepuscular */}
-            <div className="text-left max-w-lg mx-auto bg-[#101A27]/85 backdrop-blur-xs border border-gold/25 p-5 sm:p-7 rounded-sm mb-7 sm:mb-8 space-y-3.5 shadow-inner">
+            <div 
+              id="o-que-voce-recebe"
+              className="scroll-mt-24 sm:scroll-mt-28 text-left max-w-lg mx-auto bg-[#101A27]/85 backdrop-blur-xs border border-gold/25 p-5 sm:p-7 rounded-sm mb-7 sm:mb-8 space-y-3.5 shadow-inner"
+            >
               <span className="text-[10px] font-sans font-semibold tracking-[0.2em] text-gold-light uppercase block mb-3">
                 O que você vai receber:
               </span>
@@ -74,6 +77,7 @@ export default function OfertaSection() {
 
             {/* Botão CTA Principal com Máxima Força Visual */}
             <a 
+              id="btn-cta-oferta"
               href="https://pay.hub.la/RBS2l0kJ8JIuPjA14Nr5"
               className="w-full sm:w-auto min-h-[48px] sm:min-w-[300px] bg-accent hover:bg-accent-hover active:scale-[0.98] text-[#FDFCFA] border border-gold/35 font-sans font-medium py-3.5 sm:py-4 px-8 rounded-sm shadow-md hover:shadow-xl hover:ring-2 hover:ring-gold/50 transition-all duration-200 text-xs sm:text-sm tracking-wider uppercase inline-flex items-center justify-center gap-2.5 cursor-pointer text-center"
             >
