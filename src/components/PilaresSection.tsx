@@ -1,39 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 export default function PilaresSection() {
-  const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number; minutes: number; seconds: number }>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
-
-  useEffect(() => {
-    const calculateTimeLeft = () => {
-      const target = new Date('2026-10-05T00:00:00-03:00');
-      const now = new Date();
-      const diff = target.getTime() - now.getTime();
-
-      if (diff > 0) {
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / 1000 / 60) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-        setTimeLeft({ days, hours, minutes, seconds });
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
-    };
-
-    calculateTimeLeft();
-    const interval = setInterval(calculateTimeLeft, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const formatNumber = (num: number) => {
-    return num.toString().padStart(2, '0');
-  };
-
   const pilares = [
     {
       num: '01',
@@ -59,6 +26,12 @@ export default function PilaresSection() {
       num: '05',
       title: 'Vocação & Legado',
       desc: 'seu trabalho para de ser só sustento e vira parte de um propósito maior que vai além de você.'
+    },
+    {
+      num: '06',
+      title: 'Multiplique seus Talentos',
+      desc: 'crescimento intelectual, autoconhecimento e finanças. Depois de entender quem você é para Deus e levar isso para cada área da vida, a última etapa é aprender a multiplicar o que Ele colocou nas suas mãos.',
+      isNew: true
     }
   ];
 
@@ -71,23 +44,28 @@ export default function PilaresSection() {
             DISPONÍVEL AGORA
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-serif font-normal text-text">
-            Os 5 pilares que já estão de pé
+            Os 6 pilares da Jornada
           </h2>
         </div>
 
-        {/* Grid dos 5 Pilares com Tipografia de Alto Contraste */}
+        {/* Grid dos 6 Pilares com Tipografia de Alto Contraste */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-8 sm:mb-10">
           {pilares.map((pilar, idx) => (
             <div 
               key={idx} 
-              className={`border border-accent/15 bg-card p-6 sm:p-7 rounded-sm shadow-2xs hover:border-gold/50 transition-all flex flex-col justify-between group ${
-                idx === 4 ? 'md:col-span-2 lg:col-span-2' : ''
-              }`}
+              className="border border-accent/15 bg-card p-6 sm:p-7 rounded-sm shadow-2xs hover:border-gold/50 transition-all flex flex-col justify-between group"
             >
               <div>
-                <span className="block text-3xl sm:text-4xl font-serif font-normal text-gold group-hover:text-accent transition-colors mb-3 select-none leading-none">
-                  {pilar.num}
-                </span>
+                <div className="flex items-center justify-between mb-3">
+                  <span className="block text-3xl sm:text-4xl font-serif font-normal text-gold group-hover:text-accent transition-colors select-none leading-none">
+                    {pilar.num}
+                  </span>
+                  {pilar.isNew && (
+                    <span className="text-[10px] font-sans font-semibold tracking-wider text-accent bg-accent/10 border border-accent/25 px-2 py-0.5 rounded-xs uppercase">
+                      Novo · já disponível
+                    </span>
+                  )}
+                </div>
 
                 <h3 className="text-base sm:text-lg font-serif font-normal text-text mb-2.5 leading-snug">
                   {pilar.title}
@@ -109,62 +87,16 @@ export default function PilaresSection() {
           
           <div className="relative z-10">
             <div className="inline-flex items-center text-[10px] sm:text-[11px] font-sans font-semibold tracking-[0.22em] text-gold-light uppercase bg-gold/15 border border-gold/30 px-3.5 py-1.5 rounded-sm mb-3.5">
-              <span>CHEGANDO EM OUTUBRO</span>
+              <span>Novo · já disponível</span>
             </div>
 
             <h3 className="text-xl sm:text-2xl md:text-3xl font-serif font-normal text-[#FDFCFA] mb-3 leading-snug">
-              O 6º pilar: Multiplique seus Talentos
+              Pilar 6: Multiplique seus Talentos
             </h3>
 
             <div className="text-xs sm:text-sm md:text-base font-sans text-[#E5E0D6] font-normal leading-relaxed">
               <p>
-                Crescimento intelectual, autoconhecimento e finanças caminhando juntos, fechando o ciclo: até o seu dinheiro alinhado com quem você é. Três semanas que respondem uma pergunta que a Jornada ainda não tinha respondido - o que fazer com tudo que você já reconstruiu até aqui.
-              </p>
-            </div>
-
-            {/* Contador Regressivo Integrado com as Cores da Identidade */}
-            <div className="mt-6 pt-6 border-t border-gold/20">
-              <p className="text-[11px] font-sans font-medium tracking-[0.2em] text-gold-light uppercase mb-3">
-                Chega em:
-              </p>
-              
-              <div className="border border-gold/30 rounded-sm grid grid-cols-4 max-w-md mx-auto mb-3 bg-[#111A26]/85 backdrop-blur-xs overflow-hidden">
-                <div className="py-2.5 px-1 sm:py-3 text-center">
-                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-gold-light leading-none">
-                    {formatNumber(timeLeft.days)}
-                  </span>
-                  <span className="block text-[10px] font-sans text-gold/80 uppercase tracking-widest mt-1.5 font-medium">
-                    Dias
-                  </span>
-                </div>
-                <div className="py-2.5 px-1 sm:py-3 text-center border-l border-gold/20">
-                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-gold-light leading-none">
-                    {formatNumber(timeLeft.hours)}
-                  </span>
-                  <span className="block text-[10px] font-sans text-gold/80 uppercase tracking-widest mt-1.5 font-medium">
-                    Horas
-                  </span>
-                </div>
-                <div className="py-2.5 px-1 sm:py-3 text-center border-l border-gold/20">
-                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-gold-light leading-none">
-                    {formatNumber(timeLeft.minutes)}
-                  </span>
-                  <span className="block text-[10px] font-sans text-gold/80 uppercase tracking-widest mt-1.5 font-medium">
-                    Min
-                  </span>
-                </div>
-                <div className="py-2.5 px-1 sm:py-3 text-center border-l border-gold/20">
-                  <span className="block text-xl sm:text-2xl md:text-3xl font-serif font-normal text-gold-light leading-none">
-                    {formatNumber(timeLeft.seconds)}
-                  </span>
-                  <span className="block text-[10px] font-sans text-gold/80 uppercase tracking-widest mt-1.5 font-medium">
-                    Seg
-                  </span>
-                </div>
-              </div>
-
-              <p className="text-xs font-sans text-gold-light/85 mt-3">
-                Compre agora e receba essa atualização de graça quando lançar.
+                Crescimento intelectual, autoconhecimento e finanças. Depois de entender quem você é para Deus e levar isso para cada área da vida, a última etapa é aprender a multiplicar o que Ele colocou nas suas mãos. Incluso na Jornada, sem custo extra.
               </p>
             </div>
           </div>

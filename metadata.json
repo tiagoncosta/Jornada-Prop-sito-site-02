@@ -1,6 +1,6 @@
 {
   "name": "Jornada Propósito Pleno",
-  "description": "Página oficial de pré-lançamento para o relançamento da Jornada Propósito Pleno em 03 de Setembro.",
+  "description": "Página oficial da Jornada Propósito Pleno: 17 semanas em 6 pilares, todos disponíveis agora, por Guilherme Koichi.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

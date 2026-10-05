@@ -5,12 +5,12 @@ import JornadaSymbol from './JornadaSymbol';
 export default function OfertaSection() {
   const entregaveis = [
     'Acesso vitalício à área de membros',
-    '17 semanas em 6 pilares: 5 pilares disponíveis agora e o Pilar 6 liberado em outubro, sem custo extra.',
+    '17 semanas em 6 pilares, todos disponíveis agora. Um devocional em vídeo por dia, no seu ritmo, com acesso para sempre.',
     'Aplicativo exclusivo para assistir os devocionais de onde quiser',
     'Ebook de apoio por módulo',
     'Agente de IA na plataforma: peça um resumo, um mapa mental ou os principais insights de qualquer parte do conteúdo, quando quiser',
     'Grupo de WhatsApp exclusivo da Jornada',
-    'Pilar 6 incluso de graça, quando lançar em outubro'
+    'Pilar 6 incluso de graça, já disponível'
   ];
 
   return (

@@ -23,8 +23,8 @@ export default function FaqSection() {
       a: 'Pagamento único. Você entra uma vez, e o caminho é seu pra sempre.'
     },
     {
-      q: 'O Pilar 6 já está incluído se eu comprar agora?',
-      a: 'Sim. Você garante o acesso vitalício hoje, com os 5 pilares disponíveis, e o Pilar 6 entra na sua área de membros automaticamente em outubro, sem cobrança adicional.'
+      q: 'O Pilar 6 já está disponível?',
+      a: 'Sim. O Pilar 6, Multiplique seus Talentos, já está disponível e incluído na Jornada, sem custo extra. Quem já está na Jornada também recebe.'
     },
     {
       q: 'Vou ter contato direto com o Guilherme?',
