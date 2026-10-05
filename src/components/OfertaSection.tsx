@@ -37,7 +37,7 @@ export default function OfertaSection() {
             {/* Lista de Entregáveis em Vidro Crepuscular */}
             <div 
               id="o-que-voce-recebe"
-              className="scroll-mt-24 sm:scroll-mt-28 text-left max-w-lg mx-auto bg-[#101A27]/85 backdrop-blur-xs border border-gold/25 p-5 sm:p-7 rounded-sm mb-7 sm:mb-8 space-y-3.5 shadow-inner"
+              className="scroll-mt-24 sm:scroll-mt-28 text-left max-w-lg mx-auto bg-[#101A27]/85 backdrop-blur-xs border border-gold/25 p-5 sm:p-7 rounded-sm mb-6 sm:mb-7 space-y-3.5 shadow-inner"
             >
               <span className="text-[10px] font-sans font-semibold tracking-[0.2em] text-gold-light uppercase block mb-3">
                 O que você vai receber:
@@ -54,8 +54,20 @@ export default function OfertaSection() {
               ))}
             </div>
 
+            {/* Botão CTA Principal com Máxima Força Visual logo abaixo dos entregáveis */}
+            <div className="mb-7 sm:mb-8">
+              <a 
+                id="btn-cta-oferta"
+                href="https://pay.hub.la/RBS2l0kJ8JIuPjA14Nr5"
+                className="w-full sm:w-auto min-h-[48px] sm:min-w-[300px] bg-accent hover:bg-accent-hover active:scale-[0.98] text-[#FDFCFA] border border-gold/35 font-sans font-medium py-3.5 sm:py-4 px-8 rounded-sm shadow-md hover:shadow-xl hover:ring-2 hover:ring-gold/50 transition-all duration-200 text-xs sm:text-sm tracking-wider uppercase inline-flex items-center justify-center gap-2.5 cursor-pointer text-center"
+              >
+                <span>Quero começar minha Jornada</span>
+                <ArrowRight className="w-4 h-4 text-[#FDFCFA]/80" />
+              </a>
+            </div>
+
             {/* Bloco de Preço com Tipografia Editorial */}
-            <div className="mb-7 sm:mb-8 max-w-lg mx-auto space-y-2">
+            <div className="mb-6 sm:mb-7 max-w-lg mx-auto space-y-2">
               <div className="inline-flex items-center text-[10px] sm:text-[11px] font-sans font-semibold tracking-[0.22em] text-gold-light uppercase bg-gold/15 border border-gold/30 px-3.5 py-1.5 rounded-sm mb-2">
                 <span>86% DE DESCONTO</span>
               </div>
@@ -74,16 +86,6 @@ export default function OfertaSection() {
                 Cada semana adiando é uma semana a mais no mesmo lugar.
               </p>
             </div>
-
-            {/* Botão CTA Principal com Máxima Força Visual */}
-            <a 
-              id="btn-cta-oferta"
-              href="https://pay.hub.la/RBS2l0kJ8JIuPjA14Nr5"
-              className="w-full sm:w-auto min-h-[48px] sm:min-w-[300px] bg-accent hover:bg-accent-hover active:scale-[0.98] text-[#FDFCFA] border border-gold/35 font-sans font-medium py-3.5 sm:py-4 px-8 rounded-sm shadow-md hover:shadow-xl hover:ring-2 hover:ring-gold/50 transition-all duration-200 text-xs sm:text-sm tracking-wider uppercase inline-flex items-center justify-center gap-2.5 cursor-pointer text-center"
-            >
-              <span>Quero começar minha Jornada</span>
-              <ArrowRight className="w-4 h-4 text-[#FDFCFA]/80" />
-            </a>
 
             {/* Indicador de Garantia e Pagamento Seguro */}
             <div className="mt-5 text-[11px] font-sans text-gold-light/75 flex items-center justify-center gap-1.5">
