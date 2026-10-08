@@ -116,11 +116,6 @@ export default function App() {
               </span>
             </h1>
             
-            {/* Subtítulo Arejado e Reflexivo */}
-            <p className="text-base sm:text-lg font-sans text-olive font-normal leading-relaxed max-w-xl mx-auto mb-3 sm:mb-3.5 px-1 sm:px-0">
-              Nenhuma meta, motivação ou tentativa nova resolve isso. Primeiro se reconstrói a base - depois vem a clareza.
-            </p>
-
             {/* Resumo Direto da Jornada */}
             <p className="text-sm sm:text-base font-sans text-olive font-normal leading-relaxed max-w-xl mx-auto mb-8 sm:mb-9 px-1 sm:px-0">
               17 semanas de devocionais em vídeo para você descobrir quem é para Deus e ter clareza do seu propósito.
