@@ -118,7 +118,7 @@ export default function App() {
             
             {/* Resumo Direto da Jornada */}
             <p className="text-sm sm:text-base font-sans text-olive font-normal leading-relaxed max-w-xl mx-auto mb-8 sm:mb-9 px-1 sm:px-0">
-              17 semanas de devocionais em vídeo para você descobrir quem é para Deus e ter clareza do seu propósito.
+              17 semanas de devocionais em vídeo para você descobrir quem é para Deus e ter clareza do seu propósito. R$ 97 uma vez só.
             </p>
 
             {/* Botão de Navegação com acabamento editorial nas cores da marca */}
@@ -264,7 +264,7 @@ export default function App() {
       <a
         id="btn-fixo-checkout"
         href="https://pay.hub.la/RBS2l0kJ8JIuPjA14Nr5"
-        aria-label="Quero começar"
+        aria-label="Quero começar minha Jornada · R$ 97"
         style={{
           bottom: 'max(1rem, calc(0.75rem + env(safe-area-inset-bottom, 0px)))'
         }}
@@ -274,7 +274,7 @@ export default function App() {
             : 'opacity-100 pointer-events-auto translate-y-0 scale-100'
         }`}
       >
-        <span>Quero começar</span>
+        <span>Quero começar minha Jornada · R$ 97</span>
         <ArrowRight className="w-3.5 h-3.5 text-[#FDFCFA]/80 shrink-0" />
       </a>
 

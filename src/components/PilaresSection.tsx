@@ -1,7 +1,14 @@
 import React from 'react';
 
+interface PilarItem {
+  num: string;
+  title: string;
+  desc: string;
+  isNew?: boolean;
+}
+
 export default function PilaresSection() {
-  const pilares = [
+  const pilares: PilarItem[] = [
     {
       num: '01',
       title: 'Fundamentos & Audição Divina',
@@ -26,12 +33,6 @@ export default function PilaresSection() {
       num: '05',
       title: 'Vocação & Legado',
       desc: 'seu trabalho para de ser só sustento e vira parte de um propósito maior que vai além de você.'
-    },
-    {
-      num: '06',
-      title: 'Multiplique seus Talentos',
-      desc: 'crescimento intelectual, autoconhecimento e finanças. Depois de entender quem você é para Deus e levar isso para cada área da vida, a última etapa é aprender a multiplicar o que Ele colocou nas suas mãos.',
-      isNew: true
     }
   ];
 
