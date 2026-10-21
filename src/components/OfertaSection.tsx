@@ -4,12 +4,11 @@ import JornadaSymbol from './JornadaSymbol';
 
 export default function OfertaSection() {
   const entregaveis = [
-    'Acesso vitalício à área de membros: 17 semanas em 6 pilares com o caminho já desenhado: você abre, assiste o devocional do dia e sabe qual é o próximo passo. Se parar no meio, volta de onde parou, sem prazo.',
+    'Acesso vitalício à área de membros',
     'Aplicativo exclusivo para assistir os devocionais de onde quiser',
-    'Ebook de apoio por módulo, pra levar o que você assistiu pra prática real antes de seguir pro próximo.',
-    'Agente de IA na plataforma: Perdeu uma semana ou quer revisar? Peça um resumo, um mapa mental ou os principais insights e retome de onde parou.',
-    'Grupo de WhatsApp exclusivo, com gente na mesma busca que você, pra você não caminhar sozinho.',
-    'Pilar 6 incluso de graça, já disponível'
+    'Ebook de apoio por módulo',
+    'Agente de IA na plataforma',
+    'Grupo de WhatsApp exclusivo, com gente na mesma busca que você, pra você não caminhar sozinho.'
   ];
 
   return (
